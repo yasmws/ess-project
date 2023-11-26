@@ -33,6 +33,7 @@ Scenario: Editar dias de reservas como usuário comum
 	And seleciono os dias entre “15/01/2024”  e “20/01/2024” que estão “AZUL”, ou seja, disponíveis para reserva
        AND eu seleciono “CONFIRMAR”
          Then uma tela de atualização “NOVAS DATAS INSERIDAS COM SUCESSO” aparece para mim
-	And eu consigo ver no board ilustrativo  “RESERVA” as minhas datas de “check in” e “check out” marcadas de “CINZA”,  sendo respectivamente o intervalo de  dias entre “15/01/2024” e “20/01/2024”, custeando no campo “VALOR” 967,0 R$.
+	    And eu consigo ver no board ilustrativo  “RESERVA” as minhas datas de “check in” e “check out” marcadas de “CINZA”,  sendo respectivamente o intervalo de  dias entre “15/01/2024” e “20/01/2024”, custeando no campo “VALOR” 967,0 R$.
+        And continuo na página de "RESERVA ESTADIA"
 
 
