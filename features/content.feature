@@ -36,3 +36,12 @@ When I do login with that user
 and I do “POST” request  to “../stars”  with data ”5” in star field content
 and empty data in comment field content
 Then  the date was saved in system
+
+Scenario: adding new evaluation comment but not add any star
+Given A user exist in data bank named “Jonh” and Password “Doe”
+And the user “Jonh” have a finish reservation at hotel “ Hotel California”
+When I do login with that user 
+and I do “POST” request  to “../stars”  with data ”excelente” in comment field content 
+and empty data in star field content
+Then the system return error  message “no star selected”
+And the date was empty in system
