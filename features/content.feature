@@ -28,4 +28,3 @@ And have a evaluation for the reservation at “Ahwahnee Hotel” on “30/02/20
 When I am go to "Reservation History"
 And try change my review at “Ahwahnee Hotel” from “30/02/2023”
 Then I can change any parameter in evaluation. 
-
