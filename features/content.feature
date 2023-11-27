@@ -44,4 +44,4 @@ When I do login with that user
 and I do “POST” request  to “../stars”  with data ”excelente” in comment field content 
 and empty data in star field content
 Then the system return error  message “no star selected”
-And the date was empty in system...
+And the date was empty in system 10.1
