@@ -45,3 +45,4 @@ and I do “POST” request  to “../stars”  with data ”excelente” in com
 and empty data in star field content
 Then the system return error  message “no star selected”
 And the date was empty in system. 
+And the date was empty in system 
