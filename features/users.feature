@@ -1,3 +1,8 @@
+Feature: gerenciamento de reserva
+	as a usuário misto
+	i want to poder reservar, editar e excluir reservas 
+           So ficará certificado que estou em um sistema funcional e que atenda os requisitos mínimos
+
 
 Scenario: Histórico de reserva como como cliente
 
