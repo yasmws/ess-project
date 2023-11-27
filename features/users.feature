@@ -39,4 +39,26 @@ Scenario: Editar dias de reservas como usuário comum
        AND eu seleciono “CONFIRMAR”
          Then uma tela de atualização “NOVAS DATAS INSERIDAS COM SUCESSO” aparece para mim
 	    And eu consigo ver no board ilustrativo  “RESERVA” as minhas datas de “check in” e “check out” marcadas de “CINZA”,  sendo respectivamente o intervalo de  dias entre “15/01/2024” e “20/01/2024”, custeando no campo “VALOR” 967,0 R$.
-        And continuo na página de "RESERVA ESTADIA"
+Scenario: Cancelar reserva de cliente 
+
+        Given que estou logado na tela  “ADMINISTRAR RESERVA OFERTADA”
+        And existe uma oferta reservada para “Kaylane Gonçalves Lira”, com e-mail “kgl@cin.ufpe.br” para os dias “21/03/24” e “21/03/24”
+        When eu excluo a reserva e seleciono o em “cancelar reserva”
+        AND uma tela com campos  a preencher sobre o cancelamento aparece
+        AND seleciona o campo “RUDE” no campo “comportamento do cliente”
+        AND preencho o campo obrigatório de comentário com o seguinte texto: ” Kaylane Gonçalvez foi muito rude em nosso primeiro encontro” 
+        AND seleciono em “confirmar”
+
+        Then uma tela de confirmação com a informação “Reserva cancelada” aparece na tela 
+
+        AND a oferta aparece no sistema para ser ofertada a outros interessados
+
+Scenario: Cancelar reserva existente com cobrança de juros
+
+ Given estou logado na página “MINHAS RESERVAS” onde encontro minhas datas de “check in” e “check out, sendo respectivamente os dias entre “17/01/2024” e “25/01/2024”, as quais reservei faz dois.
+	When eu clico no botão de “CANCELAR RESERVA”
+	 And uma tela de Span com a frase “Cancelar reserva para os dias entre “17/01/2024” e “25/01/2024”?”
+	And eu seleciono “Confirmar”
+            And  retorno para a tela “MINHAS RESERVAS” 
+	Then eu vejo a seguinte mensagem “Nenhuma reserva no seu nome” e abaixo dessa mensagem um “RELATÓRIO FINANCEIRO” registrando o reenbolso com juros de 20% por cancelamento após 1 dia últil .
+           
