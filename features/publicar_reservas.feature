@@ -12,3 +12,4 @@ And o usuário não logado escolhe “publicar”
 Then o usuário não logado recebe uma mensagem “Você precisa estar logado para reservar uma acomodação”
 And o sistema limpa o formulário da página de “Publicar uma reserva”
 And o usuário é redirecionado para “Login”
+And o usuário tenta fazer login em sua conta
