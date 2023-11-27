@@ -61,4 +61,4 @@ Scenario: Cancelar reserva existente com cobrança de juros
 	And eu seleciono “Confirmar”
             And  retorno para a tela “MINHAS RESERVAS” 
 	Then eu vejo a seguinte mensagem “Nenhuma reserva no seu nome” e abaixo dessa mensagem um “RELATÓRIO FINANCEIRO” registrando o reenbolso com juros de 20% por cancelamento após 1 dia últil .
-           
+     And eu retorno para a página "MINHAS RESERVAS"           
