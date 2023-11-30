@@ -15,3 +15,11 @@ When Tento fazer login com Username “phagp”, Email “phagp@cin.ufpe.br” e
 Then Continuo na tela de “Login de usuário”
 And Vejo uma mensagem de erro sobre senha incorreta
 And Eu continuo não estando logado ao sistema
+
+Scenario: Usuário informou email não cadastrado durante o login 
+Given O sistema não tem cadastrado nenhum usuário com Email “phagp@cin.ufpe.br”
+And Estou na tela “Login de usuário”
+When Tento fazer login com Username “phagp”, Email “phagp@cin.ufpe.br” e senha “12345”
+Then Continuo na tela de “Login de usuário”
+And Vejo uma mensagem de erro sobre email não cadastrado
+And Eu continuo não estando logado ao sistema
