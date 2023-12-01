@@ -38,4 +38,4 @@ Feature: Cadastrar forma de pagamento
 	    Then eu consigo ver uma mensagem de erro sobre forma de pagamento já cadastrada
 	    And eu continuo na página "Formas de pagamento"
 	    And o perfil de usuário "Henrique" é registrado no sistema com a forma de pagamento "Cascalho"
-	    And eu consigo ver a forma de pagamento "Cascalho" listada no perfil
+	    And eu consigo ver a forma de pagamento "Cascalho" listada apenas uma vez no perfil
