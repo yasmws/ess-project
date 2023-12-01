@@ -10,6 +10,6 @@ Given que o usuário não logado está na página de “Publicar uma reserva”
 When o usuário não logado preenche todas as informações de “dados obrigatórios”
 And o usuário não logado escolhe “publicar”
 Then o usuário não logado recebe uma mensagem “Você precisa estar logado para reservar uma acomodação”
-And o sistema limpa o formulário da página de “Publicar uma reserva”
+And o sistema limpa a página de “Publicar uma reserva”
 And o usuário é redirecionado para “Login”
 And o usuário tenta fazer login em sua conta
