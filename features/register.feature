@@ -36,3 +36,6 @@ And O usuário com Nome “Pedro”, Username “phagp”, Email “phagp@cin.uf
 And O usuário com Nome “Pedro”, Username “phagp2”, Email “phagp2@cin.ufpe.br” , CPF “124476799-12” e senha “12345” não é cadastrado no sistema
 
 Scenario: teste de commit
+And O usuário com Nome “Pedro”, Username “phagp2”, Email “phagp2@cin.ufpe.br” , CPF “124476789-12” e senha “12345” não é cadastrado no sistema
+
+Scenario: Testing the commit
