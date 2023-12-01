@@ -34,3 +34,5 @@ Then Continuo na tela de “Cadastro de usuário”
 And Vejo uma mensagem de erro sobre nome já cadastrado
 And O usuário com Nome “Pedro”, Username “phagp”, Email “phagp@cin.ufpe.br” , CPF “123456789-12” e senha “1234” continua cadastrado no sistema
 And O usuário com Nome “Pedro”, Username “phagp2”, Email “phagp2@cin.ufpe.br” , CPF “124476799-12” e senha “12345” não é cadastrado no sistema
+
+Scenario: teste de commit
