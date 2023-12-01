@@ -1,5 +1,4 @@
 
-
 SCENARIO: Realizar com sucesso uma reserva
     Given que o usuário comum de login “ymws” se encontra na página “Realizar reserva”
     And o usuário de login “ymws” consegue visualizar a lista de reservas disponíveis e a barra de pesquisa
