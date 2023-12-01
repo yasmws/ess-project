@@ -24,3 +24,4 @@ SCENARIO: Editar uma reserva logado
     And o usuário com login “lmws” escolhe “Salvar alterações”
     Then o usuário com login “lmws” recebe uma mensagem de “Reserva atualizada com sucesso”
     And o usuário com login “lmws” é redirecionado de volta para a página “Minhas Publicações”
+    And o usuário com login "lmws" pode checar suas edições
