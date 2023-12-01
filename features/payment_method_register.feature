@@ -28,3 +28,14 @@ Feature: Cadastrar forma de pagamento
 	    And o perfil de usuário "Henrique" é registrado no sistema com as formas de pagamento "Sal, Papel, Moeda"
 	    And eu consigo ver as formas de pagamento "Sal, Papel, Moeda" listadas no perfil
 
+    Scenario: cadastrar forma de pagamento já cadastrada
+	    Given eu estou logado como usuário "Henrique"
+	    And eu estou na página "Formas de pagamento"
+	    And eu vejo a forma de pagamento "Cascalho" com número/código "XXXXXX-XXX" listada no perfil
+	    When eu seleciono "Adicionar forma de pagamento"
+	    And eu preencho os dados com tipo "Cascalho" e número/código "XXXXXX-XXX"
+	    And eu seleciono "Confirmar"
+	    Then eu consigo ver uma mensagem de erro sobre forma de pagamento já cadastrada
+	    And eu continuo na página "Formas de pagamento"
+	    And o perfil de usuário "Henrique" é registrado no sistema com a forma de pagamento "Cascalho"
+	    And eu consigo ver a forma de pagamento "Cascalho" listada no perfil
