@@ -12,3 +12,4 @@ SCENARIO: Publicar uma reserva sem estar logado
     Then o usuário não logado recebe uma mensagem “Você precisa estar logado para reservar uma acomodação”
     And o sistema limpa a página de “Publicar uma reserva”
     And o usuário é redirecionado para “Login”
+    And o usuário realiza com sucesso o login
