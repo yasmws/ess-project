@@ -1,4 +1,4 @@
-FEATURE:
+FEATURE: Publicar reservas
     AS um usuário   
     I WANT compartilhar informações sobre as minhas acomodações disponíveis
     SO THAT outros usuários possam visualizar e eventualmente reservar essas acomodações
