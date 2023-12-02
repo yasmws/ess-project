@@ -60,5 +60,4 @@ Feature: Cadastrar forma de pagamento
 	    And eu seleciono "Confirmar"
 	    Then eu consigo ver uma mensagem de erro sobre forma de pagamento inválida
         And eu continuo na página "Formas de pagamento"
-        And a janela "Adicionar forma de pagamento" continua aberta
-	    And eu consigo preencher os dados para adicionar outra forma de pagamento
+	    And eu consigo ver que não há formas de pagamento listadas
