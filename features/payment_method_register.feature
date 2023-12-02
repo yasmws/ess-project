@@ -4,7 +4,7 @@ Feature: Cadastrar forma de pagamento
     I want to cadastrar formas de pagamento
     so that eu posso adicionar formas de pagamento ao meu perfil
 
-    Scenario: cadastrar forma de pagamento (limite de formas de pagamento não atingido)
+    Scenario: Cadastrar forma de pagamento (limite de formas de pagamento não atingido)
 	    Given eu estou logado como usuário "Henrique"
 	    And eu estou na página "Formas de pagamento"
 	    And eu vejo que não há formas de pagamento listadas no perfil
@@ -16,7 +16,7 @@ Feature: Cadastrar forma de pagamento
 	    And o perfil de usuário "Henrique" é registrado no sistema com a forma de pagamento "Cascalho" de número/código "XXXXXX-XXX" cadastrada
 	    And eu consigo ver a forma de pagamento "cascalho" com número/código "XXXXXX-XXX" listada no perfil
 
-    Scenario: cadastrar forma de pagamento (limite de formas de pagamento atingido)
+    Scenario: Cadastrar forma de pagamento (limite de formas de pagamento atingido)
 	    Given eu estou logado como usuário "Henrique"
 	    And eu estou na página "Formas de pagamento"
 	    And eu vejo as formas de pagamento "sal, papel, moeda" listadas no perfil
@@ -28,7 +28,7 @@ Feature: Cadastrar forma de pagamento
 	    And o perfil de usuário "Henrique" é registrado no sistema com as formas de pagamento "Sal, Papel, Moeda"
 	    And eu consigo ver as formas de pagamento "sal, papel, moeda" listadas no perfil
 
-    Scenario: cadastrar forma de pagamento já cadastrada
+    Scenario: Cadastrar forma de pagamento já cadastrada
 	    Given eu estou logado como usuário "Henrique"
 	    And eu estou na página "Formas de pagamento"
 	    And eu vejo a forma de pagamento "cascalho" com número/código "XXXXXX-XXX" listada no perfil
@@ -40,7 +40,7 @@ Feature: Cadastrar forma de pagamento
 	    And o perfil de usuário "Henrique" é registrado no sistema com a forma de pagamento "Cascalho"
 	    And eu consigo ver a forma de pagamento "cascalho" listada apenas uma vez no perfil
 
-    Scenario: cancelar cadastro de forma de pagamento
+    Scenario: Cancelar cadastro de forma de pagamento
 	    Given eu estou logado como usuário "Henrique"
 	    And eu estou na página "Formas de pagamento"
 	    And eu vejo que não há formas de pagamento listadas no perfil
@@ -51,7 +51,7 @@ Feature: Cadastrar forma de pagamento
 	    And o perfil de usuário "Henrique" é registrado no sistema com a forma de pagamento "Cascalho"
 	    And eu consigo ver que não há formas de pagamento listadas no perfil
 
-    Scenario: cadastrar de forma de pagamento inválida
+    Scenario: Cadastrar de forma de pagamento inválida
 	    Given eu estou logado como usuário "Henrique"
 	    And eu estou na página "Formas de pagamento"
 	    And eu vejo que não há formas de pagamento listadas no perfil
