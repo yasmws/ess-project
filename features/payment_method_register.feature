@@ -9,19 +9,19 @@ Feature: Cadastrar forma de pagamento
 	    And eu estou na página "Formas de pagamento"
 	    And eu vejo que não há formas de pagamento listadas no perfil
 	    When eu seleciono "Adicionar forma de pagamento"
-	    And eu preencho os dados com tipo "cascalho" e número/código "XXXXXX-XXX"
+	    And eu preencho os dados com tipo "Cascalho" e número/código "123456-789"
 	    And eu seleciono "Confirmar"
 	    Then eu consigo ver uma mensagem de confirmação do cadastro da nova forma de pagamento
 	    And eu continuo na página "Formas de pagamento"
 	    And o perfil de usuário "Henrique" é registrado no sistema com a forma de pagamento "Cascalho" de número/código "XXXXXX-XXX" cadastrada
-	    And eu consigo ver a forma de pagamento "cascalho" com número/código "XXXXXX-XXX" listada no perfil
+	    And eu consigo ver a forma de pagamento "Cascalho" com número/código "123456-789" listada no perfil
 
     Scenario: Cadastrar forma de pagamento (limite de formas de pagamento atingido)
 	    Given eu estou logado como usuário "Henrique"
 	    And eu estou na página "Formas de pagamento"
 	    And eu vejo as formas de pagamento "sal, papel, moeda" listadas no perfil
 	    When eu seleciono "Adicionar forma de pagamento"
-	    And eu preencho os dados com tipo "cascalho" e número/código "XXXXXX-XXX"
+	    And eu preencho os dados com tipo "Cascalho" e número/código "098765-432"
 	    And eu seleciono "Confirmar"
 	    Then eu consigo ver uma mensagem de erro sobre limite de formas de pagamento atingido
 	    And eu continuo na página "Formas de pagamento"
@@ -31,9 +31,9 @@ Feature: Cadastrar forma de pagamento
     Scenario: Cadastrar forma de pagamento já cadastrada
 	    Given eu estou logado como usuário "Henrique"
 	    And eu estou na página "Formas de pagamento"
-	    And eu vejo a forma de pagamento "cascalho" com número/código "XXXXXX-XXX" listada no perfil
+	    And eu vejo a forma de pagamento "Cascalho" com número/código "372585-686" listada no perfil
 	    When eu seleciono "Adicionar forma de pagamento"
-	    And eu preencho os dados com tipo "cascalho" e número/código "XXXXXX-XXX"
+	    And eu preencho os dados com tipo "Cascalho" e número/código "372585-686"
 	    And eu seleciono "Confirmar"
 	    Then eu consigo ver uma mensagem de erro sobre forma de pagamento já cadastrada
 	    And eu continuo na página "Formas de pagamento"
@@ -45,7 +45,7 @@ Feature: Cadastrar forma de pagamento
 	    And eu estou na página "Formas de pagamento"
 	    And eu vejo que não há formas de pagamento listadas no perfil
 	    When eu seleciono "Adicionar forma de pagamento"
-	    And eu preencho os dados com tipo "cascalho" e número/código "XXXXXX-XXX"
+	    And eu preencho os dados com tipo "Cascalho" e número/código "456322-000"
 	    And eu seleciono "Cancelar"
 	    Then eu continuo na página "Formas de pagamento"
 	    And o perfil de usuário "Henrique" é registrado no sistema com a forma de pagamento "Cascalho"
