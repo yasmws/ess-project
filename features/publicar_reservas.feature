@@ -25,3 +25,8 @@ SCENARIO: Editar uma reserva logado
     Then o usuário com login “lmws” recebe uma mensagem de “Reserva atualizada com sucesso”
     And o usuário com login “lmws” é redirecionado de volta para a página “Minhas Publicações”
     And o usuário com login "lmws" pode checar suas edições
+SCENARIO: Visualizar detalhes de uma reserva logado
+    Given que o usuário com login “lmws” está na página de “Minhas Reservas”
+    When o usuário com login “lmws” seleciona uma reserva específica da lista de suas reservas
+    Then o usuário é redirecionado para a página de detalhes da reserva
+    And o usuário pode visualizar "Data", "Acomodação", "Preço" e "Status da reserva"
