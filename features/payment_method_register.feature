@@ -39,3 +39,26 @@ Feature: Cadastrar forma de pagamento
 	    And eu continuo na página "Formas de pagamento"
 	    And o perfil de usuário "Henrique" é registrado no sistema com a forma de pagamento "Cascalho"
 	    And eu consigo ver a forma de pagamento "Cascalho" listada apenas uma vez no perfil
+
+    Scenario: cancelar cadastro de forma de pagamento
+	    Given eu estou logado como usuário "Henrique"
+	    And eu estou na página "Formas de pagamento"
+	    And eu vejo que não há formas de pagamento listadas no perfil
+	    When eu seleciono "Adicionar forma de pagamento"
+	    And eu preencho os dados com tipo "Cascalho" e número/código "XXXXXX-XXX"
+	    And eu seleciono "Cancelar"
+	    Then eu continuo na página "Formas de pagamento"
+	    And o perfil de usuário "Henrique" é registrado no sistema com a forma de pagamento "Cascalho"
+	    And eu consigo ver que não há formas de pagamento listadas no perfil
+
+    Scenario: cadastrar de forma de pagamento inválida
+	    Given eu estou logado como usuário "Henrique"
+	    And eu estou na página "Formas de pagamento"
+	    And eu vejo que não há formas de pagamento listadas no perfil
+	    When eu seleciono "Adicionar forma de pagamento"
+	    And eu preencho os dados com tipo "Cascalho" e número/código "---"
+	    And eu seleciono "Confirmar"
+	    Then eu consigo ver uma mensagem de erro sobre forma de pagamento inválida
+        And eu continuo na página "Formas de pagamento"
+        And a janela "Adicionar forma de pagamento" continua aberta
+	    And eu consigo preencher os dados para adicionar outra forma de pagamento
