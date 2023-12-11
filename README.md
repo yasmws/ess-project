@@ -1,4 +1,4 @@
-## Projeto de ESS
+## Aurore
 
 ### Backend:
 
@@ -15,16 +15,17 @@
 
 ### FrontEnd:
 
+Este projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli) versão 16.2.10.
+
 #### Instalação:
 
 - Para a configuração do ambiente local, faz-se necessário a instalação da versão do Node js mais atualizado na sua máquina
 
-[Site para instalaão (RECOMENDADO A VERSÃO LTS)](https://nodejs.org/en)
+[Site para instalação (RECOMENDADO A VERSÃO LTS)](https://nodejs.org/en)
 
-- Em seu prompt de preferencia digite `ng install -g @angular/cli@16.2.10` ou em caso de sistema operacional tipo linux faça em modo `sudo` para dar permissão como administrador
+- Em seu prompt de preferência digite `ng install -g @angular/cli@16.2.10` ou em caso de sistema operacional tipo linux faça em modo `sudo` para dar permissão como administrador
 
 ``` javascript
-
     ng version // conferir se foi corretamente instalado
 ```
 
@@ -35,5 +36,4 @@
 // npm start
 ```
 
-- Em seu browser pesquise por `localhost:4200`, essa é a porta padrão para projetos em
-
+- Em seu browser acesse `http://localhost:4200/`, para ver a aplicação rodando. A aplicação irá recarregar automaticamente caso haja alguma alteração no código fonte.
