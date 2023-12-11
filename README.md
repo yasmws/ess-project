@@ -13,7 +13,7 @@
 - Para acessar a documentação da API, acesse: http://127.0.0.1:8000/docs#/
 - Outra opção é acessar: http://127.0.0.1:8000/redoc
 
-### FrontEnd:
+### Frontend:
 
 Este projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli) versão 16.2.10.
 
@@ -30,10 +30,10 @@ Este projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli
 ```
 
 
-- Em seu prompt de preferencia digite `nps start` ou `ng serve` para que o projeto seja compilado e esteja disponível para visualização
+- Em seu prompt de preferencia digite `npm start` ou `ng serve` para que o projeto seja compilado e esteja disponível para visualização
 
 ``` javascript
-// npm start
+    npm start
 ```
 
 - Em seu browser acesse `http://localhost:4200/`, para ver a aplicação rodando. A aplicação irá recarregar automaticamente caso haja alguma alteração no código fonte.
