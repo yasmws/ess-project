@@ -1,0 +1,88 @@
+
+    body {
+        margin: 0;
+    }
+
+    .header {
+        position: absolute;
+    }
+
+    .carrousel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .buttoms {
+        position: relative;
+    }
+
+    .title-carousel {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: left;
+        z-index: 2;
+        color: #fff; /* Adjust text color */
+    }
+
+    .title-carousel a {
+        font-size: 64px;
+        text-decoration: none;
+        font-family: Petrona;
+        color: inherit;
+    }
+
+    .image-container { 
+        display: block;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .image-container img {
+        width: 100vw;
+        height: 100vh;
+        display: block;
+        object-fit: fill; 
+        z-index: 0;
+    }
+      
+    .image-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.6); 
+        pointer-events: none; 
+        z-index: 1;
+    }
+
+    .search-bar {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        padding: 10px 20px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 40px;
+        transform: translateX(-50%);
+        text-align: center;
+        z-index: 2;
+    }
+    
+    .search-bar a {
+        font-size: 26px;
+        font-family: Inter;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .footer {
+        position: relative;
+    }
+
