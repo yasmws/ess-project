@@ -20,3 +20,10 @@ def create_user(email, password):
         return "User created!"
     except Exception:
         raise HTTPException(status_code=400, detail="It was not possible to create the user.")
+
+def login_user(email, password):
+    try:
+        user = auth.sign_in_with_email_and_password(email, password)
+        return "User logged in!"
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid email or password.")

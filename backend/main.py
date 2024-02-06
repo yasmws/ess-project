@@ -18,3 +18,10 @@ def create_user(
         cpf: str = None
     ):
     return users.create_user(email, password)
+
+@app.post("/users/login")
+def login_user(
+        email: str,
+        password:str
+    ):
+    return users.login_user(email, password)
