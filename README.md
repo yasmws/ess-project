@@ -1,6 +1,8 @@
 ## Aurore
 
 ### Backend:
+O backend deste projeto foi desenvolvido com [FastAPI](https://fastapi.tiangolo.com/), um framework web para construção de APIs com Python.
+O banco de dados utilizado foi o [Google Firebase](https://firebase.google.com/).
 
 #### Instalação:
 - Vá até a pasta **backend** e execute o comando `pip install -r requirements.txt` para instalar as dependências do projeto.
