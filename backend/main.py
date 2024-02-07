@@ -13,11 +13,13 @@ def read_root():
 def create_user(
         email: str,
         password:str,
+        username: str,
         name: str = None,
-        username: str = None,
         cpf: str = None
     ):
-    return users.create_user(email, password)
+    return users.create_user(
+        email, password, name, username, cpf
+    )
 
 @app.post("/users/login")
 def login_user(

@@ -8,15 +8,25 @@ firebaseConfig = {
     'storageBucket': "aurore-35e60.appspot.com",
     'messagingSenderId': "194880387139",
     'appId': "1:194880387139:web:f1502cc327764970607cf6",
-    'databaseURL': "https://aurore-35e60.firebaseio.com"
+    'databaseURL': "https://aurore-35e60-default-rtdb.firebaseio.com"
 }
 
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
+db = firebase.database()
 
-def create_user(email, password):
+def create_user(email, password, name, username, cpf):
     try:
         user = auth.create_user_with_email_and_password(email, password)
+        print("User created")
+        data = {
+            "name": name,
+            "email": email,
+            "cpf": cpf,
+            "username": username,
+        }
+        db.child("users").child(data["username"]).set(data)
+        print("User data added successfully!")
         return "User created!"
     except Exception:
         raise HTTPException(status_code=400, detail="It was not possible to create the user.")
