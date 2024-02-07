@@ -9,7 +9,21 @@ app = FastAPI()
 def read_root():
     return "Server running!!"
 
-
 @app.post("/users/create")
-def create_user(name:str, email:str):
-    return users.create_user(name, email)
+def create_user(
+        email: str,
+        password:str,
+        username: str,
+        name: str = None,
+        cpf: str = None
+    ):
+    return users.create_user(
+        email, password, name, username, cpf
+    )
+
+@app.post("/users/login")
+def login_user(
+        email: str,
+        password:str
+    ):
+    return users.login_user(email, password)
