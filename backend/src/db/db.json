@@ -6,11 +6,13 @@
             "senha": "password123",
             "ofertas": [
                 {
+                    "cidade": "Recife",
                     "nome": "Hotel ABC",
                     "id": 1,
                     "descricao": "A cozy hotel with a beautiful view"
                 },
                 {
+                    "cidade": "Recife",
                     "nome": "Villa XYZ",
                     "id": 2,
                     "descricao": "A luxurious villa with a private pool"
@@ -18,6 +20,7 @@
             ],
             "reservas": [
                 {
+                    "cidade": "Recife",
                     "nome": "Cabin Retreat",
                     "id": 3,
                     "descricao": "A rustic cabin surrounded by nature"
@@ -31,6 +34,7 @@
             "ofertas": null,
             "reservas": [
                 {
+                    "cidade": "Olinda",
                     "nome": "Beach House",
                     "id": 4,
                     "descricao": "A beachfront house with stunning views"
@@ -50,6 +54,7 @@
             "senha": "string",
             "ofertas": [
                 {
+                    "cidade": "Recife",
                     "nome": "string",
                     "id": 0,
                     "descricao": "string"
@@ -81,47 +86,68 @@
                     "descricao": "string"
                 }
             ]
+        },
+        {
+            "nome": "Lucinda",
+            "email": "yasminmwsoare@gmail.com",
+            "senha": "yasmin123"
+        },
+        {
+            "nome": "Lucy",
+            "email": "lucy@gmail.com",
+            "senha": "lucy12"
         }
     ],
-    "acomodacoes":[
+    "acomodacoes": [
         {
+            "cidade": "Recife",
             "nome": "Hotel ABC",
             "id": 1,
             "descricao": "A cozy hotel with a beautiful view",
-            "checkin": "2024-02-05", 
-            "checkout": "2024-02-10", 
+            "checkin": "2024-02-05",
+            "checkout": "2024-02-10",
             "disponibilidade": true
         },
         {
+            "cidade": "Recife",
             "nome": "Villa XYZ",
-            "id": 2, 
-            "descricao": "A luxurious villa with a private pool", 
-            "checkin": "2024-02-06", 
-            "checkout": "2024-02-11", 
+            "id": 2,
+            "descricao": "A luxurious villa with a private pool",
+            "checkin": "2024-02-10",
+            "checkout": "2024-02-20",
             "disponibilidade": false
         },
         {
-            "nome": "Cabin Retreat", 
-            "id": 3, 
-            "descricao": "A rustic cabin surrounded by nature", 
-            "checkin": "2024-02-07", 
-            "checkout": "2024-02-12", 
+            "cidade": "Recife",
+            "nome": "Cabin Retreat",
+            "id": 3,
+            "descricao": "A rustic cabin surrounded by nature",
+            "checkin": "2024-02-07",
+            "checkout": "2024-02-12",
             "disponibilidade": true
         },
         {
-            "nome": "Beach House", 
-            "id": 4, 
-            "descricao": "A beachfront house with stunning views", 
-            "checkin": "2024-02-08", 
-            "checkout": "2024-02-13", 
+            "cidade": "Olinda",
+            "nome": "Beach House",
+            "id": 4,
+            "descricao": "A beachfront house with stunning views",
+            "checkin": "2024-02-08",
+            "checkout": "2024-02-13",
             "disponibilidade": false
         },
         {
-            "nome": "Casa Moranbir", 
-            "id": 10, 
-            "descricao": "lalalalalal", 
-            "checkin": "2024-02-09", 
-            "checkout": "2024-02-14", 
-            "disponibilidade": true}
+            "cidade": "Olinda",
+            "nome": "Casa Moranbir",
+            "id": 10,
+            "descricao": "lalalalalal",
+            "checkin": "2024-02-10",
+            "checkout": "2024-02-10",
+            "disponibilidade": true
+        }
+    ],
+    "encontrarAcomodacoes": [
+        {
+            
+        }
     ]
 }

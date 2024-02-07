@@ -4,6 +4,7 @@ from pydantic import BaseModel
 import json
 
 class Acomodacoes(BaseModel):
+    cidade: str
     nome: str
     id: int
     descricao: str
@@ -13,6 +14,7 @@ class Acomodacoes(BaseModel):
     disponibilidade: bool  
       
 class Ofertas(BaseModel):
+    cidade: str
     nome: str
     id: int
     descricao: str
@@ -25,6 +27,7 @@ class Usuarios(BaseModel):
     reservas: Optional[list[Acomodacoes]]
     
 class EncontrarAcomodacoes(BaseModel):
+    cidade: str
     num_quartos: int
     checkin: datetime
     checkout: datetime
