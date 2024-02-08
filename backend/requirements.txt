@@ -1,10 +1,8 @@
 fastapi==0.104.1
 uvicorn==0.24.0.post1
-pyrebase==3.0.27
+Pyrebase4>=4.7.1
 pydantic 
-pymongo
 python-dotenv
 pytest
-pytest-mongodb
 pytest-bdd
 httpx

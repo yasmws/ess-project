@@ -1,4 +1,4 @@
-import src.users as users
+import users as users
 
 from fastapi import FastAPI
 
