@@ -6,6 +6,7 @@
         "./backend"
     ],
     "cSpell.words": [
+        "disponibility",
         "dotenv",
         "fastapi",
         "pydantic",
