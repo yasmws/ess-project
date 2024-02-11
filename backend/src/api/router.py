@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from src.api import mainPage
+from backend.src.api import home
 
 api_router = APIRouter()
-api_router.include_router(mainPage.router, prefix="/mainPage", tags=["usuarios"])
+api_router.include_router(home.router, prefix="/home")

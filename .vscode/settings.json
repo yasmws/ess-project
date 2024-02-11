@@ -1,3 +1,15 @@
 {
-    "python.defaultInterpreterPath": "C:\\Python312"
+    "python.defaultInterpreterPath": "C:\\Python312",
+    "python.analysis.extraPaths": [
+        "./backend",
+        "./backend",
+        "./backend"
+    ],
+    "cSpell.words": [
+        "disponibility",
+        "dotenv",
+        "fastapi",
+        "pydantic",
+        "pyrebase"
+    ]
 }
