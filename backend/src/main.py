@@ -1,3 +1,5 @@
+from datetime import date, datetime
+import src.reservations as reservations
 import src.users as users
 import src.accommodations as accommodations
 from typing import Dict, List
@@ -56,10 +58,25 @@ def create_accommodation(
         accommodation_bedrooms: int,
         accommodation_max_capacity: int, 
         accommodation_description: str
-        #current_user: dict = Depends(get_current_user)
         ):
         
         return accommodations.create_accommodation(accommodation_name, accommodation_loc, 
                          accommodation_bedrooms, accommodation_max_capacity, 
                          accommodation_description)
         
+@app.post("/reservation/create")
+def create_reservation(
+        reservation_checkin: date,
+        reservation_checkout: date,
+        accommodation_id: str,
+        client_id: str
+        ):
+        return reservations.create_reservation(client_id, accommodation_id, reservation_checkin, reservation_checkout)
+
+@app.post("/accommodations/update_reservation_info")
+def update_reservation_info(
+        accommodation_id: str,
+        default_price: float,
+        disponibility: bool
+        ):
+        return accommodations.update_reservation_info(accommodation_id, default_price, disponibility)
