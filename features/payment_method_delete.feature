@@ -13,7 +13,7 @@ Feature: Deletar forma de pagamento
 	    Then eu consigo ver uma mensagem de confirmação "Forma de pagamento removida"
 	    And eu continuo na página "Formas de pagamento"
 	    And o perfil de usuário "Henrique" é registrado no sistema sem formas de pagamento cadastradas
-	    And eu consigo ver "Nenhuma forma de pagamento cadastrada" no perfil 
+	    And eu consigo ver que a forma de pagamento "Cascalho" de número/código "123456-789" não está listada no perfil 
 
     Scenario: Deletar forma de pagamento (operação cancelada)
 	    Given eu estou logado como usuário de nome "Henrique", email "eurico@tomail.com" e senha "3ur1c0"
