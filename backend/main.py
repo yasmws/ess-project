@@ -1,8 +1,10 @@
 import users
-import edit_accommodations as accommodations_edit
-import delete_accommodations as accommodation_delete
-import history_reservation as history
-from fastapi import FastAPI
+import edit_accommodations 
+import delete_accommodations
+import edite_reservation 
+import delete_reservation
+import historyc
+from fastapi import FastAPI, UploadFile
 
 # rotas da API
 
@@ -32,24 +34,37 @@ def login_user(
     ):
     return users.login_user(email, password)
 
-@app.post("/accommodation/edit")
-def create_accommodation(
-        accommodation_id: str,
+@app.post("/accommodation/{id}/edit")
+def edit_accommodation(
+        id: str,
         accommodation_name: str = None,
         accommodation_loc: str = None, 
         accommodation_bedrooms: int = None,
         accommodation_max_capacity: int = None, 
-        accommodation_description: str = None
+        accommodation_description: str = None,
         ):
         
-        return accommodations_edit.update_accommodation(accommodation_id, accommodation_name, accommodation_loc, 
+        return edit_accommodations.update_accommodation(id, accommodation_name, accommodation_loc, 
                          accommodation_bedrooms, accommodation_max_capacity, 
                          accommodation_description)
 
-@app.get("/accommodation/delete") #o post é obrigatório que o usuário coloque parametro? ou pode ser um parametro interno que estamos trabalhando. Por exemplo, id o user logado e registrado no back
+@app.delete("/accommodation/{id}/delete") 
 def delete_accomodation(id: str):
-     return  accommodation_delete.delet_accommodation(id)
+     return delete_accommodations.delet_accommodation(id)
 
-""" @app.post("/historyc")
-def get_hystoric_by_id(start_date:str,end_date:str ):
-     return history.get_history(start_date, end_date)"""
+@app.post("/reservation/{id}/edit")
+def edit_reservation(id: str, checkin_date:str, checkout_date: str, accommodation_id: str, cliente_id: str):
+     return edite_reservation.edit_reservation(id, checkin_date, checkout_date,accommodation_id, cliente_id)
+
+@app.delete("/reservation/{id}/delete")
+def del_reservation(id: str):
+    return delete_reservation.delete_reservation(id)
+
+@app.get("/historyc/{id}")
+def get_historic(id:str, checkin: str, checkout:str):
+     return historyc.historyc(id, checkin, checkout)
+
+"""@app.put("/accommodation/{id}/edit/upload_img")
+def edit_img(id:str):
+    return edit_image.edit_image(id)
+    """

@@ -1,6 +1,6 @@
 Feature: gerenciamento de reserva
 	as a usuário misto
-	i want to poder reservar, editar e excluir reservas 
+	i want to poder editar, excluir reservas 
      So ficará certificado que estou em um sistema funcional e que atenda os requisitos mínimos
 
 
@@ -19,16 +19,6 @@ Scenario: Visualizar lista de ofertas como servidor
      And estou na página “ADMINISTRAR RESERVA”
      When seleciono a opção “OFERTAS” 
      Then é me listado uma reservaa em aberto com as descrições “Kitnet 2 pessoas”, “casa na praia 3 quartos, 1 suíte” 
-
-
-Scenario: Editar detalhes de oferta 
-
-	Givenestou logado com o login "YVSO" e senha "@56337" na tela de “ADMINISTRAR RESERVA OFERTADA”
-	And existe uma oferta reservada para “Kaylane Gonçalves Lira”, com e-mail “kgl@cin.ufpe.br” para os dias “21/03/24” e “21/03/24” 
-     And informações “TIPO DE HOSPEDAGEM”, “PESSOAS”, “ANIMAIS”, “AR-CONDICIONADO”, os quais são preenchidos por “Casa de Praia”, “até 6 pessoas”, “Não”, “Sim”.
-     When seleciono a opção de "editar"
-     And eu preencho o campo “ANIMAL”  com “Sim”
-     Then uma mensagem de confirmação é mostrada na tela: “Edição adicionada com sucesso”.
 
 
 Scenario: Editar dias de reservas como usuário comum
