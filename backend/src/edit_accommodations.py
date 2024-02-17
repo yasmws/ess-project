@@ -2,6 +2,7 @@ from fastapi import HTTPException
 import firebase_config as firebase_config
 from delete_accommodations import check_any_reservation
 
+#------------ ver se accomodation existe
 
 ## validar e editar imagem
 def update_accommodation(accommodation_id, accommodation_name, accommodation_loc, 

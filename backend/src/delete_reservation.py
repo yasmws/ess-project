@@ -22,7 +22,7 @@ def delete_reservation(id_reserva):
         check_out_date = datetime.strptime(data_out, "%Y-%m-%d").date()
 
         ## atualizando reservas da acomodação relacionado ao id apagado
-        while current_date <= check_out_date:
+        while current_date < check_out_date:
 
             current_date_str = current_date.strftime("%Y-%m-%d")
 
