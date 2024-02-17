@@ -1,12 +1,28 @@
-import backend.src.users as users
-from fastapi import FastAPI, File, HTTPException, UploadFile
-import src.firebase_config as firebase_config
+from datetime import date
+import src.reservations as reservations
+import src.users as users
 import src.accommodations as accommodations
-from fastapi import FastAPI
+
+from fastapi import FastAPI, HTTPException, Depends, Cookie
+from fastapi import FastAPI, File, UploadFile
+from fastapi.responses import RedirectResponse
+from src.firebase_config import auth
+import src.firebase_config as firebase_config
 
 app = FastAPI()
 storage = firebase_config.firebase.storage()
 
+# Custom dependency to check user authentication
+def get_current_user(token: str = Cookie(None)):
+    if token is None:
+        return RedirectResponse(url="/login")
+    try:
+        user = auth.get_account_info(token)
+        return user
+    except auth.AuthError:
+        return RedirectResponse(url="/login")
+        
+        
 @app.get("/")
 def read_root():
     return "Server running!!"
@@ -19,6 +35,7 @@ def create_user(
         name: str = None,
         cpf: str = None
     ):
+    
     return users.create_user(
         email, password, name, username, cpf
     )
@@ -29,6 +46,12 @@ def login_user(
         password:str
     ):
     return users.login_user(email, password)
+
+@app.post("/users/logout")
+def logout_user(
+        token: str
+    ):
+    return users.logout_user(token)
 
 
 @app.post("/accommodation/create")
@@ -59,4 +82,14 @@ async def upload(accommodation_id: str, file: UploadFile = File(...)):
         
     except Exception as e:
         raise HTTPException(status_code=500, detail="Erro interno do servidor")
-   
+    
+
+@app.post("/reservation/create")
+def create_reservation(
+        reservation_checkin: date,
+        reservation_checkout: date,
+        accommodation_id: str,
+        client_id: str
+        ):
+        return reservations.create_reservation(client_id, accommodation_id, reservation_checkin, reservation_checkout)
+
