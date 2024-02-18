@@ -124,10 +124,11 @@ def update_payment_method(username, method, type, id):
                 method_type = firebase_config.db.child("payment").child(username).child(key).child("type").get().val()
                 method_id = firebase_config.db.child("payment").child(username).child(key).child("id").get().val()
 
-                if method_id == id and id == None and method_type == type:
-                    raise HTTPException(status_code=409, detail="This payment method is already registered!")
-                elif method_id == id and id != None:
-                    raise HTTPException(status_code=409, detail="There is already a payment method with this id registered.")
+                if method != key:
+                    if method_id == id and id == None and method_type == type:
+                        raise HTTPException(status_code=409, detail="This payment method is already registered!")
+                    elif method_id == id and id != None:
+                        raise HTTPException(status_code=409, detail="There is already a payment method with this id registered.")
 
         #Validate update
         if type in {"debito", "credito"}:
