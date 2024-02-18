@@ -39,7 +39,7 @@ def add_payment_method(username, type, id):
 
             for string in splt_str:
                 if len(string) != 4 or len(splt_str) != 4:
-                    raise HTTPException(status_code=400, detail="Stated card number is not valid!")
+                    raise HTTPException(status_code=400, detail="Stated id number is not valid!")
 
         #Check if payment method is already registered
         cnt = firebase_config.db.child("payment").child(username).child("cnt").get().val()
@@ -53,7 +53,7 @@ def add_payment_method(username, type, id):
                 if method_id == id and id == None and method_type == type:
                     raise HTTPException(status_code=409, detail="This payment method is already registered!")
                 elif method_id == id:
-                    raise HTTPException(status_code=409, detail="There is already a payment method with this id registered.")
+                    raise HTTPException(status_code=409, detail="There is already a registered payment method with this id.")
 
         #Check payment method limit
         cnt = firebase_config.db.child("payment").child(username).child("cnt").get().val()
@@ -141,7 +141,7 @@ def update_payment_method(username, method, type, id):
 
                 for string in splt_str:
                     if len(string) != 4 or len(splt_str) != 4:
-                        raise HTTPException(status_code=400, detail="Stated card number is not valid!")
+                        raise HTTPException(status_code=400, detail="Stated id number is not valid!")
 
                 data = {"type": type,
                         "id": id}
@@ -163,7 +163,7 @@ def update_payment_method(username, method, type, id):
 
                 for string in splt_str:
                     if len(string) != 4 or len(splt_str) != 4:
-                        raise HTTPException(status_code=400, detail="Stated card number is not valid!")
+                        raise HTTPException(status_code=400, detail="Stated id number is not valid!")
 
                 data = {"type": type,
                         "id": id}
