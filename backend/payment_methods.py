@@ -10,7 +10,7 @@ def register_user(username):
     return "User registered!"
 
 
-def add_payment_method(username, type, id=None):
+def add_payment_method(username, type, id):
     try:        
         #Validate username
         registered = False

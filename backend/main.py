@@ -35,6 +35,6 @@ def register_user(username: str):
 
 @app.post("/payment/add")
 def add_payment_method(
-    username: str, type: str, id: str
+    username: str, type: str, id: str = None
     ):
     return payment.add_payment_method(username, type, id)
