@@ -50,8 +50,10 @@ def add_payment_method(username, type, id):
                 method_type = firebase_config.db.child("payment").child(username).child(method).child("type").get().val()
                 method_id = firebase_config.db.child("payment").child(username).child(method).child("id").get().val()
 
-                if method_type == type and method_id == id:
+                if method_id == id and id == None and method_type == type:
                     raise HTTPException(status_code=409, detail="This payment method is already registered!")
+                elif method_id == id:
+                    raise HTTPException(status_code=409, detail="There is already a payment method with this id registered.")
 
         #Check payment method limit
         cnt = firebase_config.db.child("payment").child(username).child("cnt").get().val()
