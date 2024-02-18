@@ -45,7 +45,7 @@ def add_payment_method(username, type, id):
         cnt = firebase_config.db.child("payment").child(username).child("cnt").get().val()
         
         if cnt != 0:
-            for i in range(cnt):
+            for i in range(cnt+1):
                 method = "method" + str(i)
                 method_type = firebase_config.db.child("payment").child(username).child(method).child("type").get().val()
                 method_id = firebase_config.db.child("payment").child(username).child(method).child("id").get().val()
