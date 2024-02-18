@@ -1,4 +1,5 @@
 import users
+import payment_methods
 
 from fastapi import FastAPI
 
@@ -27,3 +28,7 @@ def login_user(
         password:str
     ):
     return users.login_user(email, password)
+
+@app.post("/payment/register_user")
+def register_user(username: str):
+    return payment_methods.register_user(username)
