@@ -43,3 +43,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+backend/__pycache__/firebase_config.cpython-310.pyc
+backend/__pycache__/main.cpython-310.pyc
+backend/__pycache__/users.cpython-310.pyc
