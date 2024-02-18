@@ -49,3 +49,10 @@ def update_payment_method(
     id: str = "foo"
     ):
     return payment.update_payment_method(username, method, type, id)
+
+@app.delete("/payment/delete")
+def delete_payment_method(
+    username: str,
+    method: str
+    ):
+    return payment.delete_payment_method(username, method)
