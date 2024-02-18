@@ -1,7 +1,8 @@
 import users
 import payment_methods as payment
 
-from fastapi import FastAPI
+from fastapi import FastAPI, BackgroundTasks
+from email_trigger import send_email_background, send_email_async
 
 app = FastAPI()
 
