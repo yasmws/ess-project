@@ -1,7 +1,7 @@
 
 import uuid
 from fastapi import HTTPException
-import src.firebase_config as firebase_config
+import firebase_config as firebase_config
 from datetime import datetime, timedelta
 
 
