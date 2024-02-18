@@ -64,8 +64,8 @@ def add_payment_method(username, type, id=None):
         cnt_s = str(cnt)
 
         data = {
-            "type":type,
-            "key":id
+            "type": type,
+            "id": id
         }
         firebase_config.db.child("payment").child(username).child("cnt").set(cnt)
         firebase_config.db.child("payment").child(username).child("method"+cnt_s).set(data)
