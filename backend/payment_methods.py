@@ -123,7 +123,7 @@ def update_payment_method(username, method, type, id):
 
         #Validate update
         cur_id = firebase_config.db.child("payment").child(username).child(method).child("id").get().val()
-        cur_type = firebase_config.db.child("payment").child(username).child(method).child("type").get.val()
+        cur_type = firebase_config.db.child("payment").child(username).child(method).child("type").get().val()
 
         if type in {"debito", "credito"}:
             if id == None:
