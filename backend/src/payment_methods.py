@@ -1,8 +1,6 @@
 from fastapi import HTTPException
-import firebase_config
-import users
+import src.firebase_config as firebase_config
 
-import string
 
 def register_user(username):
     data = {"cnt":0}
