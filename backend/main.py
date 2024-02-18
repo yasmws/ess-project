@@ -40,3 +40,12 @@ def add_payment_method(
     id: str = None
     ):
     return payment.add_payment_method(username, type, id)
+
+@app.put("/payment/update")
+def update_payment_method(
+    username: str,
+    method: str,
+    type: str = "foo",
+    id: str = "foo"
+    ):
+    return payment.update_payment_method(username, method, type, id)
