@@ -2,13 +2,19 @@ from datetime import date
 import reservations as reservations
 import users as users
 import accommodations as accommodations
-
 from fastapi import FastAPI, HTTPException, Depends, Cookie
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import RedirectResponse
 from firebase_config import auth
 import firebase_config as firebase_config
 from pydantic import SecretStr
+
+import collections
+
+try:
+    collectionsAbc = collections.abc
+except AttributeError:
+    collectionsAbc = collections
 
 app = FastAPI()
 storage = firebase_config.firebase.storage()
@@ -70,7 +76,7 @@ def logout_user():
     raise HTTPException(status_code=400, detail="Falha ao realizar logout: Usuário não estava logado.")
 
 
-@app.post("/accommodation/create")
+@app.post("/accommodation/{id}/create")
 def create_accommodation(
         accommodation_name: str,
         accommodation_loc: str, 
@@ -84,7 +90,7 @@ def create_accommodation(
                          accommodation_bedrooms, accommodation_max_capacity, 
                          accommodation_description, user_id)
 
-@app.post("/accommodation/create/upload_img")
+@app.post("/accommodation/{id}/create/upload_img")
 async def upload(accommodation_id: str, file: UploadFile = File(...)):
     try:
         
@@ -100,7 +106,7 @@ async def upload(accommodation_id: str, file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail="Erro interno do servidor")
     
 
-@app.post("/reservation/create")
+@app.post("/reservation/{id}/create")
 def create_reservation(
         reservation_checkin: date,
         reservation_checkout: date,
