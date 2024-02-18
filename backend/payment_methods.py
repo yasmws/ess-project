@@ -193,6 +193,7 @@ def delete_payment_method(username, method):
                 firebase_config.db.child("payment").child(username).child("method"+str(cur_i)).update(data)
         
         firebase_config.db.child("payment").child(username).child("method"+str(cnt)).set({})
+        firebase_config.db.child("payment").child(username).child("cnt").update(cnt-1)
 
     except HTTPException as hex:
         raise hex
