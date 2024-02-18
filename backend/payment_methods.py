@@ -29,10 +29,10 @@ def add_payment_method(username, type, id):
         
         #Validate type:key association
         if id == None and type not in {"pix", "boleto"}:
-            raise HTTPException(status_code=400, detail="This payment method demands a card number.")
+            raise HTTPException(status_code=400, detail="This payment method demands an id number.")
         
         elif id != None and type in {"pix", "boleto"}:
-            raise HTTPException(status_code=400, detail="This payment method shouldn't feature a card number.")
+            raise HTTPException(status_code=400, detail="This payment method shouldn't feature an id number.")
         
         elif type in {"debito", "credito"}:
             splt_str = id.split()
