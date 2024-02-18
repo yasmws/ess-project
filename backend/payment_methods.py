@@ -81,6 +81,14 @@ def add_payment_method(username, type, id):
 
 def update_payment_method(username, method, type, id):
     try:
+        cur_id = firebase_config.db.child("payment").child(username).child(method).child("id").get().val()
+        cur_type = firebase_config.db.child("payment").child(username).child(method).child("type").get().val()
+
+        if type == "foo":
+            type = cur_type
+        if id == "foo":
+            id = cur_id
+
         #Validate username
         registered = False
         users = firebase_config.db.child("payment").get().val()
@@ -118,46 +126,14 @@ def update_payment_method(username, method, type, id):
 
                 if method_id == id and id == None and method_type == type:
                     raise HTTPException(status_code=409, detail="This payment method is already registered!")
-                elif method_id == id:
+                elif method_id == id and id != None:
                     raise HTTPException(status_code=409, detail="There is already a payment method with this id registered.")
 
         #Validate update
-        cur_id = firebase_config.db.child("payment").child(username).child(method).child("id").get().val()
-        cur_type = firebase_config.db.child("payment").child(username).child(method).child("type").get().val()
-
         if type in {"debito", "credito"}:
             if id == None:
                 raise HTTPException(status_code=400, detail="This payment method demands an id number.")
             
-            elif id == "foo":
-                if cur_id == None:
-                    raise HTTPException(status_code=400, detail="This payment method demands an id number.")
-                else:
-                    data = {"type": type,
-                            "id": cur_id}
-            
-            else:
-                splt_str = id.split()
-
-                for string in splt_str:
-                    if len(string) != 4 or len(splt_str) != 4:
-                        raise HTTPException(status_code=400, detail="Stated id number is not valid!")
-
-                data = {"type": type,
-                        "id": id}
-                
-        elif type == "foo":
-            if id == None:
-                if cur_type in {"debito", "credito"}:
-                    raise HTTPException(status_code=400, detail="This payment method demands an id number.")
-                else:
-                    data = {"type": cur_type,
-                            "id": id}
-                    
-            elif id == "foo":
-                data = {"type": cur_type,
-                        "id": cur_id}
-                
             else:
                 splt_str = id.split()
 
