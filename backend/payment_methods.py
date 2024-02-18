@@ -41,7 +41,7 @@ def add_payment_method(username, type, id):
                 if len(string) != 4 or len(splt_str) != 4:
                     raise HTTPException(status_code=400, detail="Stated card number is not valid!")
 
-        #Check if payment method isn't already registered
+        #Check if payment method is already registered
         cnt = firebase_config.db.child("payment").child(username).child("cnt").get().val()
         
         if cnt != 0:
