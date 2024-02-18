@@ -1,12 +1,12 @@
 from datetime import date
-import backend.src.api.reservations as reservations
-import backend.src.api.users as users
-import backend.src.api.accommodations as accommodations
+import api.reservations as reservations
+import api.users as users
+import api.accommodations as accommodations
 from fastapi import FastAPI, HTTPException, Depends, Cookie
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import RedirectResponse
-from backend.src.db.firebase_config import auth
-import backend.src.db.firebase_config as firebase_config
+from db.firebase_config import auth
+import db.firebase_config as firebase_config
 from pydantic import SecretStr
 
 import collections
