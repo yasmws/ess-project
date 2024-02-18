@@ -5,27 +5,9 @@ import users
 import string
 
 def register_user(username):
-    try: 
-        registered = False
-        users = firebase_config.db.child("payment").get().val()
-        #print(users)
-
-        for user in users:
-            if username == user:
-                registered = True
-
-        if registered:
-            raise HTTPException(status_code=409, detail="User is already registered!")
-
-        data = {"cnt":0}
-        firebase_config.db.child("payment").child(username).set(data)
-        return "User registered!"
-    
-    except HTTPException as hex:
-        raise hex
-
-    except Exception as ex:
-        raise HTTPException(status_code=500, detail=str(ex))
+    data = {"cnt":0}
+    firebase_config.db.child("payment").child(username).set(data)
+    return "User registered!"
 
 
 def add_payment_method(username, type, id=None):
@@ -54,7 +36,7 @@ def add_payment_method(username, type, id=None):
         
         elif type in {"debito", "credito"}:
             splt_str = id.split()
-            
+
             for string in splt_str:
                 if len(string) != 4 or len(splt_str) != 4:
                     raise HTTPException(status_code=400, detail="Stated card number is not valid!")
