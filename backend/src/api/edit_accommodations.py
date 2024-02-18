@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from  src.db import firebase_config
 from src.api.delete_accommodations import check_any_reservation
-
+from src.service.validation import Validation
 #------------ ver se accomodation existe
 
 ## validar e editar imagem
@@ -9,30 +9,36 @@ def update_accommodation(accommodation_id, accommodation_name, accommodation_loc
                          accommodation_bedrooms, accommodation_max_capacity, 
                          accommodation_description):
     # tem ou não reservas
-    valid = check_any_reservation(accommodation_id)
-    current_data = firebase_config.db.child("accommodation").child(accommodation_id).get().val()
+    
+    print("TUDO QUE RECEBI", accommodation_bedrooms, accommodation_id, accommodation_loc, accommodation_max_capacity, accommodation_name)
+   
+    current_data = Validation.get_accommodation_by_id(accommodation_id)
 
-    if valid[1]:
+    if current_data:
+        valid = check_any_reservation(accommodation_id)
 
-        if not valid[0]:
-            # O retorno falso, significa que existe reserva. Apenas será editado a descrição
-            # e capacidade máxima caso seja maior do que anterior
+    else:
+        return HTTPException(status_code=404, detail="Acomodação não encontrada")
 
-            if  accommodation_name or accommodation_loc or accommodation_bedrooms :
-                return "Exist fields that are not editable"
-            
-            if accommodation_description is not None:
-                firebase_config.db.child("accommodation").child(accommodation_id).update({'description': accommodation_description})
-
-            if accommodation_max_capacity is not None and current_data['max_capacity'] <= accommodation_max_capacity:
-                firebase_config.db.child("accommodation").child(accommodation_id).update({'max_capacity': accommodation_max_capacity})
-            elif current_data['max_capacity'] > accommodation_max_capacity:
-                return "Invalid max capacity value"
-            return ("Accommodation updated successfully!")
-        try:
+    if valid:
+        # O retorno falso, significa que existe reserva. Apenas será editado a descrição
+        # e capacidade máxima caso seja maior do que anterior
+        if  accommodation_name or accommodation_loc or accommodation_bedrooms :
+                raise HTTPException(status_code=400, detail= "Campos inválidos")
         
-            if current_data is None:
-                raise HTTPException(status_code=404, detail="Accommodation not found.")
+        if accommodation_description is not None:
+            firebase_config.db.child("accommodation").child(accommodation_id).update({'description': accommodation_description})
+
+        if accommodation_max_capacity is not None and current_data['max_capacity'] <= accommodation_max_capacity:
+            firebase_config.db.child("accommodation").child(accommodation_id).update({'max_capacity': accommodation_max_capacity})
+        elif current_data['max_capacity'] > accommodation_max_capacity:
+                raise HTTPException(status_code=400, detail="Invalid max capacity value")
+        
+        raise HTTPException(status_code=200, detail="Acomodação editada com sucesso!")
+
+    else :
+        print("juliaaa")
+        try:
 
             update_data = {
                 "name": current_data["name"],
@@ -55,9 +61,9 @@ def update_accommodation(accommodation_id, accommodation_name, accommodation_loc
 
             firebase_config.db.child("accommodation").child(accommodation_id).update(update_data)
 
-            return ("Accommodation updated successfully!")
-        except Exception:
-            raise HTTPException(status_code=400, detail="Failed to update accommodation.")
+            return HTTPException(status_code=200, detail="Acomodação editada com sucesso!")
         
-    raise HTTPException(status_code=404, detail="The accomodation not exist")
+        except Exception:
+            raise HTTPException(status_code=400, detail="Falha em atualizar acomodação")
+
         

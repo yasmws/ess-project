@@ -1,26 +1,21 @@
 from fastapi import HTTPException
 from  src.db import firebase_config
+from src.service.validation import Validation
 
 def check_any_reservation(accommodation_id):
-        
-        reservations =  firebase_config.db.child("accommodation").child(accommodation_id)
-
-        if reservations.get().val() is not None:
-             exist = True
-        else:
-            exist = False
         
         reservations = firebase_config.db.child("accommodation").child(accommodation_id).child("reservations")
 
         reservations = reservations.get().val()
         
+        ## percorre todas as datas (false -> tem clientes / true-> disponível/sem cliente)
         for _, info in reservations.items():
             
             disponibilidade = info['disponibility']
             if not disponibilidade:
-                 return [False, exist]
+                 return True #existe reserva
         
-        return [True, exist]
+        return False   #nao existe reserva
         
 
 
@@ -29,14 +24,14 @@ def delet_accommodation(accommodation_id):
     ## passou no teste de ter acomodações
    
     # validação
-    valid = check_any_reservation(accommodation_id)
-
     ## ver se id de acomodação existe
-    if not valid[1]:
+    if Validation.get_accommodation_by_id(accommodation_id):
+         
          raise HTTPException(status_code=404, detail="The accomodation not exist")
     
+    valid = check_any_reservation(accommodation_id)
     ## ver se id de acomodação não tem acomodação
-    if not valid[0]:
+    if valid:
         raise HTTPException(status_code=404, detail="Can't delet an accommodation with reservations")
         #return "Can't delet an accommodation with reservations"
     

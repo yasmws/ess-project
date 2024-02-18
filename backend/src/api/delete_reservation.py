@@ -1,25 +1,27 @@
 from fastapi import HTTPException
 from  src.db import firebase_config
 from datetime import datetime,timedelta
+from src.service.validation import Validation
 
 
 def delete_reservation(id_reserva):
 
     ## verificar se id_resrva existe
-    valid = firebase_config.db.child("reservation").child(id_reserva).get().val()
+    valid = Validation.get_reservation_by_id(id_reserva)
     
     if valid is None:
-         raise HTTPException(status_code=404, detail="Reservation don't exists")
+         raise HTTPException(status_code=404, detail="A Reserva não existe no banco de dados")
     
     try:
-        result = firebase_config.db.child("reservation").child(id_reserva).get().val()
+        
+        accommodation_id = valid['accommodation_id']
+        data_in = valid['checkin_date']
+        data_out = valid['checkout_date']
 
-        accommodation_id = result['accommodation_id']
-        data_in = result['checkin_date']
-        data_out = result['checkout_date']
+        result = Validation.range_date_validation(data_in, data_out)
 
-        current_date = datetime.strptime(data_in, "%Y-%m-%d").date()
-        check_out_date = datetime.strptime(data_out, "%Y-%m-%d").date()
+        current_date = result[1]
+        check_out_date = result[2]
 
         ## atualizando reservas da acomodação relacionado ao id apagado
         while current_date < check_out_date:
@@ -31,7 +33,8 @@ def delete_reservation(id_reserva):
             current_date += timedelta(days=1)
         
         firebase_config.db.child("reservation").child(id_reserva).remove()
-        return  "Reservation was deleted"
+
+        return HTTPException(status_code=200, detail="Reserva deletada com sucesso!")
     except Exception:
-            raise HTTPException(status_code=400, detail= "Erro ao deletar reserva")
+        raise HTTPException(status_code=400, detail= "Erro ao deletar reserva")
     

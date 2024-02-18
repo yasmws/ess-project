@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from  src.db import firebase_config
 from datetime import datetime,timedelta
-
+from src.service.validation import Validation
 ## Política de auteração de data: Desde que o intervalo de dias seja igual ao da reserva inicial
 ## editar mesma quantidade de dias (Referente ao pagamento)
 
@@ -31,68 +31,64 @@ def edit_reservation( reservation_id, checkin_date, checkout_date, accommodation
 
     ## Validação das entradas
    
-    data_rsv = firebase_config.db.child("reservation").child(reservation_id).get().val()
-    data_acmt = firebase_config.db.child("accommodation").child(accommodation_id).get().val()
-    data_user = firebase_config.db.child("users").child(cliente_id).get().val()
+    data_rsv = Validation.get_reservation_by_id(reservation_id)
+    data_acmt = Validation.get_accommodation_by_id(accommodation_id)
+    data_user = Validation.get_user_by_id(cliente_id)
 
-    check_in_date = datetime.strptime(checkin_date, "%Y-%m-%d").date()
-    check_out_date = datetime.strptime(checkout_date, "%Y-%m-%d").date()
 
-    data_atual = datetime.now().date()
-    range = data_atual < check_in_date and data_atual < check_out_date
+    result = Validation.range_date_validation(checkin_date, checkout_date)
 
-    if check_in_date < check_out_date and data_rsv and data_acmt and data_user and range:
+    check_in_date = result[1]
+    check_out_date = result[2]
 
+    if check_in_date < check_out_date and data_rsv and data_acmt and data_user and result[0]:
+        
+        ## checar se existe aquela reserva na acomodação
+        if data_rsv['accommodation_id'] != accommodation_id:
+            raise HTTPException(status_code=404, detail=f"Não existe reserva para acomodação {data_acmt['name']}")
+        
         ## checar se a data esta no range correto de disponibilidade
         valid = check_date( accommodation_id, check_in_date, check_out_date, cliente_id)
 
         if not valid:
-            return "Invalid date format"
-        try:
-            if data_rsv:
-
-            
-                date_old = {"checkin": data_rsv["checkin_date"] , "checkout":data_rsv["checkout_date"] }
-            
-                print("datas antigas", date_old)
-
-                current_date = datetime.strptime(date_old["checkin"], "%Y-%m-%d").date()
-                check_out_date = datetime.strptime(date_old["checkout"], "%Y-%m-%d").date()
-                price_total = 0.0
-
-                ## limpando datas de acomodação
-
-                while current_date < check_out_date:
-                    current_date_str = current_date.strftime("%Y-%m-%d")
-                    
-                    firebase_config.db.child("accommodation").child(accommodation_id).child("reservations").child(current_date_str).update({'disponibility': True, 'reservation_id':"000"})
-                    price_total += firebase_config.db.child("accommodation").child(accommodation_id).child("reservations").child(current_date_str).get().val()['price']
-                    current_date += timedelta(days=1)
-                
-                ## setando datas de acomodação
-                
-                current_date = datetime.strptime(checkin_date, "%Y-%m-%d").date()
-                check_out_date = datetime.strptime(checkout_date, "%Y-%m-%d").date()
-
-                while current_date < check_out_date:
-                    current_date_str = current_date.strftime("%Y-%m-%d")
-                    
-                    firebase_config.db.child("accommodation").child(accommodation_id).child("reservations").child(current_date_str).update({'disponibility': False,  'reservation_id':  reservation_id})
-                    
-                    # price_total +=  firebase_config.db.child("accommodation").child(accommodation_id).child("reservations").child(current_date_str).get().val()['price']
-            
-                    current_date += timedelta(days=1)
-                
-                if valid == price_total: 
-                    firebase_config.db.child("reservation").child(reservation_id).update({"checkin_date" :  checkin_date,"checkout_date":  checkout_date})
-                else:
-                    return "Date range invalid"
-                
-               
-                return "Reservation updated successfully!"
+           raise HTTPException(status_code=400, detail="Invalid Format")
         
-            return f"Não existe reservas para o cliente {cliente_id} na acomodação {data_acmt['name']}" 
+        try:
+            results = Validation.range_date_validation(data_rsv["checkin_date"], data_rsv["checkout_date"])
+
+            current_date = results[1]
             
+
+            price_total = 0.0
+
+            ## limpando datas de acomodação
+           
+            while current_date < results[2]:
+
+                current_date_str = current_date.strftime("%Y-%m-%d")
+                
+                firebase_config.db.child("accommodation").child(accommodation_id).child("reservations").child(current_date_str).update({'disponibility': True, 'reservation_id':"000"})
+                price_total +=firebase_config.db.child("accommodation").child(accommodation_id).child("reservations").child(current_date_str).get().val()['price']
+                
+                current_date += timedelta(days=1)
+            
+            ## setando datas de acomodação
+            
+            current_date = result[1]
+            check_out_date = result[2]
+
+            while current_date < check_out_date:
+                current_date_str = current_date.strftime("%Y-%m-%d")
+                
+                firebase_config.db.child("accommodation").child(accommodation_id).child("reservations").child(current_date_str).update({'disponibility': False,  'reservation_id':  reservation_id})
+                current_date += timedelta(days=1)
+    
+            if valid == price_total: 
+                firebase_config.db.child("reservation").child(reservation_id).update({"checkin_date" :  checkin_date,"checkout_date":  checkout_date})
+            else:
+                return HTTPException(status_code=400, detail="Date Range invalid") 
+            return HTTPException(status_code=200, detail="Reservation updated successfully!")
+    
         except Exception:
             raise HTTPException(status_code=400, detail="Failed to update Reservation.")
-    return HTTPException(status_code=400, detail="Invalid fields")     
+    raise HTTPException(status_code=400, detail="Invalid fields")     

@@ -101,7 +101,7 @@ def create_reservation(
         ):
         return reservations.create_reservation(client_id, accommodation_id, reservation_checkin, reservation_checkout)
 
-@app.post("/accommodation/{id}/edit")
+@app.put("/accommodation/{id}/edit")
 def edit_accommodation(
         id: str,
         accommodation_name: str = None,
@@ -119,10 +119,11 @@ def edit_accommodation(
 def delete_accomodation(id: str):
      return delete_accommodations.delet_accommodation(id)
 
-@app.post("/reservation/{id}/edit")
+@app.put("/reservation/{id}/edit")
 def edit_reservation(id: str, checkin_date:str, checkout_date: str, accommodation_id: str, cliente_id: str):
-     result = edite_reservation.edit_reservation(id, checkin_date, checkout_date,accommodation_id, cliente_id)
-     return {"mensagem": result}
+     return edite_reservation.edit_reservation(id, checkin_date, 
+                                               checkout_date,accommodation_id, cliente_id)
+     
 
 @app.delete("/reservation/{id}/delete")
 def del_reservation(id: str):
