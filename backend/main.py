@@ -99,7 +99,6 @@ async def upload(accommodation_id: str, file: UploadFile = File(...)):
 
         # Upload the file to Firebase Storage
         storage.child("accommodation").child(accommodation_id).put(file.filename)
-        
         return "Imagem adicionada com sucesso"
         
     except Exception as e:
