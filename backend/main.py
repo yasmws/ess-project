@@ -116,6 +116,11 @@ def get_accommodations(
         location: str = None,
         checkin: date = None,
         checkout: date = None,
-        max_capacity: int = None
+        guests: int = None
     ):
-    return accommodations.get_accommodations(location, checkin, checkout, max_capacity)
+    return accommodations.get_accommodations(
+        location,
+        checkin,
+        checkout,
+        guests
+    )

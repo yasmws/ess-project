@@ -105,23 +105,24 @@ def update_reservation_info(accommodation_id, default_price=0.0, disponibility=F
     except Exception as e:
         raise HTTPException(status_code=400, detail="Failed to update reservation info.")
 
-# create get_accommodations function here
 def get_accommodations(
         location: str = None,
         checkin: datetime = None,
         checkout: datetime = None,
-        max_capacity: int = None
+        guests: int = None
     ):
     try:
-        accommodations = firebase_config.db.child("accommodation").get()
-        accommodations_list = []
+        accommodations = firebase_config.db.child("accommodation").order_by_child("location")        
+        accommodations = accommodations.limit_to_first(10).get()  # Adjust the limit as needed
         
+        accommodations_list = []
+
         for accommodation in accommodations.each():
             accommodation_data = accommodation.val()
             if location and location.lower() not in accommodation_data["location"].lower():
                 continue
             
-            if max_capacity and max_capacity < accommodation_data["max_capacity"]:
+            if guests and guests > accommodation_data["max_capacity"]:
                 continue
             
             if checkin and checkout:
@@ -134,6 +135,18 @@ def get_accommodations(
             else:
                 accommodations_list.append(accommodation_data)
         
+        accommodations_list = [
+            {
+                "bedrooms": accommodation["bedrooms"],
+                "description": accommodation["description"],
+                "id": accommodation["id"],
+                "location": accommodation["location"],
+                "max_capacity": accommodation["max_capacity"],
+                "name": accommodation["name"],
+            }
+            for accommodation in accommodations_list
+        ]
+        
         return accommodations_list
-    except:
-        raise HTTPException(status_code=400, detail="Failed to get accommodations.")
+    except Exception as e:
+        raise e
