@@ -1,8 +1,8 @@
 from datetime import date
 from api import evaluate
-import reservations as reservations
-import users as users
-import accommodations as accommodations
+import api.reservations as reservations
+import api.users as users
+import api.accommodations as accommodations
 
 from fastapi import FastAPI, HTTPException, Depends, Cookie
 from fastapi import FastAPI, File, UploadFile
