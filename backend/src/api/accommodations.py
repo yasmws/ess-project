@@ -146,7 +146,9 @@ def get_accommodations(
             }
             for accommodation in accommodations_list
         ]
-        
+
+        if not accommodations_list:
+            print("No accommodations found.")
         return accommodations_list
-    except Exception as e:
-        raise e
+    except Exception:
+        raise HTTPException(status_code=400, detail="Failed looking for accommodations.")
