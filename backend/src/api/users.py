@@ -1,6 +1,7 @@
 from fastapi import HTTPException
 import db.firebase_config as firebase_config
 import re
+from payment_methods import register_user
 
 def create_user(name, username, email, cpf, password):
     try:
@@ -14,6 +15,7 @@ def create_user(name, username, email, cpf, password):
             "cpf": cpf,
         }
         firebase_config.db.child("users").child(data["username"]).set(data)
+        register_user(username)
         print("Dados do usuário cadastrados com sucesso!")
         return "Usuário criado!"
     except Exception:

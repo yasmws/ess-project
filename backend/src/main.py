@@ -3,8 +3,8 @@ from api import evaluate
 import api.reservations as reservations
 import api.users as users
 import api.accommodations as accommodations
-import payment_methods as payment
-from src.email_trigger import send_email
+import api.payment_methods as payment
+from api.email_trigger import send_email
 
 from fastapi import FastAPI, HTTPException, Depends, Cookie
 from fastapi import FastAPI, File, UploadFile
