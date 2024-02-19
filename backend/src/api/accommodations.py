@@ -137,12 +137,12 @@ def get_accommodations(
         
         accommodations_list = [
             {
-                "bedrooms": accommodation["bedrooms"],
-                "description": accommodation["description"],
+                "name": accommodation["name"],
                 "id": accommodation["id"],
+                "description": accommodation["description"],
+                "bedrooms": accommodation["bedrooms"],
                 "location": accommodation["location"],
                 "max_capacity": accommodation["max_capacity"],
-                "name": accommodation["name"],
             }
             for accommodation in accommodations_list
         ]
