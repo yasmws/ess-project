@@ -76,7 +76,7 @@ def logout_user():
     raise HTTPException(status_code=400, detail="Falha ao realizar logout: Usuário não estava logado.")
 
 
-@app.post("/accommodation/{id}/create")
+@app.post("/accommodation/create")
 def create_accommodation(
         accommodation_name: str,
         accommodation_loc: str, 
@@ -90,7 +90,7 @@ def create_accommodation(
                          accommodation_bedrooms, accommodation_max_capacity, 
                          accommodation_description, user_id)
 
-@app.post("/accommodation/{id}/create/upload_img")
+@app.post("/accommodation/create/upload_img")
 async def upload(accommodation_id: str, file: UploadFile = File(...)):
     try:
         
@@ -106,7 +106,7 @@ async def upload(accommodation_id: str, file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail="Erro interno do servidor")
     
 
-@app.post("/reservation/{id}/create")
+@app.post("/reservation/create")
 def create_reservation(
         reservation_checkin: date,
         reservation_checkout: date,
