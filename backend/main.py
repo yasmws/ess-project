@@ -1,20 +1,14 @@
 from datetime import date
-import src.api.reservations as reservations
-import src.api.users as users
-import src.api.accommodations as accommodations
+import reservations as reservations
+import users as users
+import accommodations as accommodations
+
 from fastapi import FastAPI, HTTPException, Depends, Cookie
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import RedirectResponse
-from src.db.firebase_config import auth
-import src.db.firebase_config as firebase_config
+from firebase_config import auth
+import firebase_config as firebase_config
 from pydantic import SecretStr
-
-import collections
-
-try:
-    collectionsAbc = collections.abc
-except AttributeError:
-    collectionsAbc = collections
 
 app = FastAPI()
 storage = firebase_config.firebase.storage()
@@ -99,6 +93,7 @@ async def upload(accommodation_id: str, file: UploadFile = File(...)):
 
         # Upload the file to Firebase Storage
         storage.child("accommodation").child(accommodation_id).put(file.filename)
+        
         return "Imagem adicionada com sucesso"
         
     except Exception as e:
