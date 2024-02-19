@@ -64,15 +64,15 @@ def calculate_total_price(accommodation_id, checkin_date, checkout_date):
         raise HTTPException(status_code=500, detail="Erro interno do servidor")
     
     
-    
 def create_reservation(client_id, accommodation_id, checkin_date, checkout_date):
     try:
+        print(checkin_date)
         # Validation
         
         ## Are the checkin_date and the checkout_date in the YYYY-mm-dd format?
-        if not is_valid_date(str(checkin_date)):
-            raise HTTPException(status_code=400, detail="Invalid check-in date format. Please use YYYY-mm-dd")
-
+        if not is_valid_date(str(checkout_date)):
+            return HTTPException(status_code=400, detail="Invalid check-in date format. Please use YYYY-mm-dd")
+       
         if not is_valid_date(str(checkout_date)):
             raise HTTPException(status_code=400, detail="Invalid check-out date format. Please use YYYY-mm-dd")
         
@@ -88,6 +88,7 @@ def create_reservation(client_id, accommodation_id, checkin_date, checkout_date)
         ## Is the client_id not the same person that created the accommodation?
         if client_id == accommodation["user_id"]:
             raise HTTPException(status_code=400, detail="Client cannot reserve their own accommodation")
+        
         
         ## Is the checkin not before today?
         if checkin_date < datetime.today().date():
@@ -110,7 +111,7 @@ def create_reservation(client_id, accommodation_id, checkin_date, checkout_date)
 
         # Calculating the total_price
         price = calculate_total_price(accommodation_id, checkin_date, checkout_date) 
-        #print(price)
+        print(price)
 
         reservation_id = str(uuid.uuid4())  
         reservation_data = {
@@ -137,7 +138,7 @@ def create_reservation(client_id, accommodation_id, checkin_date, checkout_date)
             firebase_config.db.child("accommodation").child(accommodation_id).child("reservations").child(current_date_str).update({'disponibility': False, 'reservation_id': reservation_id})  # Removed the unusual character after 'disponibility':
             current_date += timedelta(days=1)
             
-        return "Reservation created successfully! Total: {}".format(price)
+        return HTTPException(status_code=200, detail="Reservation created successfully!")
 
     except HTTPException as he:
         raise he

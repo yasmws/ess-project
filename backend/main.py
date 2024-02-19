@@ -1,12 +1,6 @@
 from datetime import date
-from src.api import evaluate
-from src.api import evaluate
-import src.api.reservations as reservations
-import src.api.users as users
-import src.api.accommodations as accommodations
-
-from fastapi import FastAPI, HTTPException, Depends, Cookie
-from fastapi import FastAPI, File, UploadFile
+from src.api import evaluate, reservations, users, accommodations
+from fastapi import FastAPI, HTTPException, Depends, Cookie, File, UploadFile
 from fastapi.responses import RedirectResponse
 from src.db.firebase_config import auth
 import src.db.firebase_config as firebase_config
@@ -25,8 +19,7 @@ def get_current_user(token: str = Cookie(None)):
         return user
     except auth.AuthError:
         return RedirectResponse(url="/login")
-        
-        
+
 @app.get("/")
 def read_root():
     return "Server running!!"
@@ -71,7 +64,6 @@ def logout_user():
         return "Usuário deslogado com sucesso!"
     raise HTTPException(status_code=400, detail="Falha ao realizar logout: Usuário não estava logado.")
 
-
 @app.post("/accommodation/create")
 def create_accommodation(
         accommodation_name: str,
@@ -100,7 +92,6 @@ async def upload(accommodation_id: str, file: UploadFile = File(...)):
         
     except Exception as e:
         raise HTTPException(status_code=500, detail="Erro interno do servidor")
-    
 
 @app.post("/reservation/create")
 def create_reservation(
@@ -119,3 +110,17 @@ def rating_post(
         comment:str = ""
     ):
     return evaluate.add_rating(reservation_id, stars, comment, accommodation_id)
+
+@app.get("/accommodation/list")
+def get_accommodations(
+        location: str = None,
+        checkin: date = None,
+        checkout: date = None,
+        guests: int = None
+    ):
+    return accommodations.get_accommodations(
+        location,
+        checkin,
+        checkout,
+        guests
+    )
