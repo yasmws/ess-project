@@ -1,5 +1,9 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
 # Compiled output
 .env
 .log
@@ -45,8 +49,11 @@ testem.log
 Thumbs.db
 backend/__pycache__/firebase_config.cpython-310.pyc
 backend/__pycache__/main.cpython-310.pyc
-backend/__pycache__/users.cpython-310.pyc
 backend/__pycache__/payment_methods.cpython-310.pyc
+backend/__pycache__/users.cpython-310.pyc
+backend/src/__pycache__/email_trigger.cpython-310.pyc
+backend/src/__pycache__/firebase_config.cpython-310.pyc
+backend/src/__pycache__/main.cpython-310.pyc
 backend/src/__pycache__/payment_methods.cpython-310.pyc
 backend/src/__pycache__/users.cpython-310.pyc
 backend/src/__pycache__/firebase_config.cpython-310.pyc
