@@ -110,7 +110,7 @@ def create_reservation(client_id, accommodation_id, checkin_date, checkout_date)
 
         # Calculating the total_price
         price = calculate_total_price(accommodation_id, checkin_date, checkout_date) 
-        #print(price)
+        print(price)
 
         reservation_id = str(uuid.uuid4())  
         reservation_data = {
@@ -137,7 +137,7 @@ def create_reservation(client_id, accommodation_id, checkin_date, checkout_date)
             firebase_config.db.child("accommodation").child(accommodation_id).child("reservations").child(current_date_str).update({'disponibility': False, 'reservation_id': reservation_id})  # Removed the unusual character after 'disponibility':
             current_date += timedelta(days=1)
             
-        return "Reservation created successfully! Total: {}".format(price)
+        return "Reservation created successfully!"
 
     except HTTPException as he:
         raise he
