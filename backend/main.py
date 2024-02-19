@@ -1,6 +1,9 @@
 from datetime import date
 from src.api import evaluate
-
+from src.api import evaluate
+import src.api.reservations as reservations
+import src.api.users as users
+import src.api.accommodations as accommodations
 
 from fastapi import FastAPI, HTTPException, Depends, Cookie
 from fastapi import FastAPI, File, UploadFile
