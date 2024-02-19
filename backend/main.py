@@ -1,13 +1,9 @@
 from datetime import date
-import reservations as reservations
-import users as users
-import accommodations as accommodations
-
-from fastapi import FastAPI, HTTPException, Depends, Cookie
-from fastapi import FastAPI, File, UploadFile
+from src.api import evaluate, reservations, users, accommodations
+from fastapi import FastAPI, HTTPException, Depends, Cookie, File, UploadFile
 from fastapi.responses import RedirectResponse
-from firebase_config import auth
-import firebase_config as firebase_config
+from src.db.firebase_config import auth
+import src.db.firebase_config as firebase_config
 from pydantic import SecretStr
 
 app = FastAPI()
@@ -23,8 +19,7 @@ def get_current_user(token: str = Cookie(None)):
         return user
     except auth.AuthError:
         return RedirectResponse(url="/login")
-        
-        
+
 @app.get("/")
 def read_root():
     return "Server running!!"
@@ -69,7 +64,6 @@ def logout_user():
         return "Usuário deslogado com sucesso!"
     raise HTTPException(status_code=400, detail="Falha ao realizar logout: Usuário não estava logado.")
 
-
 @app.post("/accommodation/create")
 def create_accommodation(
         accommodation_name: str,
@@ -98,7 +92,6 @@ async def upload(accommodation_id: str, file: UploadFile = File(...)):
         
     except Exception as e:
         raise HTTPException(status_code=500, detail="Erro interno do servidor")
-    
 
 @app.post("/reservation/create")
 def create_reservation(
@@ -109,3 +102,25 @@ def create_reservation(
         ):
         return reservations.create_reservation(client_id, accommodation_id, reservation_checkin, reservation_checkout)
 
+@app.post("/reservations/{reservation_id}/evaluate")
+def rating_post(
+        reservation_id:str,
+        accommodation_id:str,
+        stars:int,
+        comment:str = ""
+    ):
+    return evaluate.add_rating(reservation_id, stars, comment, accommodation_id)
+
+@app.get("/accommodation/list")
+def get_accommodations(
+        location: str = None,
+        checkin: date = None,
+        checkout: date = None,
+        guests: int = None
+    ):
+    return accommodations.get_accommodations(
+        location,
+        checkin,
+        checkout,
+        guests
+    )
