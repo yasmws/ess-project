@@ -1,15 +1,16 @@
 from datetime import date
-import reservations as reservations
-import users as users
-import accommodations as accommodations
+from api import evaluate
+import api.reservations as reservations
+import api.users as users
+import api.accommodations as accommodations
 import payment_methods as payment
 from src.email_trigger import send_email
 
 from fastapi import FastAPI, HTTPException, Depends, Cookie
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import RedirectResponse
-from firebase_config import auth
-import firebase_config as firebase_config
+from db.firebase_config import auth
+import db.firebase_config as firebase_config
 from pydantic import SecretStr
 
 
@@ -112,7 +113,14 @@ def create_reservation(
         ):
         return reservations.create_reservation(client_id, accommodation_id, reservation_checkin, reservation_checkout)
 
-@app.post("/payment/register_user")
+@app.post("/reservations/{reservation_id}/evaluate")
+def rating_post(
+        reservation_id:str,
+        accommodation_id:str,
+        stars:int,
+        comment:str = ""
+    ):
+    return evaluate.add_rating(reservation_id, stars, comment, accommodation_id)@app.post("/payment/register_user")
 def register_user(username: str):
     return payment.register_user(username)
 
