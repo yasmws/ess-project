@@ -2,6 +2,8 @@ from datetime import date
 import reservations as reservations
 import users as users
 import accommodations as accommodations
+import payment_methods as payment
+from src.email_trigger import send_email
 
 from fastapi import FastAPI, HTTPException, Depends, Cookie
 from fastapi import FastAPI, File, UploadFile
@@ -9,6 +11,7 @@ from fastapi.responses import RedirectResponse
 from firebase_config import auth
 import firebase_config as firebase_config
 from pydantic import SecretStr
+
 
 app = FastAPI()
 storage = firebase_config.firebase.storage()
@@ -109,37 +112,6 @@ def create_reservation(
         ):
         return reservations.create_reservation(client_id, accommodation_id, reservation_checkin, reservation_checkout)
 
-import src.users as users
-import src.payment_methods as payment
-
-from fastapi import FastAPI, BackgroundTasks
-from src.email_trigger import send_email
-app = FastAPI()
-
-
-@app.get("/")
-def read_root():
-    return "Server running!!"
-
-@app.post("/users/create")
-def create_user(
-        email: str,
-        password:str,
-        username: str,
-        name: str = None,
-        cpf: str = None
-    ):
-    return users.create_user(
-        email, password, name, username, cpf
-    )
-
-@app.post("/users/login")
-def login_user(
-        email: str,
-        password:str
-    ):
-    return users.login_user(email, password)
-
 @app.post("/payment/register_user")
 def register_user(username: str):
     return payment.register_user(username)
@@ -167,7 +139,6 @@ def delete_payment_method(
     method: str
     ):
     return payment.delete_payment_method(username, method)
-
 
 @app.post("/email_trigger")
 def send_email():
