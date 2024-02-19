@@ -1,5 +1,3 @@
 fastapi==0.104.1
 uvicorn==0.24.0.post1
 pyrebase==3.0.27
-
-# uv --> uvcorn main:app

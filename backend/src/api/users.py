@@ -1,5 +1,5 @@
 from fastapi import HTTPException
-import firebase_config
+from  src.db import firebase_config
 
 def create_user(email, password, name, username, cpf):
     try:
@@ -12,6 +12,7 @@ def create_user(email, password, name, username, cpf):
             "cpf": cpf,
             "username": username,
         }
+        
         firebase_config.db.child("users").child(data["username"]).set(data)
         print("User data added successfully!")
         return "User created!"
