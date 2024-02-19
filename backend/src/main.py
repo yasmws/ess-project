@@ -1,9 +1,8 @@
-import users
-import payment_methods as payment
+import src.users as users
+import src.payment_methods as payment
 
 from fastapi import FastAPI, BackgroundTasks
-from email_trigger import send_email_background, send_email_async
-
+from src.email_trigger import send_email
 app = FastAPI()
 
 
@@ -57,3 +56,8 @@ def delete_payment_method(
     method: str
     ):
     return payment.delete_payment_method(username, method)
+
+
+@app.post("/email_trigger")
+def send_email():
+    return send_email
