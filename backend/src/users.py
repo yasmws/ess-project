@@ -1,5 +1,5 @@
 from fastapi import HTTPException
-import firebase_config
+import db.firebase_config as firebase_config
 import re
 
 def create_user(name, username, email, cpf, password):
