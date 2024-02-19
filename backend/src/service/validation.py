@@ -47,3 +47,31 @@ class Validation:
             if (existing_username == username) or (existing_email == email) or (existing_cpf == cpf):
                 return False
         return True
+    
+    @staticmethod
+    def id_has_reservation(id_user):
+        
+        reservations = firebase_config.db.child("reservation").get().val()
+        
+        for _, info in reservations.items():
+            
+            disponibilidade = info['client_id']
+            
+            if  disponibilidade == id_user:
+                 return True #existe reserva
+        
+        return False   #nao existe reserva
+    
+    @staticmethod
+    def user_reservation(id_user):
+        
+        reservations = firebase_config.db.child("reservation").get().val()
+        
+        for index, info in reservations.items():
+            
+            user_teste = info['client_id']
+            
+            if  user_teste == id_user:
+                 firebase_config.db.child("reservation").child(index).remove()
+        
+        return True
