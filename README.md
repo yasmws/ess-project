@@ -8,7 +8,7 @@ O banco de dados utilizado foi o [Google Firebase](https://firebase.google.com/)
 - Vá até a pasta **backend** e execute o comando `pip install -r requirements.txt` para instalar as dependências do projeto.
 
 #### Execução:
-- `uvicorn main:app --reload` para executar o servidor.
+- Dentro de /backend/src, utilize o comando `uvicorn main:app --reload` para executar o servidor.
 
 #### Documentação:
 - Para entender mais sobre fastAPI, veja a documentação oficial: https://fastapi.tiangolo.com/
