@@ -3,6 +3,8 @@ from fastapi import HTTPException
 from src.service.validation import Validation
 from src.schemas.reservation import ItemModel
 
+##__________________histórico de usuário
+
 @scenario(scenario_name ="Histórico de user com reservas", feature_name = "../feature/manage_historic.feature")
 def test_historic_accommodation_sucess():
     pass
