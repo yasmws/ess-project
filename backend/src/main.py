@@ -1,5 +1,5 @@
 from datetime import date
-from src.api import evaluate
+from api import evaluate
 import reservations as reservations
 import users as users
 import accommodations as accommodations
