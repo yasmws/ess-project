@@ -1,7 +1,7 @@
 
 import uuid
 from fastapi import HTTPException
-import db.firebase_config as firebase_config
+import src.db.firebase_config as firebase_config
 from datetime import datetime, timedelta
 
 def get_dates_range(start_date, end_date):
@@ -74,13 +74,14 @@ def create_accommodation(accommodation_name, accommodation_loc,
         initial_daily_prices = {date: data_reservation for date in get_dates_range(today, end_date)}
         firebase_config.db.child("accommodation").child(data["id"]).child("reservations").set(initial_daily_prices)
         
-        return "Accommodation created successfully!"
+        return HTTPException(status_code=200, detail="Accommodation created successfully!")
     
     except ValueError as ve:
         raise HTTPException(status_code=400, detail=str(ve))
         
     except Exception as e:
         raise HTTPException(status_code=400, detail="Failed to create accommodation.")
+    
     
     
     
