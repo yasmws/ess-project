@@ -1,13 +1,9 @@
 from datetime import date
-import reservations as reservations
-import users as users
-import accommodations as accommodations
-
-from fastapi import FastAPI, HTTPException, Depends, Cookie
-from fastapi import FastAPI, File, UploadFile
+from src.api import evaluate, reservations, users, accommodations
+from fastapi import FastAPI, HTTPException, Depends, Cookie, File, UploadFile
 from fastapi.responses import RedirectResponse
-from firebase_config import auth
-import firebase_config as firebase_config
+from src.db.firebase_config import auth
+import src.db.firebase_config as firebase_config
 from pydantic import SecretStr
 
 app = FastAPI()
@@ -109,3 +105,11 @@ def create_reservation(
         ):
         return reservations.create_reservation(client_id, accommodation_id, reservation_checkin, reservation_checkout)
 
+@app.post("/reservations/{reservation_id}/evaluate")
+def rating_post(
+        reservation_id:str,
+        accommodation_id:str,
+        stars:int,
+        comment:str = ""
+    ):
+    return evaluate.add_rating(reservation_id, stars, comment, accommodation_id)
