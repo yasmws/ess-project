@@ -1,5 +1,6 @@
 import uuid
 from fastapi import HTTPException
+from starlette import status
 import src.db.firebase_config as firebase_config
 from datetime import datetime, timedelta
 
@@ -148,7 +149,7 @@ def get_accommodations(
         ]
 
         if not accommodations_list:
-            print("No accommodations found.")
+            return status.HTTP_204_NO_CONTENT
         return accommodations_list
     except Exception:
         raise HTTPException(status_code=400, detail="Failed looking for accommodations.")
