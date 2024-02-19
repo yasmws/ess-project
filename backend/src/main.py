@@ -1,8 +1,8 @@
-import src.users as users
-import src.payment_methods as payment
+import users as users
+import payment_methods as payment
 
 from fastapi import FastAPI, BackgroundTasks
-from src.email_trigger import send_email
+from email_trigger import send_email
 app = FastAPI()
 
 
