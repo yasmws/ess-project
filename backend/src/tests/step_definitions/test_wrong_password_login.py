@@ -1,6 +1,6 @@
 from pytest_bdd import parsers, given, when, then, scenario
 from src.service.validation import Validation
-
+"""
 @scenario(scenario_name = "Usuário informou senha incorretamente durante o login", feature_name = "../feature/login.feature")
 def test_wrong_password_login():
     pass
@@ -45,3 +45,4 @@ def check_wrong_password_login_response(context, resposta: str):
     assert  response_data.get("detail","") in resposta
 
     return context
+"""

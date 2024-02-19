@@ -1,6 +1,6 @@
 from pytest_bdd import parsers, given, when, then, scenario
 from src.service.validation import Validation
-"""
+
 @scenario(scenario_name = "Login do usuário usando username", feature_name = "../feature/login.feature")
 def test_username_login():
     pass
@@ -45,5 +45,3 @@ def check_username_login_response(context, resposta: str):
     assert  response_data == resposta
 
     return context
-
-"""

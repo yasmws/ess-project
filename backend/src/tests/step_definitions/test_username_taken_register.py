@@ -1,8 +1,6 @@
 from pytest_bdd import parsers, given, when, then, scenario
 from src.service.validation import Validation
 
-"""
-
 @scenario(scenario_name = "Usuário tentou cadastrar um username já cadastrado", feature_name = "../feature/register.feature")
 def test_username_taken_register():
     pass
@@ -44,4 +42,3 @@ def check_username_taken_register_response(context, resposta: str):
     assert  response_data.get("detail","") in resposta
 
     return context
-"""
