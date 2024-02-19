@@ -1,7 +1,7 @@
 import uuid
 from fastapi import HTTPException
-import db.firebase_config as firebase_config
-import api.accommodations as accommodations
+import src.db.firebase_config as firebase_config
+import src.api.accommodations as accommodations
 from datetime import timedelta, datetime
 
 def is_valid_date(date_str):

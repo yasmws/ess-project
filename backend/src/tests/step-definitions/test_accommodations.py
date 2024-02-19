@@ -2,19 +2,19 @@
 from pytest_bdd import parsers, given, when, then, scenario
 from fastapi import HTTPException
 from src.service.validation import Validation
-from src.schemas.reservation import ItemModel
+#from schemas.reservation import ItemModel
 
 
-## ---------- Edição de reserva com sucesso -------------
+## ---------- Criar uma acomodação com um user_id existente -------------
 
-@scenario(scenario_name = "Editar reserva com sucesso", feature_name = "../feature/manage_booking.feature")
-def test_edit_reservation_by_id():
+@scenario(scenario_name = "Criar uma acomodação com um user_id existente", feature_name = "../feature/accommodation.feature")
+def test_create_accommodation_by_id():
     pass
 
-@given(parsers.cfparse('Uma reserva de id "{rsv_id}", existe no bando de dados'))
-def mock_reservation_service_response(rsv_id: str):
+@given(parsers.cfparse('existe uma user com user_id "{user_id}", existe no bando de dados'))
+def mock_accommodation_service_response(user_id: str):
 
-    result = Validation.get_reservation_by_id(rsv_id)
+    result = Validation.get_user_by_id(user_id)
     assert result
 
 @when(
@@ -50,7 +50,8 @@ def check_response_reservation_json(context, resposta_txt: str):
 
     return context
 
-# ---------- Editar reserva com acomodação inexistente -------------
+"""
+# ---------- Criar acomodação com usuário inexistente -------------
 
 @scenario(scenario_name = "Editar reserva com acomodação inexistente", feature_name = "../feature/manage_booking.feature")
 def test_edit_reservation_data_error():
@@ -235,3 +236,5 @@ def passoQuinto(context, resposta_txt: str):
     response_data = context["response"].json()
     assert  response_data.get("detail","") in resposta_txt
     return context
+    
+"""

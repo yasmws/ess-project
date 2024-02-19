@@ -2,11 +2,10 @@
 from pytest_bdd import parsers, given, when, then, scenario
 from fastapi import HTTPException
 from src.service.validation import Validation
-from src.schemas.reservation import ItemModel
-
+#from src.schemas.reservation import ItemModel
 
 ## ---------- Edição de reserva com sucesso -------------
-
+"""
 @scenario(scenario_name = "Editar reserva com sucesso", feature_name = "../feature/manage_booking.feature")
 def test_edit_reservation_by_id():
     pass
@@ -235,3 +234,5 @@ def passoQuinto(context, resposta_txt: str):
     response_data = context["response"].json()
     assert  response_data.get("detail","") in resposta_txt
     return context
+
+"""

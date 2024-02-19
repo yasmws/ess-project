@@ -8,4 +8,4 @@ class ItemModel(BaseModel):
     checkin_date= str,
     checkout_date= str,
     accommodation_id= str,
-    cliente_id= str
+    client_id= str
