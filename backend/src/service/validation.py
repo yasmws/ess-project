@@ -33,3 +33,17 @@ class Validation:
         range = data_atual < check_in_date and data_atual < check_out_date
 
         return [range, check_in_date, check_out_date]
+
+    @staticmethod
+
+    def validade_new_user(username, email, cpf):
+        users = firebase_config.db.child("users").get().val()
+        #Percorre os dados para ver se username, email ou cpf já existem
+        for _, info in users.items():
+            existing_username = info['username']
+            existing_email = info['email']
+            existing_cpf = info['cpf']
+
+            if (existing_username == username) or (existing_email == email) or (existing_cpf == cpf):
+                return False
+        return True

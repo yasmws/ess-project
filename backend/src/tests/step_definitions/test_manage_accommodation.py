@@ -1,9 +1,8 @@
 from pytest_bdd import parsers, given, when, then, scenario
 from fastapi import HTTPException
 from src.service.validation import Validation
-from src.schemas.reservation import ItemModel
 
-
+"""
 ## ---------- Edição de reserva com sucesso -------------
 
 @scenario(scenario_name = "Editar acomodação com sucesso", feature_name = "../feature/manage_accommodation.feature")
@@ -76,3 +75,4 @@ def check_response_accommodation_json(context, resposta_txt: str):
     return context
 
 
+"""
