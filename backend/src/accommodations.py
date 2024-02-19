@@ -1,9 +1,8 @@
 
 import uuid
 from fastapi import HTTPException
-import firebase_config as firebase_config
+import db.firebase_config as firebase_config
 from datetime import datetime, timedelta
-
 
 def get_dates_range(start_date, end_date):
     dates = []

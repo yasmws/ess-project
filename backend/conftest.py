@@ -6,8 +6,6 @@ from main import app
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
-
-
 @pytest.fixture(scope="function")
 def client() -> Generator:
     """

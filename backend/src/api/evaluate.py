@@ -1,7 +1,6 @@
 from fastapi import HTTPException
 import src.db.firebase_config as firebase_config
 
-
 def add_rating(reservation_id:str, stars:int, comment:str, accommodation_id:str):
     if(not_exist_rating(reservation_id, accommodation_id)):
         if stars <= 5 and stars > 0:
@@ -17,8 +16,6 @@ def add_rating(reservation_id:str, stars:int, comment:str, accommodation_id:str)
             raise HTTPException(status_code=500, detail="the number of stars is not in the allowed range.")
     else:
             raise HTTPException(status_code=500, detail="it already has an evaluation in rating table")
-        
-
 
 # busca a informção de que aquela reserva já tem uma avaliação
 def not_exist_rating(reservation_id:str, accommodation_id:str):
