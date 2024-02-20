@@ -7,6 +7,7 @@ import src.db.firebase_config as firebase_config
 from pydantic import SecretStr
 
 app = FastAPI()
+
 storage = firebase_config.firebase.storage()
 app.logged_user = ""
 
