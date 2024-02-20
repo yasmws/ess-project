@@ -16,8 +16,8 @@ Scenario: Editar acomodação com sucesso
 
 Scenario: Editar acomodação com campos inválidos
 
-    Given Uma acomodação de id "02a68c9e-0a90-45ce-b455-b4d1056122e4", existe no bando de dados
-    When um usuário envia uma requisição PUT para "/accommodation/02a68c9e-0a90-45ce-b455-b4d1056122e4/edit" com as seguintes infromações, location "Belo Horizonte", name "Casa de jujuba"
+    Given Uma acomodação de id "45922c44-8277-4682-b2a7-04e8cffaadd6", existe no bando de dados
+    When um usuário envia uma requisição PUT para "/accommodation/45922c44-8277-4682-b2a7-04e8cffaadd6/edit" com as seguintes infromações, location "Belo Horizonte", name "Casa de jujuba"
     Then o status do código deve ser "400"
     And o Json de resposta deve conter "Campos inválidos"
 

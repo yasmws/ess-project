@@ -30,7 +30,12 @@ class Validation:
         check_out_date = datetime.strptime(checkout_date, "%Y-%m-%d").date()
 
         data_atual = datetime.now().date()
-        range = data_atual < check_in_date and data_atual < check_out_date
+        
+        ## aqui deveria ser pra comparar se as datas estão certos, em questão de range
+        if (data_atual < check_in_date) and (check_in_date < check_out_date):
+            range = True
+        else:
+            range = False
 
         return [range, check_in_date, check_out_date]
 

@@ -21,7 +21,7 @@ def delet_accommodation(accommodation_id):
 
     # validação
     ## ver se id de acomodação existe
-    if not Validation.get_accommodation_by_id(accommodation_id):   
+    if Validation.get_accommodation_by_id(accommodation_id) is None:   
          raise HTTPException(status_code=404, detail="A acomodação não existe")
     
     valid = check_any_reservation(accommodation_id)

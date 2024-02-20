@@ -197,4 +197,4 @@ def check_response_create_accommodation_json(context, resposta_txt: str):
     response_data = context["response"].json()
     assert  response_data.get("detail","") in resposta_txt
 
-    return context
+    return context 

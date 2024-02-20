@@ -15,7 +15,7 @@ def mock_accommodation_service_response(user: str):
     assert result 
     
 
-@when(parsers.cfparse('é enviado uma requisição GET para "{url_requisition}" entre os dia "{day_in}" e "{day_out}"'),
+@when(parsers.cfparse('é enviado uma requisição GET para "{url_requisition}" entre os dia"{day_in}" e "{day_out}"'),
     target_fixture="context"
 )   
 def get_historic_error(client, context, url_requisition: str, day_in: str, day_out: str):

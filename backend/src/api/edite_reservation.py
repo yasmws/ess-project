@@ -41,19 +41,23 @@ def edit_reservation( reservation_id, checkin_date, checkout_date, accommodation
     check_in_date = result[1]
     check_out_date = result[2]
 
-    if check_in_date < check_out_date and data_rsv and data_acmt and data_user and result[0]:
+    if data_rsv and data_acmt and data_user and result[0]:
+
         
         ## checar se existe aquela reserva na acomodação
         if data_rsv['accommodation_id'] != accommodation_id:
+            print("vei, serio")
             raise HTTPException(status_code=404, detail=f"Não existe reserva para acomodação {data_acmt['name']}")
         
         ## checar se a data esta no range correto de disponibilidade
         valid = check_date( accommodation_id, check_in_date, check_out_date, cliente_id)
 
         if not valid:
+           print("chatoo")
            raise HTTPException(status_code=400, detail="Invalid Format")
         
         try:
+         
             results = Validation.range_date_validation(data_rsv["checkin_date"], data_rsv["checkout_date"])
 
             current_date = results[1]
@@ -63,7 +67,7 @@ def edit_reservation( reservation_id, checkin_date, checkout_date, accommodation
 
             ## limpando datas de acomodação
            
-            while current_date < results[2]:
+            while current_date <= results[2]:
 
                 current_date_str = current_date.strftime("%Y-%m-%d")
                 
@@ -77,18 +81,21 @@ def edit_reservation( reservation_id, checkin_date, checkout_date, accommodation
             current_date = result[1]
             check_out_date = result[2]
 
-            while current_date < check_out_date:
+            while current_date <= check_out_date:
                 current_date_str = current_date.strftime("%Y-%m-%d")
                 
                 firebase_config.db.child("accommodation").child(accommodation_id).child("reservations").child(current_date_str).update({'disponibility': False,  'reservation_id':  reservation_id})
                 current_date += timedelta(days=1)
     
-            if valid == price_total: 
+            if data_rsv['total_price'] == price_total - 1: 
                 firebase_config.db.child("reservation").child(reservation_id).update({"checkin_date" :  checkin_date,"checkout_date":  checkout_date})
             else:
+                print("podemos dizer que..", valid, price_total)
                 return HTTPException(status_code=400, detail="Date Range invalid") 
+            print("DEU CERTO RAPAZ")
             return HTTPException(status_code=200, detail="Reservation updated successfully!")
     
         except Exception:
             raise HTTPException(status_code=400, detail="Failed to update Reservation.")
+    print("VAMOS CONFERIR NE")
     raise HTTPException(status_code=400, detail="Invalid fields")     

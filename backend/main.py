@@ -15,12 +15,15 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import RedirectResponse
 from src.db.firebase_config import auth
 import src.db.firebase_config as firebase_config
+from src.db.firebase_config import auth
+import src.db.firebase_config as firebase_config
 from pydantic import SecretStr
 from typing import Optional
 
 
 
 app = FastAPI()
+
 storage = firebase_config.firebase.storage()
 app.logged_user = ""
 
@@ -33,8 +36,7 @@ def get_current_user(token: str = Cookie(None)):
         return user
     except auth.AuthError:
         return RedirectResponse(url="/login")
-        
-        
+
 @app.get("/")
 def read_root():
     return "Server running!!"
@@ -79,7 +81,6 @@ def logout_user():
         return "Usuário deslogado com sucesso!"
     raise HTTPException(status_code=400, detail="Falha ao realizar logout: Usuário não estava logado.")
 
-
 @app.post("/accommodation/create")
 def create_accommodation(
         accommodation_name: str,
@@ -108,7 +109,6 @@ async def upload(accommodation_id: str, file: UploadFile = File(...)):
         
     except Exception as e:
         raise HTTPException(status_code=500, detail="Erro interno do servidor")
-    
 
 @app.post("/reservation/create")
 def create_reservation(
