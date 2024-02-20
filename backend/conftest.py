@@ -3,11 +3,6 @@ from fastapi.testclient import TestClient
 from typing import Generator
 from main import app
 
-import warnings
-warnings.filterwarnings("ignore", category=DeprecationWarning)
-
-
-
 @pytest.fixture(scope="function")
 def client() -> Generator:
     """

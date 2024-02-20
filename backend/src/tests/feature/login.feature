@@ -1,7 +1,5 @@
 Feature: Login
 
-#Cenários de GUI
-
 #Cenários de serviço
 
 Scenario: Login do usuário usando username

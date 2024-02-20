@@ -1,19 +1,9 @@
 from datetime import date
-from src.api import reservations 
-from src.api import  users
-from src.api import accommodations
-from src.api import edit_accommodations
-from src.api import delete_accommodations
-from src.api import edite_reservation 
-from src.api import delete_reservation
-from src.api import historyc
-
-from fastapi import FastAPI, HTTPException, Depends, Cookie
-from fastapi import FastAPI, File, UploadFile
+from src.api import evaluate, reservations, users, accommodations
+from fastapi import FastAPI, HTTPException, Depends, Cookie, File, UploadFile
 from fastapi.responses import RedirectResponse
 from src.db.firebase_config import auth
 import src.db.firebase_config as firebase_config
-from fastapi.middleware.cors import CORSMiddleware
 from pydantic import SecretStr
 
 app = FastAPI()
@@ -30,8 +20,7 @@ def get_current_user(token: str = Cookie(None)):
         return user
     except auth.AuthError:
         return RedirectResponse(url="/login")
-        
-        
+
 @app.get("/")
 def read_root():
     return "Server running!!"
@@ -76,7 +65,6 @@ def logout_user():
         return "Usuário deslogado com sucesso!"
     raise HTTPException(status_code=400, detail="Falha ao realizar logout: Usuário não estava logado.")
 
-
 @app.post("/accommodation/create")
 def create_accommodation(
         accommodation_name: str,
@@ -105,7 +93,6 @@ async def upload(accommodation_id: str, file: UploadFile = File(...)):
         
     except Exception as e:
         raise HTTPException(status_code=500, detail="Erro interno do servidor")
-    
 
 @app.post("/reservation/create")
 def create_reservation(
@@ -116,34 +103,25 @@ def create_reservation(
         ):
         return reservations.create_reservation(client_id, accommodation_id, reservation_checkin, reservation_checkout)
 
-@app.put("/accommodation/{id}/edit")
-def edit_accommodation(
-        id: str,
-        accommodation_name: str = None,
-        accommodation_loc: str = None, 
-        accommodation_bedrooms: int = None,
-        accommodation_max_capacity: int = None, 
-        accommodation_description: str = None,
-        ):
-        
-        return edit_accommodations.update_accommodation(id, accommodation_name, accommodation_loc, 
-                         accommodation_bedrooms, accommodation_max_capacity, 
-                         accommodation_description)
+@app.post("/reservations/{reservation_id}/evaluate")
+def rating_post(
+        reservation_id:str,
+        accommodation_id:str,
+        stars:int,
+        comment:str = ""
+    ):
+    return evaluate.add_rating(reservation_id, stars, comment, accommodation_id)
 
-@app.delete("/accommodation/{id}/delete") 
-def delete_accomodation(id: str):
-     return delete_accommodations.delet_accommodation(id)
-
-@app.put("/reservation/{id}/edit")
-def edit_reservation(id: str, checkin_date:str, checkout_date: str, accommodation_id: str, cliente_id: str):
-     return edite_reservation.edit_reservation(id, checkin_date, 
-                                               checkout_date,accommodation_id, cliente_id)
-     
-
-@app.delete("/reservation/{id}/delete")
-def del_reservation(id: str):
-    return delete_reservation.delete_reservation(id)
-
-@app.get("/historyc/{id}")
-def get_historic(id:str, checkin: str, checkout:str):
-     return historyc.historyc(id, checkin, checkout)
+@app.get("/accommodation/list")
+def get_accommodations(
+        location: str = None,
+        checkin: date = None,
+        checkout: date = None,
+        guests: int = None
+    ):
+    return accommodations.get_accommodations(
+        location,
+        checkin,
+        checkout,
+        guests
+    )

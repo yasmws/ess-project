@@ -1,4 +1,6 @@
 fastapi==0.104.1
 uvicorn==0.24.0.post1
-pyrebase==3.0.27
+pyrebase4==4.7.1
 python-multipart==0.0.9
+pytest==7.1.2
+pytest-bdd==7.0.1

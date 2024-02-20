@@ -1,4 +1,3 @@
-
 from fastapi import HTTPException
 from src.db import firebase_config 
 from datetime import datetime, timedelta
@@ -16,6 +15,7 @@ class Validation:
        
         data_acmt = firebase_config.db.child("accommodation").child(accommodation_id).get().val()
         return data_acmt
+    
     @staticmethod
     def get_user_by_id(user_id):
       
