@@ -1,5 +1,12 @@
 Feature: Gerenciamento de acomodação API
 
+Scenario: Excluir acomodação sem reserva
+
+    Given Uma acomodação de id "6c8739ad-5bbe-49b8-95a4-5ef59ae9ca95", existe no bando de dados
+    When um usuário envia uma requisição DELETE para "/accommodation/6c8739ad-5bbe-49b8-95a4-5ef59ae9ca95/delete" 
+    Then o status do código deve ser "400"
+    And o Json de resposta deve conter "Não se pode deletar acomodações com reservas"
+
 Scenario: Editar acomodação com sucesso
 
     Given Uma acomodação de id "d5aabe0e-afd6-4a6e-8f03-b972fede4d63", existe no bando de dados
@@ -20,9 +27,3 @@ Scenario: Excluir acomodação sem reserva
     When um usuário envia uma requisição DELETE para "/accommodation/6c8739ad-5bbe-49b8-95a4-5ef59ae9ca95/delete" 
     Then o status do código deve ser "400"
     And o Json de resposta deve conter "Não se pode deletar acomodações com reservas"
-
-
-
-
-
-

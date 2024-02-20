@@ -1,21 +1,24 @@
 from datetime import date
-import reservations as reservations
-import users as users
-import accommodations as accommodations
+import src.api.reservations as reservations
+import src.api.users as users
+import src.api.accommodations as accommodations
 
 import src.api.delete_accommodations as delete_accommodations
 import src.api.delete_reservation as delete_reservation
 import src.api.edit_accommodations as edit_accommodations
 import src.api.edite_reservation as edite_reservation
 import src.api.historyc as historyc
+import src.api.evaluate as evaluate
 
 from fastapi import FastAPI, HTTPException, Depends, Cookie
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import RedirectResponse
-from firebase_config import auth
-import firebase_config as firebase_config
+from src.db.firebase_config import auth
+import src.db.firebase_config as firebase_config
 from pydantic import SecretStr
-from types import Optional
+from typing import Optional
+
+
 
 app = FastAPI()
 storage = firebase_config.firebase.storage()
@@ -116,6 +119,28 @@ def create_reservation(
         ):
         return reservations.create_reservation(client_id, accommodation_id, reservation_checkin, reservation_checkout)
 
+@app.post("/reservations/{reservation_id}/evaluate")
+def rating_post(
+        reservation_id:str,
+        accommodation_id:str,
+        stars:int,
+        comment:str = ""
+    ):
+    return evaluate.add_rating(reservation_id, stars, comment, accommodation_id)
+
+@app.get("/accommodation/list")
+def get_accommodations(
+        location: str = None,
+        checkin: date = None,
+        checkout: date = None,
+        guests: int = None
+    ):
+    return accommodations.get_accommodations(
+        location,
+        checkin,
+        checkout,
+        guests
+    )
 
 @app.put("/accommodation/{id}/edit")
 def edit_accommodation(

@@ -1,8 +1,9 @@
 
+
 from pytest_bdd import parsers, given, when, then, scenario
 from fastapi import HTTPException
 from src.service.validation import Validation
-from src.schemas.reservation import ItemModel
+
 
 ## ---------- Edição de reserva com sucesso -------------
 
@@ -141,11 +142,11 @@ def check_response_reservation_json_erro(context, resposta_txt: str):
 ## ----------  Deletar reserva com sucesso -------------
 
 @scenario(scenario_name = "Deletar reserva com sucesso", feature_name = "../feature/manage_booking.feature")
-def test_delete_reservation_with_error():
+def test_delete_reservation_success():
     pass
 
 @given(parsers.cfparse('Uma reserva de id "{rsv_id}", existe no bando de dados'))
-def delete_reservation_service_response_error(rsv_id: str):
+def delete_reservation_service_responser(rsv_id: str):
 
     result = Validation.get_reservation_by_id(rsv_id)
     assert result
@@ -157,7 +158,7 @@ def delete_reservation_service_response_error(rsv_id: str):
     target_fixture="context"
 )   
 
-def delete_reservation_error(client, context, url_requisition: str):
+def delete_reservation(client, context, url_requisition: str):
     
     response = client.delete(url_requisition, params={})
     context["response"] = response
@@ -165,7 +166,7 @@ def delete_reservation_error(client, context, url_requisition: str):
     
 @then(parsers.cfparse('o status do código deve ser "{status_code}"'), target_fixture="context") 
 
-def cdelete_reservation_status_code_erro(context, status_code: str): 
+def delete_reservation_status_code(context, status_code: str): 
     assert context["response"].status_code == int(status_code) 
     return context
 
@@ -174,7 +175,7 @@ def cdelete_reservation_status_code_erro(context, status_code: str):
     target_fixture="context"
 )
 
-def check_response_reservation_json_erro(context, resposta_txt: str):
+def check_response_reservation_json(context, resposta_txt: str):
     
     response_data = context["response"].json()
     assert  response_data.get("detail","") in resposta_txt
