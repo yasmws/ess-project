@@ -3,6 +3,7 @@ import pytest
 from fastapi import HTTPException
 import main
 
+
 @scenario(scenario_name="Nenhuma estrela foi adicionada", feature_name="../feature/evaluate.feature")
 def test_rating_0_stars():
      """ it do not add rating becase not add any"""

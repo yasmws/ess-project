@@ -6,13 +6,13 @@ Scenario: Login do usuário usando username
 Given O banco de dados do sistema tem cadastrado um usuário com Nome "Pedro", Username "phagp", Email "phagp@cin.ufpe.br" , CPF "12345678912" e senha "12345678"
 When Uma requisição POST é enviada para "/users/login" com Username "phagp" e senha "12345678"
 Then O status da resposta deve ser "200"
-And A resposta deve conter "Usuário logado com sucesso!"
+And A resposta deve conter "Usuário está logado!"
 
 Scenario: Login do usuário usando email
 Given O banco de dados do sistema tem cadastrado um usuário com Nome "Pedro", Username "phagp", Email "phagp@cin.ufpe.br" , CPF "12345678912" e senha "12345678"
 When Uma requisição POST é enviada para "/users/login" com Email "phagp@cin.ufpe.br" e senha "12345678"
 Then O status da resposta deve ser "200"
-And A resposta deve conter "Usuário logado com sucesso!"
+And A resposta deve conter "Usuário está logado!"
 
 Scenario: Usuário informou email incorretamente durante o login 
 Given O banco de dados do sistema tem cadastrado um usuário com Nome "Pedro", Username "phagp", Email "phagp@cin.ufpe.br" , CPF "12345678912" e senha "12345678"
