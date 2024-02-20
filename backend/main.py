@@ -1,10 +1,26 @@
 from datetime import date
-from src.api import evaluate, reservations, users, accommodations
-from fastapi import FastAPI, HTTPException, Depends, Cookie, File, UploadFile
+import src.api.reservations as reservations
+import src.api.users as users
+import src.api.accommodations as accommodations
+
+import src.api.delete_accommodations as delete_accommodations
+import src.api.delete_reservation as delete_reservation
+import src.api.edit_accommodations as edit_accommodations
+import src.api.edite_reservation as edite_reservation
+import src.api.historyc as historyc
+import src.api.evaluate as evaluate
+
+from fastapi import FastAPI, HTTPException, Depends, Cookie
+from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import RedirectResponse
 from src.db.firebase_config import auth
 import src.db.firebase_config as firebase_config
+from src.db.firebase_config import auth
+import src.db.firebase_config as firebase_config
 from pydantic import SecretStr
+from typing import Optional
+
+
 
 app = FastAPI()
 
@@ -125,3 +141,35 @@ def get_accommodations(
         checkout,
         guests
     )
+
+@app.put("/accommodation/{id}/edit")
+def edit_accommodation(
+        id: str,
+        name: Optional[str] = None,
+        location: Optional[str] = None,
+        bedrooms: Optional[int] = None,
+        max_capacity: Optional[int] = None, 
+        description: Optional[str] = None,
+        ):
+        
+        return edit_accommodations.update_accommodation(id, name, location, 
+                         bedrooms, max_capacity, 
+                         description)
+
+@app.delete("/accommodation/{id}/delete") 
+def delete_accomodation(id: str):
+     return delete_accommodations.delet_accommodation(id)
+
+@app.put("/reservation/{id}/edit")
+def edit_reservation(id: str, checkin_date:str, checkout_date: str, accommodation_id: str, cliente_id: str):
+     return edite_reservation.edit_reservation(id, checkin_date, 
+                                               checkout_date,accommodation_id, cliente_id)
+     
+
+@app.delete("/reservation/{id}/delete")
+def del_reservation(id: str):
+    return delete_reservation.delete_reservation(id)
+
+@app.get("/historyc/{id}")
+def get_historic(id:str, checkin: str, checkout:str):
+     return historyc.historyc(id, checkin, checkout)

@@ -30,7 +30,12 @@ class Validation:
         check_out_date = datetime.strptime(checkout_date, "%Y-%m-%d").date()
 
         data_atual = datetime.now().date()
-        range = data_atual < check_in_date and data_atual < check_out_date
+        
+        ## aqui deveria ser pra comparar se as datas estão certos, em questão de range
+        if (data_atual < check_in_date) and (check_in_date < check_out_date):
+            range = True
+        else:
+            range = False
 
         return [range, check_in_date, check_out_date]
 
@@ -46,4 +51,32 @@ class Validation:
 
             if (existing_username == username) or (existing_email == email) or (existing_cpf == cpf):
                 return False
+        return True
+    
+    @staticmethod
+    def id_has_reservation(id_user):
+        
+        reservations = firebase_config.db.child("reservation").get().val()
+        
+        for _, info in reservations.items():
+            
+            disponibilidade = info['client_id']
+            
+            if  disponibilidade == id_user:
+                 return True #existe reserva
+        
+        return False   #nao existe reserva
+    
+    @staticmethod
+    def user_reservation(id_user):
+        
+        reservations = firebase_config.db.child("reservation").get().val()
+        
+        for index, info in reservations.items():
+            
+            user_teste = info['client_id']
+            
+            if  user_teste == id_user:
+                 firebase_config.db.child("reservation").child(index).remove()
+        
         return True
