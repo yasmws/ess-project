@@ -1,4 +1,4 @@
-
+"""
 
 from pytest_bdd import parsers, given, when, then, scenario
 from fastapi import HTTPException
@@ -26,12 +26,13 @@ def mock_reservation_service_response(rsv_id: str):
 
 def put_edite_reservation(client, context, url_requisition: str, date_in: str, date_out: str, rsv_id: str, user: str, accommodation: str):
     
+    context = {} 
     response = client.put(url_requisition, params={"id": rsv_id, "checkin_date": date_in, "checkout_date": date_out,
                                                   "accommodation_id": accommodation, "cliente_id": user})
     print("RESPONSE::::", response, response.json().get("detail",""))
     context["response"] = response
 
-    return context
+    return response
     
 @then(parsers.cfparse('o status do código deve ser "{status_code}"'), target_fixture="context") 
 def check_edite_reservation_status_code(context, status_code: str): 
@@ -77,6 +78,7 @@ def put_edite_reservation_error(client, context, url_requisition: str, date_in: 
     print("RESPONSE::::", response, response.json().get("detail",""))
     context["response"] = response
     return context
+
     
 @then(parsers.cfparse('o status do código deve ser "{status_code}"'), target_fixture="context") 
 def check_edite_reservation_status_code_erro(context, status_code: str): 
@@ -151,7 +153,7 @@ def test_delete_reservation_success():
 
 @given(parsers.cfparse('Uma reserva de id "{rsv_id}", existe no bando de dados'), target_fixture="context")
 def delete_reservation_service_responser(client, context, rsv_id: str):
-
+    context = {} 
     result = Validation.get_reservation_by_id(rsv_id)
     if result:
         assert result
@@ -254,3 +256,5 @@ def passoQuinto(context, resposta_txt: str):
     response_data = context["response"].json()
     assert  response_data.get("detail","") in resposta_txt
     return context
+
+"""
