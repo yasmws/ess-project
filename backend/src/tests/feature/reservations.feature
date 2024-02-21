@@ -1,10 +1,14 @@
 Feature: Create reservations
 
     Creating the reservations and posting them in the db
+# Some accommodation_id's that exist in our db
+# f7f863a6-ab1a-459f-935f-c3b2bcc55734
+# 02a68c9e-0a90-45ce-b455-b4d1056122e4
+# 02b17782-8981-4f75-ad53-d5261c83fc57
 
 Scenario: Criar uma reserva de uma acomodação existente com sucesso
-    Given existe uma acomodação com accommodation_id "45922c44-8277-4682-b2a7-04e8cffaadd6" no banco de dados
-    When uma requisição POST for enviada para "/reservation/create" com os dados da reserva nos campos: checkin: "2024-09-01", checkout: "2024-09-02", client_id: "pedro123", accommodation_id: "45922c44-8277-4682-b2a7-04e8cffaadd6"
+    Given existe uma acomodação com accommodation_id "02b17782-8981-4f75-ad53-d5261c83fc57" no banco de dados
+    When uma requisição POST for enviada para "/reservation/create" com os dados da reserva nos campos: checkin: "2024-09-01", checkout: "2024-09-02", client_id: "pedro123", accommodation_id: "02b17782-8981-4f75-ad53-d5261c83fc57"
     Then o status da resposta a ser mostrada é "200"
     And a resposta deve conter a mensagem "Reservation created successfully!"
 
