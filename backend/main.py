@@ -9,6 +9,8 @@ import src.api.edit_accommodations as edit_accommodations
 import src.api.edite_reservation as edite_reservation
 import src.api.historyc as historyc
 import src.api.evaluate as evaluate
+import src.api.payment_method as payment
+from src.api.email_trigger import send_email
 
 from fastapi import FastAPI, HTTPException, Depends, Cookie
 from fastapi import FastAPI, File, UploadFile
@@ -165,7 +167,6 @@ def edit_reservation(id: str, checkin_date:str, checkout_date: str, accommodatio
      return edite_reservation.edit_reservation(id, checkin_date, 
                                                checkout_date,accommodation_id, cliente_id)
      
-
 @app.delete("/reservation/{id}/delete")
 def del_reservation(id: str):
     return delete_reservation.delete_reservation(id)
@@ -173,3 +174,31 @@ def del_reservation(id: str):
 @app.get("/historyc/{id}")
 def get_historic(id:str, checkin: str, checkout:str):
      return historyc.historyc(id, checkin, checkout)
+
+@app.post("/payment/add")
+def add_payment_method(
+    username: str, 
+    type: str, 
+    id: str = None
+    ):
+    return payment.add_payment_method(username, type, id)
+
+@app.put("/payment/update")
+def update_payment_method(
+    username: str,
+    method: str,
+    type: str = "foo",
+    id: str = "foo"
+    ):
+    return payment.update_payment_method(username, method, type, id)
+
+@app.delete("/payment/delete")
+def delete_payment_method(
+    username: str,
+    method: str
+    ):
+    return payment.delete_payment_method(username, method)
+
+@app.post("/email_trigger")
+def send_email():
+    return send_email

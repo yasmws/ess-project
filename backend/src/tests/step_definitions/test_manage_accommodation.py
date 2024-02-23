@@ -60,7 +60,7 @@ def put_edite_accommodation_error(client, context, url_requisition: str, locatio
     response = client.put(url_requisition, params={"location": location , "name": name})
     context["response"] = response
 
-    return response
+    return context
     
 @then(parsers.cfparse('o status do código deve ser "{status_code}"'), target_fixture="context") 
 def check_edite_accommodation_status_code(context, status_code: str): 
