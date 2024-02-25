@@ -27,16 +27,16 @@ Scenario: Editar reserva com acomodação inexistente
 
     Given Uma reserva de id "09424fe7-6c69-4eca-b3ab-6afe6dafa682", existe no bando de dados
     When um usuário envia uma requisição PUT para "/reservation/09424fe7-6c69-4eca-b3ab-6afe6dafa682/edit" com as seguintes infromações data de check-in "2024-02-22", data de check-out "2024-02-24", cliente "pedro123", acomodação "be7cf4d8-f408-42-92b5be751c4" e reserva "09424fe7-6c69-4eca-b3ab-6afe6dafa682"
-    Then o status do código deve ser "404"
-    And o Json de resposta deve conter "Não existe reserva para acomodação Castelo dos Sonhos"
+    Then o status do código deve ser "400"
+    And o Json de resposta deve conter "Invalid fields"
 
 Scenario: Deletar reserva com sucesso
 
-    Given Uma reserva de id "f4772ac2-5d6f-4a2d-8ed1-94470f4af20d", existe no bando de dados
-    When um usuário envia uma requisição DELETE para "/reservation/f4772ac2-5d6f-4a2d-8ed1-94470f4af20d/delete" 
+    Given Uma reserva de id "e5542777-0b92-4fb9-b8e9-7fd95cb82445", existe no bando de dados
+    When um usuário envia uma requisição DELETE para "/reservation/e5542777-0b92-4fb9-b8e9-7fd95cb82445/delete" 
     Then o status do código deve ser "200"
     And o Json de resposta deve conter "Reserva deletada com sucesso!"
-    And a reserva de id "f4772ac2-5d6f-4a2d-8ed1-94470f4af20d" não está mais disponível 
+    And a reserva de id "e5542777-0b92-4fb9-b8e9-7fd95cb82445" não está mais disponível 
 
 
     

@@ -66,9 +66,6 @@ def calculate_total_price(accommodation_id, checkin_date, checkout_date):
     
 def create_reservation(client_id, accommodation_id, checkin_date, checkout_date):
     try:
-        print(checkin_date)
-        # Validation
-        print("PRA VALIDAR")
         ## Are the checkin_date and the checkout_date in the YYYY-mm-dd format?
         if not is_valid_date(str(checkout_date)):
             return HTTPException(status_code=400, detail="Invalid check-in date format. Please use YYYY-mm-dd")
