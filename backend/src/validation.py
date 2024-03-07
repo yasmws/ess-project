@@ -61,3 +61,19 @@ class Validation:
         
         return False   #nao existe reserva
     
+    
+    @staticmethod
+    def get_user(username):
+        data = firebase_config.db.child("payment").child(username).get().val()
+        return data
+    
+    @staticmethod
+    def get_method(username, type, id):
+        methods = firebase_config.db.child("payment").child(username).get().val()
+        for method in methods:
+            vtype = firebase_config.db.child("payment").child(username).child(method).child("type").get().val()
+            vid = firebase_config.db.child("payment").child(username).child(method).child("id").get().val()
+
+            if vtype == type and vid == id:
+                data = firebase_config.db.child("payment").child(username).child(method).get().val()
+                return data

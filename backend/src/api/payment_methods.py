@@ -1,11 +1,11 @@
 from fastapi import HTTPException
-import src.firebase_config as firebase_config
+import src.db.firebase_config as firebase_config
 
 
 def register_user(username):
     data = {"cnt":0}
     firebase_config.db.child("payment").child(username).set(data)
-    return "User registered!"
+    return "Usuario registrado!"
 
 
 def add_payment_method(username, type, id):
@@ -19,25 +19,25 @@ def add_payment_method(username, type, id):
                 registered = True
         
         if not registered:
-            raise HTTPException(status_code=404, detail="User not found!")
+            raise HTTPException(status_code=404, detail="Usuario nao encontrado!")
         
         #Validate type
         if type not in {"pix", "boleto", "debito", "credito"}:
-            raise HTTPException(status_code=400, detail="Invalid payment method!")
+            raise HTTPException(status_code=400, detail="Forma de pagamento invalida!")
         
         #Validate type:key association
         if id == None and type not in {"pix", "boleto"}:
-            raise HTTPException(status_code=400, detail="This payment method demands an id number.")
+            raise HTTPException(status_code=400, detail="Essa forma de pagamento demanda um numero de id.")
         
         elif id != None and type in {"pix", "boleto"}:
-            raise HTTPException(status_code=400, detail="This payment method shouldn't feature an id number.")
+            raise HTTPException(status_code=400, detail="Essa forma de pagamento nao deve apresentar um numero de id.")
         
         elif type in {"debito", "credito"}:
             splt_str = id.split()
 
             for string in splt_str:
                 if len(string) != 4 or len(splt_str) != 4:
-                    raise HTTPException(status_code=400, detail="Stated id number is not valid!")
+                    raise HTTPException(status_code=400, detail="Numero de id informado nao eh valido!")
 
         #Check if payment method is already registered
         cnt = firebase_config.db.child("payment").child(username).child("cnt").get().val()
@@ -49,15 +49,15 @@ def add_payment_method(username, type, id):
                 method_id = firebase_config.db.child("payment").child(username).child(method).child("id").get().val()
 
                 if method_id == id and id == None and method_type == type:
-                    raise HTTPException(status_code=409, detail="This payment method is already registered!")
+                    raise HTTPException(status_code=409, detail="Essa forma de pagamento ja esta registrada!")
                 elif method_id == id:
-                    raise HTTPException(status_code=409, detail="There is already a registered payment method with this id.")
+                    raise HTTPException(status_code=409, detail="Ja existe uma forma de pagamento registrada com esse id.")
 
         #Check payment method limit
         cnt = firebase_config.db.child("payment").child(username).child("cnt").get().val()
         
         if cnt == 3:
-            raise HTTPException(status_code=400, detail="Payment methods' limit reached!")
+            raise HTTPException(status_code=400, detail="Limite de formas de pagamento atingido!")
         
         #Updating payment method count and registering data 
         cnt += 1
@@ -96,7 +96,7 @@ def update_payment_method(username, method, type, id):
                 registered = True
         
         if not registered:
-            raise HTTPException(status_code=404, detail="User not found!")
+            raise HTTPException(status_code=404, detail="Usuario nao encontrado!")
         
         #Validate method
         registered = False
@@ -107,11 +107,11 @@ def update_payment_method(username, method, type, id):
                 registered = True
         
         if not registered:
-            raise HTTPException(status_code=404, detail="Payment method not found!")
+            raise HTTPException(status_code=404, detail="Forma de pagamento nao encontrada!")
         
         #Validate type
         if type not in {"pix", "boleto", "debito", "credito", "foo"}:
-            raise HTTPException(status_code=400, detail="Invalid payment method!")
+            raise HTTPException(status_code=400, detail="Forma de pagamento invalida!")
         
         #Check if payment method is already registered
         cnt = firebase_config.db.child("payment").child(username).child("cnt").get().val()
@@ -124,21 +124,21 @@ def update_payment_method(username, method, type, id):
 
                 if method != key:
                     if method_id == id and id == None and method_type == type:
-                        raise HTTPException(status_code=409, detail="This payment method is already registered!")
+                        raise HTTPException(status_code=409, detail="Essa forma de pagamento ja esta registrada!")
                     elif method_id == id and id != None:
-                        raise HTTPException(status_code=409, detail="There is already a payment method with this id registered.")
+                        raise HTTPException(status_code=409, detail="Ja existe uma forma de pagamento registrada com esse id.")
 
         #Validate update
         if type in {"debito", "credito"}:
             if id == None:
-                raise HTTPException(status_code=400, detail="This payment method demands an id number.")
+                raise HTTPException(status_code=400, detail="Essa forma de pagamento demanda um numero de id.")
             
             else:
                 splt_str = id.split()
 
                 for string in splt_str:
                     if len(string) != 4 or len(splt_str) != 4:
-                        raise HTTPException(status_code=400, detail="Stated id number is not valid!")
+                        raise HTTPException(status_code=400, detail="Numero de id informado eh invalido")
 
                 data = {"type": type,
                         "id": id}
@@ -167,7 +167,7 @@ def delete_payment_method(username, method):
                 registered = True
         
         if not registered:
-            raise HTTPException(status_code=404, detail="User not found!")
+            raise HTTPException(status_code=404, detail="Usuario nao encontrado!")
         
         #Validate method
         registered = False
@@ -178,7 +178,7 @@ def delete_payment_method(username, method):
                 registered = True
         
         if not registered:
-            raise HTTPException(status_code=404, detail="Payment method not found!")
+            raise HTTPException(status_code=404, detail="Forma de pagamento nao encontrada!")
         
         #Deletion
         iter = int(method.removeprefix("method"))
