@@ -1,5 +1,5 @@
 from fastapi import HTTPException
-import db.firebase_config as firebase_config
+from src.db import firebase_config
 
 def add_rating(reservation_id:str, stars:int, comment:str, accommodation_id:str):
     if(not_exist_rating(reservation_id, accommodation_id)):

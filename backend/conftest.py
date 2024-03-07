@@ -1,10 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 from typing import Generator
-from src.main import app
-
-import warnings
-warnings.filterwarnings("ignore", category=DeprecationWarning)
+from main import app
 
 @pytest.fixture(scope="function")
 def client() -> Generator:

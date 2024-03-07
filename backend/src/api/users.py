@@ -1,7 +1,8 @@
 from fastapi import HTTPException
-import db.firebase_config as firebase_config
+from fastapi.responses import JSONResponse
+import src.db.firebase_config as firebase_config
 import re
-from payment_methods import register_user
+from src.api.payment_method import register_user
 
 def create_user(name, username, email, cpf, password):
     try:
@@ -17,16 +18,16 @@ def create_user(name, username, email, cpf, password):
         firebase_config.db.child("users").child(data["username"]).set(data)
         register_user(username)
         print("Dados do usuário cadastrados com sucesso!")
-        return "Usuário criado!"
+        return JSONResponse(status_code=201, content="Usuário criado!")
     except Exception:
         raise HTTPException(status_code=400, detail="Não foi possível criar o usuário.")
 
 def login_user(email, password):
     try:
         firebase_config.auth.sign_in_with_email_and_password(email, password)
-        return "Usuário está logado!"
+        return "Usuário logado com sucesso!"
     except Exception:
-        raise HTTPException(status_code=400, detail="Email/Username ou senha inválidos.")
+        raise HTTPException(status_code=401, detail="Email/Username ou senha inválidos.")
 
 def check_existing_fields(username, email, cpf):
     users = firebase_config.db.child("users").get().val()
@@ -78,5 +79,5 @@ def is_email(email):
 def get_email_from_username(username):
     email = firebase_config.db.child("users").child(username).child("email").get().val()
     if email is None:
-        raise HTTPException(status_code=400, detail="Username inválido.")
+        raise HTTPException(status_code=401, detail="Username inválido.")
     return email
