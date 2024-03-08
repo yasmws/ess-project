@@ -69,7 +69,7 @@ def is_paymet_method_registered(username, type, id):
 
             if method_id == id and id == None and method_type == type:
                 return "method registered"
-            elif method_id == id:
+            elif method_id == id and id != None:
                 return "id registered"
             
     return None
@@ -101,10 +101,11 @@ def add_payment_method(username, type, id):
             raise HTTPException(status_code=409, detail="There is already a registered payment method with this id.")
 
         #Check payment method limit        
-        if check_payment_methods_limit(username):
+        if not check_payment_methods_limit(username):
             raise HTTPException(status_code=400, detail="Payment methods' limit reached!")
         
         #Updating payment method count and registering data 
+        cnt = firebase_config.db.child("payment").child(username).child("cnt").get().val()
         cnt += 1
         cnt_s = str(cnt)
 
@@ -114,6 +115,8 @@ def add_payment_method(username, type, id):
         }
         firebase_config.db.child("payment").child(username).child("cnt").set(cnt)
         firebase_config.db.child("payment").child(username).child("method"+cnt_s).set(data)
+
+        return HTTPException(status_code=200, detail="Payment method added!")
 
     except HTTPException as hex:
         raise hex
@@ -141,7 +144,7 @@ def update_payment_method(username, method, type, id):
             raise HTTPException(status_code=404, detail="Payment method not found!")
         
         #Validate type
-        if validate_method_type(type):
+        if not validate_method_type(type):
             raise HTTPException(status_code=400, detail="Invalid payment method!")
         
         #Check if payment method is already registered
@@ -173,6 +176,8 @@ def update_payment_method(username, method, type, id):
         
         firebase_config.db.child("payment").child(username).child(method).set(data)
 
+        return HTTPException(status_code=200, detail="Payment method updated!")
+
     except HTTPException as hex:
         raise hex
     
@@ -203,6 +208,8 @@ def delete_payment_method(username, method):
         firebase_config.db.child("payment").child(username).child("method"+str(cnt)).set({})
         cnt -= 1
         firebase_config.db.child("payment").child(username).update({"cnt": cnt})
+
+        return HTTPException(status_code=200, detail="Payment method deleted!")
 
     except HTTPException as hex:
         raise hex
