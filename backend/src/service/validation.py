@@ -80,3 +80,22 @@ class Validation:
                  firebase_config.db.child("reservation").child(index).remove()
         
         return True
+    
+    @staticmethod
+    def validate_payment_register(username):
+        users = firebase_config.db.child("payment").get().val()
+
+        for user in users:
+            if username == user:
+                return True
+            
+        return False
+    
+    @staticmethod
+    def validate_methods_limit(username):
+        cnt = firebase_config.db.child("payment").child(username).child("cnt").get().val()
+        
+        if cnt < 3:
+            return True
+        
+        return False
