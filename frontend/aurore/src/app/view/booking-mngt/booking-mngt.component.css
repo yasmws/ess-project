@@ -1,0 +1,24 @@
+
+.info {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #CFCBCA;
+    overflow: hidden; 
+}
+/* Certifique-se de que não há margens, preenchimentos ou bordas nos elementos internos */
+.info * {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+/* Certifique-se de que a altura e largura dos elementos internos sejam 100% */
+.info app-input-historic,
+.info app-historic {
+    height: 100%;
+    margin: auto;
+    
+}
