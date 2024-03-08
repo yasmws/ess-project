@@ -1,5 +1,5 @@
 from pytest_bdd import parsers, given, when, then, scenario
-import src.main as main
+import main
 
 @scenario(scenario_name="enviar avaliação para reserva", feature_name="../feature/evaluate.feature")
 def test_rating_add():
