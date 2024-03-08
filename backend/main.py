@@ -16,6 +16,7 @@ from fastapi import FastAPI, HTTPException, Depends, Cookie
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import RedirectResponse
 from src.db import firebase_config
+from src.db.firebase_config import auth
 from pydantic import SecretStr
 from typing import Optional
 

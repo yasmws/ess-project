@@ -2,13 +2,13 @@ from pytest_bdd import parsers, given, when, then, scenario
 from src.service.validation import Validation
 
 
-@scenario(scenario_name="Cadastrar forma de pagamento (limite não atingido)", feature_name="../features/payment_method.feature")
+@scenario(scenario_name="Cadastrar forma de pagamento (limite não atingido)", feature_name="../feature/payment_method.feature")
 def test_register_payment_method():
     pass
 
 @given(parsers.cfparse('o sistema possui um registro de usuário com username "{username}" e valor de cnt menor que 3'))
 def mock_payment_service_response(username: str):
-    result = Validation.get_user(username)
+    result = Validation.get_payment_register(username)
 
 @when(parsers.cfparse('When uma requisição "{req_type}" for enviada para "{req_path}" com tipo "{method_type}" e id "{method_id}"'),
       target_fixture="context")
