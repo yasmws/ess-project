@@ -175,7 +175,7 @@ def del_reservation(id: str):
 def get_historic(id:str, checkin: str, checkout:str):
      return historyc.historyc(id, checkin, checkout)
 
-@app.post("/payment/add")
+@app.post("/payment/{id}/add")
 def add_payment_method(
     username: str, 
     type: str, 
@@ -183,7 +183,7 @@ def add_payment_method(
     ):
     return payment.add_payment_method(username, type, id)
 
-@app.put("/payment/update")
+@app.put("/payment/{id}/update")
 def update_payment_method(
     username: str,
     method: str,
@@ -192,7 +192,7 @@ def update_payment_method(
     ):
     return payment.update_payment_method(username, method, type, id)
 
-@app.delete("/payment/delete")
+@app.delete("/payment/{id}/delete")
 def delete_payment_method(
     username: str,
     method: str
