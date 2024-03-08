@@ -1,10 +1,8 @@
 {
   "compilerOptions": {
-      "forceConsistentCasingInFileNames": true, 
-      "strict": true,
-      "target": "es5",
-      "lib": ["es5", "dom"],
-      "types": ["cypress", "node"]
+    "rootDir": "./",
+    "sourceMap": false,
+    "types": ["node", "cypress"]
   },
-  "include": ["**/*.ts"]
+  "include": ["./**/*.ts"]
 }
