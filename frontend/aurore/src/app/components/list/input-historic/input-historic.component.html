@@ -1,0 +1,23 @@
+
+<div class="form-list">
+
+   <div class="example-container" >
+      <mat-form-field class="custom-form-field" style="padding-top: 10%">
+         <mat-label class="custom-label" style="font-size: 14px;">Data check-in</mat-label>
+         <input class="custom-input" matInput placeholder="yyyy-mm-dd" [formControl]="checkInControl" required>
+         <mat-error *ngIf="checkInControl.invalid" style="font-size: 13px; color:#8B0000;">{{getErrorMessage(checkInControl)}}</mat-error>
+       </mat-form-field>
+     
+       <mat-form-field class="custom-form-field" style="padding-top: 10%;">
+          <mat-label class="custom-label" style="font-size: 14px;">Data check-out</mat-label>
+          <input class="custom-input" matInput placeholder="yyyy-mm-dd" [formControl]="checkOutControl" required>
+          <mat-error *ngIf="checkOutControl.invalid" style="font-size: 13px; color:#8B0000;">{{getErrorMessage(checkOutControl)}}</mat-error>
+       </mat-form-field>
+   </div>
+
+   <div class="mat-elevation-v4" >
+        <button mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon" (click)="showList()">
+         <mat-icon>filter_list</mat-icon>
+        </button>
+   </div>
+</div>

@@ -1,0 +1,45 @@
+.main-historic{
+    width: 80%;
+    height: 80%;
+    display: flex;
+    margin-top: 2%;
+    flex-direction: column;
+}
+
+.title-list{
+    height: 20%;
+    width: 100%;
+
+}
+
+.list{
+    width: 100%;
+    min-height: 80%; 
+    overflow-y: scroll;
+    background-color: aliceblue;
+    
+}
+
+.component-list{
+    display:flex;
+    height: 20%;
+    width: 40%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+hr{
+    margin-top: 2%;
+}
+
+.component-list-historic{
+    display: flex;
+    flex-direction: row;
+}
+
+.img-listt, .infor-list{
+    width: 50%;
+    height: 90%;
+}
