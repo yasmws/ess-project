@@ -20,18 +20,21 @@
     "useDefineForClassFields": false,
     "lib": ["ES2022", "dom"],
     "esModuleInterop": true,
-    "typeRoots": ["node_modules/@types", "typings"],
+    "typeRoots": ["node_modules/@types", "typings", "@types/babel__core"],
     "paths": {
       "@badeball/cypress-cucumber-preprocessor/*": [
         "./node_modules/@badeball/cypress-cucumber-preprocessor/dist/subpath-entrypoints/*"
       ]
     }
   },
-  "include": ["src", "cypress.config.ts"],
+  "include": ["src",  "**/*.ts",  "../cypress.config.ts", "cypress.config.ts"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "exclude": [],
+  "files": ["cypress.config.ts"]
+
 }
