@@ -6,9 +6,9 @@ Feature: Cadastrar forma de pagamento
 
     Scenario: Cadastrar forma de pagamento (limite não atingido)
         Given o sistema possui um registro de usuário com username "rafa" e valor de cnt menor que 3
-        When uma requisição "POST" for enviada para "/payment/rafa/add" com tipo "boleto" e id "None"
+        When uma requisição POST for enviada para "/payment/rafa/add" com tipo "pix" e id "None"
         Then o status da resposta deve ser "200"
-        And o JSON de resposta deve ter tipo "boleto" e id "None"
+        And o JSON de resposta deve ter a mensagem "Payment method added!"
 
     Scenario: Cadastrar forma de pagamento (limite atingido)
         Given o sistema possui um registro de usuário com username "pedro123" e valor de cnt igual a 3
