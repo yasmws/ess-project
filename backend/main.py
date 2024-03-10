@@ -185,8 +185,8 @@ def add_payment_method(
 def update_payment_method(
     id: str,
     method: str,
-    type: str = "foo",
-    method_id: str = "foo"
+    type: str,
+    method_id: str = None
     ):
     return payment.update_payment_method(id, method, type, method_id)
 
