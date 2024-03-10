@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+html {
+  background-color:#ABA194 ;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+
+button {
+  border: none;
+  color: #fff; /* Cor do texto branco para o botão */
+}
+

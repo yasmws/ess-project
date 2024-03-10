@@ -9,8 +9,11 @@ import { BookingMngtComponent } from './view/booking-mngt/booking-mngt.component
 import { RoutingModule } from './app.routing.module';// Import RouterModule
 import { HttpClientModule } from '@angular/common/http';
 
-import {HistoricComponent} from './components/list/historic/historic.component'
-import {InputHistoricComponent} from './components/list/input-historic/input-historic.component'
+import {HistoricComponent} from './components/list/historic/historic.component';
+import {InputHistoricComponent} from './components/list/input-historic/input-historic.component';
+import {CreateAccommodationsComponent} from './view/create-accommodations/create-accommodations.component'
+import {BookAccommodationsComponent } from './view/book-accommodations/book-accommodations.component';
+
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -23,7 +26,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     AppComponent,
     BookingMngtComponent,
     HistoricComponent,
-    InputHistoricComponent
+    InputHistoricComponent,
+    CreateAccommodationsComponent,
+    BookAccommodationsComponent
   ],
   imports: [
     BrowserModule,

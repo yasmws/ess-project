@@ -1,0 +1,31 @@
+<div class="main">
+<div class="formulario">
+    <h1>Criar Acomodação</h1>
+    <!--<form #accommodationForm="ngForm" action="processar_acomodacao.php" (submit)="createAcmdt()" method="post">-->
+    <form [formGroup]="accommodationForm" (submit)="createAcmdt()">    
+        <label for="nome">Nome da Acomodação:</label>
+        <input type="text" class="form-control" id="nome" formControlName="nome" name="nome" required>
+
+        <label for="localizacao">Localização:</label>
+        <input type="text" class="form-control" [(ngModel)]="accommodation_loc" id="localizacao" formControlName = "localizacao" name ="localizacao" required>
+    
+        <label for="num_quartos">Número de Quartos:</label>
+        <input type="number" class="form-control" [(ngModel)]="accommodation_bedrooms" id="num_quartos" formControlName = "num_quartos" name="num_quartos" min="0" required>
+
+        <label for="max_capacidade">Número máximo de hóspedes:</label>
+        <input type="number"class="form-control"  [(ngModel)]="accommodation_max_capacity" id="max_capacidade" formControlName = "max_capacidade" name="max_capacidade" min="0" required>
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" class="form-control" [(ngModel)]="accommodation_description" formControlName = "descricao" name="descricao" rows="4" required></textarea>
+
+        <label for="preco">Preço por Noite:</label>
+        <input type="number" class="form-control" [(ngModel)]="accommodation_price" id="preco" formControlName="preco" name="preco" min="0" required>
+
+        <button type="submit" class="form-control" [style.background]="buttonColor">Criar Acomodação</button>
+        
+    </form>
+</div>
+</div>
+
+
+

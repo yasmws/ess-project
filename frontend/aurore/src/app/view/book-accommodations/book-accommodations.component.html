@@ -1,0 +1,28 @@
+<div class="main">
+    <div class="description">
+        <h1>Descrição da Acomodação</h1>
+        <form id="descricaoForm">
+            
+            <div class="detalhes">
+                <label for="nome">Nome da Acomodação:</label>
+                <label for="localizacao">Localização:</label>
+                <label for="num_quartos">Número de Quartos:</label>
+            
+
+                <label for="max_capacidade">Número máximo de hóspedes:</label>
+            
+
+                <label for="descricao">Descrição:</label>
+            
+
+                <label for="preco">Preço por Noite:</label>
+            </div>
+
+            <div class="cardImg">
+                <label for="img">Imagem da Acomodação</label>
+            </div>
+
+            <button type="submit" (click)="changeButtonColor()"  [style.background]="buttonColor">Reservar</button>
+        </form>
+    </div>
+</div>

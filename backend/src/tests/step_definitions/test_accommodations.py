@@ -15,17 +15,17 @@ def mock_accommodation_service_response(user_id: str):
 
 @when(
     parsers.cfparse(
-        'uma requisição POST for enviada para "{url_requisition}" e adiciona-se os dados da acomodação nos campos: name: "{name}", location: "{loc}", bedrooms : "{num_bed}", max_capacity: "{max_capacity}", description: "{description}", user_id: "{user_id}"' 
+        'uma requisição POST for enviada para "{url_requisition}" e adiciona-se os dados da acomodação nos campos: name: "{name}", location: "{loc}", bedrooms : "{num_bed}", max_capacity: "{max_capacity}", description: "{description}", user_id: "{user_id}", price: "{price}"' 
     ),
     target_fixture="context"
 )   
 
-def post_create_accommodation(client, context, url_requisition: str, name: str, loc:str, num_bed:int, max_capacity:int, description:str, user_id:str):
+def post_create_accommodation(client, context, url_requisition: str, name: str, loc:str, num_bed:int, max_capacity:int, description:str, user_id:str, price:int):
     
     
     response = client.post(url_requisition, params={"accommodation_name": name, "accommodation_loc":loc, 
                          "accommodation_bedrooms": num_bed, "accommodation_max_capacity": max_capacity, 
-                         "accommodation_description": description, "user_id": user_id}
+                         "accommodation_description": description, "user_id": user_id, price: "accommodation_price"}
                         )
     
     context["response"] = response

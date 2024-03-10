@@ -22,6 +22,7 @@ def create_accommodation(
         accommodation_bedrooms,
         accommodation_max_capacity,
         accommodation_description,
+        accommodation_price,
         user_id
     ):
         try: 
@@ -34,6 +35,7 @@ def create_accommodation(
                 "bedrooms": accommodation_bedrooms,
                 "max_capacity": accommodation_max_capacity,
                 "description": accommodation_description,
+                "price": accommodation_price,
                 "user_id": user_id 
             }
             
@@ -69,7 +71,7 @@ def create_accommodation(
             today = datetime.today()
             end_date = today + timedelta(days=365)
             data_reservation = {
-                "price": 1.0,
+                "price": accommodation_price,
                 "disponibility": True,
                 "reservation_id": "000" # Gambiarrra, a discutir
             }  
@@ -85,7 +87,7 @@ def create_accommodation(
         except Exception as e:
             raise HTTPException(status_code=400, detail="Failed to create accommodation.")
 
-def update_reservation_info(accommodation_id, default_price=0.0, disponibility=False):
+def update_reservation_info(accommodation_id, accommodation_price, disponibility=False):
     try:
         today = datetime.today()
         end_date = today + timedelta(days=365)
@@ -97,7 +99,7 @@ def update_reservation_info(accommodation_id, default_price=0.0, disponibility=F
             if not reservation_node.child(date).child("disponibility").get().val():
                 # Atualiza as informações de reserva apenas se a disponibilidade for False
                 reservation_info = {
-                    "price": default_price,
+                    "price": accommodation_price,
                     "disponibility": disponibility,
                 }
                 reservation_node.child(date).update(reservation_info)
@@ -106,6 +108,18 @@ def update_reservation_info(accommodation_id, default_price=0.0, disponibility=F
     except Exception as e:
         raise HTTPException(status_code=400, detail="Failed to update reservation info.")
 
+
+def get_accommodation_by_id(accommodation_id):
+    try:
+        accommodation_data = firebase_config.db.child("accommodation").child(accommodation_id).get().val()
+
+        if not accommodation_data:
+            raise HTTPException(status_code=status.HTTP_204_NO_CONTENT, detail="Accommodation not found")
+        
+        return accommodation_data
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Failed looking for accommodations. {str(e)}")
+    
 def get_accommodations(
         location: str = None,
         checkin: datetime = None,
