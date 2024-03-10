@@ -56,3 +56,9 @@ Este projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli
 ```
 - Caso tenha problemas com o cypress, rode a aplicação e, com ela ainda em execução, em um outro terminal, rode o cypress. Isso deve resolver.
 
+No meu caso, tive problemas com o comando de npm install também e, para tanto, passei a utilizar o yarn. O comando é similar:
+
+``` javascript
+    yarn install
+```
+
