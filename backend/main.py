@@ -21,17 +21,8 @@ from src.db.firebase_config import auth
 import src.db.firebase_config as firebase_config
 from pydantic import SecretStr
 from typing import Optional
-from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-
-# CORS Configuration
-origins = ["http://localhost:4200"]
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True, 
-)
 
 storage = firebase_config.firebase.storage()
 app.logged_user = ""
