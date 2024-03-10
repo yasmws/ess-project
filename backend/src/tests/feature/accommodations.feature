@@ -4,7 +4,7 @@ Feature: Create accommodations
 
 Scenario: Criar uma acomodação com um user_id existente
     Given existe um user com id "yasmin123" no banco de dados
-    When uma requisição POST for enviada para "/accommodation/create" e adiciona-se os dados da acomodação nos campos: name: "Castelo RaTimBum", location: "Recife", bedrooms : "8", max_capacity: "16", description: "Divirta-se com as aventuras de Nino e seus amigos em um castelo mágico repleto de coisas curiosas.", user_id: "yasmin123"
+    When uma requisição POST for enviada para "/accommodation/create" e adiciona-se os dados da acomodação nos campos: name: "Castelo RaTimBum", location: "Recife", bedrooms : "8", max_capacity: "16", description: "Divirta-se com as aventuras de Nino e seus amigos em um castelo mágico repleto de coisas curiosas.", user_id: "yasmin123", price: "2000"
     Then o status da resposta a ser mostrada é "200"
     And a resposta deve conter a mensagem "Accommodation created successfully!"
 

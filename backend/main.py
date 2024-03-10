@@ -91,7 +91,6 @@ def create_accommodation(
         accommodation_price: int,
         user_id: str
         ):
-        
         return accommodations.create_accommodation(accommodation_name, accommodation_loc, 
                          accommodation_bedrooms, accommodation_max_capacity, 
                          accommodation_description, accommodation_price, user_id)

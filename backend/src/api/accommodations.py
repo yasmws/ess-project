@@ -4,6 +4,7 @@ from starlette import status
 import src.db.firebase_config as firebase_config
 from datetime import datetime, timedelta
 
+
 def get_dates_range(start_date, end_date):
     dates = []
     current_date = start_date
