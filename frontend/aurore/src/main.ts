@@ -1,5 +1,7 @@
-import { bootstrapApplication } from "@angular/platform-browser";
-import { StarsComponent } from "./app/components/stars/stars.component";
-import { RatingComponent } from "./app/components/rating/rating.component";
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-bootstrapApplication(RatingComponent)
+import { AppModule } from './app/app.module';
+
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));

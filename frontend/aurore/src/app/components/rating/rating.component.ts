@@ -1,28 +1,40 @@
 import { Component, Input } from '@angular/core';
-import { StarsComponent } from '../stars/stars.component';
-
+import { ManegementService } from 'src/app/services/management/management.service';
 @Component({
   selector: 'app-rating',
   templateUrl: './rating.component.html',
   styleUrls: ['./rating.component.css']
 })
-export class RatingComponent {
-  @Input() reservation_id:string = "q";
-  @Input() accommodation_id: string ="q";
-  @Input() stars:number = 0;
 
-  onChangeStars(stars:number){
-    this.stars = stars
+export class RatingComponent {
+
+  constructor(private serviceMngt: ManegementService){}
+
+  @Input() reservation_id!:string;
+  @Input() accommodation_id!: string;
+  stars!:number ;
+  comment!:string;
+
+  onChangeStars($event:number){
+    this.stars = $event;
   }
 
-  
- /* @Input() component!: string
-  @Input() flag = 0
-  
+  sendRating(){
 
-  constructor(reservaton_id:string, accommodation_id:string){
-    this.reservation_id = reservaton_id
-    this.accommodation_id = accommodation_id
-  } */
-
+    var data ={
+      reservation_id:  this.reservation_id,
+      accommodation_id: this.accommodation_id,
+      stars: this.stars,
+      comment: this.comment,
+    }
+    
+    this.serviceMngt.sendRating(data).subscribe({
+      next: (res:any)=>{
+        console.log(res,'response')},
+      error: (err:any)=>{
+        console.log(err, 'error')
+      }
+    });
+    
+  }
 }
