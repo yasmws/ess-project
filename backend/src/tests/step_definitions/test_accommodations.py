@@ -22,7 +22,6 @@ def mock_accommodation_service_response(user_id: str):
 
 def post_create_accommodation(client, context, url_requisition: str, name: str, loc:str, num_bed:int, max_capacity:int, description:str, user_id:str, price:int):
     
-    
     response = client.post(url_requisition, params={"accommodation_name": name, "accommodation_loc":loc, 
                          "accommodation_bedrooms": num_bed, "accommodation_max_capacity": max_capacity, 
                          "accommodation_description": description, "user_id": user_id, price: "accommodation_price"}
