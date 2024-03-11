@@ -6,9 +6,10 @@ import { BookAccommodationsComponent } from './view/book-accommodations/book-acc
 import { PaymentComponent } from './view/payment/payment.component';
 import { MyReservationsComponent} from './view/my-reservations/my-reservations.component'
 import { MyAccommodationsComponent} from './view/my-accommodations/my-accommodations.component'
+import { HomeComponent } from './view/home/home.component';
 
 const routes: Routes = [
-  { path: '', component:  BookingMngtComponent },
+  { path: '', component: HomeComponent},
   { path: 'create-acmdt', component:  CreateAccommodationsComponent },
   { path: 'book-acmdt', component:  BookAccommodationsComponent },
   { path: 'payment', component: PaymentComponent},
