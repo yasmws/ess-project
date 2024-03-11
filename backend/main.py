@@ -29,16 +29,6 @@ app = FastAPI()
 storage = firebase_config.firebase.storage()
 app.logged_user = ""
 
-# Custom dependency to check user authentication
-def get_current_user(token: str = Cookie(None)):
-    if token is None:
-        return RedirectResponse(url="/login")
-    try:
-        user = auth.get_account_info(token)
-        return user
-    except auth.AuthError:
-        return RedirectResponse(url="/login")
-
 @app.get("/")
 def read_root():
     return "Server running!!"
@@ -59,20 +49,20 @@ def create_user(
 @app.post("/users/login")
 def login_user(
         emailOrUsername: str,
-        password:SecretStr 
+        password:str
     ):
     if app.logged_user:
-        return "Usuário já está logado"
+        raise HTTPException(status_code=400, detail="Falha ao realizar login: Usuário já está logado")
     
     if users.is_email(emailOrUsername):
-        msg = users.login_user(emailOrUsername, password.get_secret_value())
+        msg = users.login_user(emailOrUsername, password)
         app.logged_user = emailOrUsername
         return msg
     
     #Se não for um email, é um username
     #Para logar o email é consultado a partir desse username
     email = users.get_email_from_username(emailOrUsername)
-    msg = users.login_user(email, password.get_secret_value())
+    msg = users.login_user(email, password)
     app.logged_user = email
     return msg
 
