@@ -6,6 +6,7 @@ import { ManegementService } from '../../services/management/management.service'
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
 }

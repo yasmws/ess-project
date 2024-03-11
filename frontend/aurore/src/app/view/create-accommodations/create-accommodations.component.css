@@ -22,7 +22,7 @@
     text-align: center;
     color: #38354E;
     font-family: "Inter", sans-serif;
-    font-weight: bold; /* Adicionado: torna o texto em negrito */
+    font-weight: 500;
     font-size: x-large;
 }
 
@@ -61,5 +61,5 @@ button {
     cursor: pointer;
     border-radius: 40px;
     font-size: x-large;
-    font-weight: bold; /* Adicionado: torna o texto em negrito */
+    font-weight: bold;
 }
