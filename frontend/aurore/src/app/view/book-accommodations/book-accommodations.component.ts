@@ -1,8 +1,7 @@
 import { Component , EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { ManegementService } from '../../services/management/management.service';
-
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-book-accommodations',
   templateUrl: './book-accommodations.component.html',
@@ -13,15 +12,9 @@ export class BookAccommodationsComponent implements OnInit{
     id: any;
     route: any;
     accommodationInfo: any;
-   
-    // Modifica cor do botão
-    buttonColor = "#8C271E";
-    changeButtonColor(color: string): void {
-    this.buttonColor = color;
-    }
 
-    constructor(private service: ManegementService) {}
-
+    constructor(private router: Router,private service: ManegementService) {}
+    
     // Recebe os dados do back
     ngOnInit(): void {
       // Retrieve the 'id' parameter from the route
@@ -30,10 +23,10 @@ export class BookAccommodationsComponent implements OnInit{
       //  console.log("ID:", this.id);
         this.id = "5f834504-53b1-48df-9dec-c5beaa3b9dd5";
         
-        this.service.getUrlImg(this.id).subscribe((dados: any) => { //NotFound
-            console.log("Recebendo dados do back...", dados);
-            this.accommodationInfo.append(dados)
-        });
+        //this.service.getUrlImg(this.id).subscribe((dados: any) => { //NotFound
+        //    console.log("Recebendo dados do back...", dados);
+        //    this.accommodationInfo.image = dados
+        //});
 
         this.service.getAcmdtInfo(this.id).subscribe((dados: any) => {
           console.log("Recebendo dados do back...", dados);
@@ -43,6 +36,16 @@ export class BookAccommodationsComponent implements OnInit{
           console.log(this.accommodationInfo)
         });
     };
+
+    // Modifica cor do botão
+    buttonColor = "#8C271E";
+    changeButtonColor(color: string): void {
+    this.buttonColor = color;
+    }
+    //Rota do botão
+    onButtonClick(): void{
+      this.router.navigate(['/payment', { data: JSON.stringify(this.accommodationInfo) }])
+    }
 }
 
     

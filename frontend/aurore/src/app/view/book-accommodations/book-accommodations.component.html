@@ -14,5 +14,5 @@
                 <img src="{{accommodationInfo?.image}}" alt = "Imagem da Acomodação">
             </div>
     </div>
-    <button type="submit" class="form-control" [style.background]="buttonColor" (mouseover)="changeButtonColor('#38354E')"  (mouseout)="changeButtonColor('#8C271E')" >Reservar</button>
+    <button type="submit" class="form-control" [style.background]="buttonColor" (click)="onButtonClick()"  (mouseover)="changeButtonColor('#38354E')"  (mouseout)="changeButtonColor('#8C271E')" >Reservar</button>
 </div>
