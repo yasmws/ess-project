@@ -19,7 +19,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { RatingComponent } from './components/rating/rating.component';
 import { StarsComponent } from './components/stars/stars.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { ExistRatingComponent } from './components/exist-rating/exist-rating.component';
 
 
 @NgModule({
@@ -32,7 +31,6 @@ import { ExistRatingComponent } from './components/exist-rating/exist-rating.com
 
   ],
   imports: [
-    ExistRatingComponent,
     StarsComponent,
     BrowserModule,
     RoutingModule,
