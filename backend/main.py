@@ -15,6 +15,7 @@ from src.api.email_trigger import send_email
 from fastapi import FastAPI, HTTPException, Depends, Cookie
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import RedirectResponse
+from fastapi.middleware.cors import CORSMiddleware
 from src.db.firebase_config import auth
 import src.db.firebase_config as firebase_config
 from src.db.firebase_config import auth
@@ -23,8 +24,16 @@ from pydantic import SecretStr
 from typing import Optional
 
 
-
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 storage = firebase_config.firebase.storage()
 app.logged_user = ""
@@ -111,7 +120,7 @@ def create_reservation(
         ):
         return reservations.create_reservation(client_id, accommodation_id, reservation_checkin, reservation_checkout)
 
-@app.post("/reservations/{reservation_id}/evaluate")
+@app.post("/reservations/evaluate/{reservation_id}")
 def rating_post(
         reservation_id:str,
         accommodation_id:str,
@@ -119,6 +128,14 @@ def rating_post(
         comment:str = ""
     ):
     return evaluate.add_rating(reservation_id, stars, comment, accommodation_id)
+
+@app.get("/reservations/{reservation_id}/rating")
+def rating_post(
+        reservation_id:str,
+        accommodation_id:str,
+    ):
+    return evaluate.get_rating(reservation_id, accommodation_id)
+
 
 @app.get("/accommodation/list")
 def get_accommodations(

@@ -1,0 +1,84 @@
+/* search-page.component.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif; /* Fonte geral */
+    background-color: #f2f2f2; /* Cor de fundo para a página inteira */
+  }
+  
+  .search-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 50px auto; /* Centraliza verticalmente */
+    padding: 20px;
+    background-color: #fff; /* Cor de fundo do contêiner de pesquisa */
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Sombra */
+  }
+  
+  .search-container h1 {
+    color: #8c271e;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center; /* Centraliza o título */
+  }
+  
+  .search-container form {
+    text-align: center; /* Centraliza o formulário */
+  }
+  
+  .search-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    text-align: left; /* Alinha a legenda à esquerda */
+  }
+  
+  .search-container input[type="text"],
+  .search-container input[type="date"],
+  .search-container input[type="number"] {
+    width: calc(100% - 22px); /* Ajusta o tamanho para evitar quebra de linha */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .search-container button {
+    width: 50%;
+    padding: 10px;
+    background-color: #8c271e;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto; /* Espaçamento entre o botão e os campos */
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Transição suave de cor de fundo */
+  }
+  
+  .search-container button:hover {
+    background-color: #ab543f; /* Cor de fundo do botão ao passar o mouse */
+  }
+  
+  /* Media queries for responsiveness */
+  @media screen and (min-width: 768px) {
+    .search-container {
+      max-width: 800px;
+    }
+  }
+  
+  @media screen and (min-width: 1024px) {
+    .search-container {
+      max-width: 1000px;
+    }
+  }
+  
+  @media screen and (min-width: 1200px) {
+    .search-container {
+      max-width: 1200px;
+    }
+  }
+  
