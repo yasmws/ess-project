@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ManegementService } from 'src/app/services/management/management.service';
+import { ActivatedRoute} from '@angular/router';
 @Component({
   selector: 'app-rating',
   templateUrl: './rating.component.html',
@@ -8,7 +9,7 @@ import { ManegementService } from 'src/app/services/management/management.servic
 
 export class RatingComponent {
 
-  constructor(private serviceMngt: ManegementService){}
+  constructor(private serviceMngt: ManegementService, private route: ActivatedRoute){}
 
   @Input() reservation_id!:string;
   @Input() accommodation_id!: string;

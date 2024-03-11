@@ -23,7 +23,7 @@ export class ManegementService {
     const params = new HttpParams()
       .set('reservation_id', data.reservation_id)
       .set('accommodation_id',data.accommodation_id)
-      .set('stars', data.stars,)
+      .set('stars', data.stars)
       .set('comment', data.comment);
     return this.http.post<any>(url, null, { params: params });
   }
