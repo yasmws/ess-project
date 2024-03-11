@@ -35,7 +35,7 @@ export default defineConfig({
       on(
         "file:preprocessor",
         createBundler({
-          plugins: [createEsbuildPlugin(config)],
+          plugins: [createEsbuildPlugin(config)]
         })
       );
 
@@ -52,6 +52,6 @@ export default defineConfig({
       framework: "angular",
       bundler: "webpack",
     },
-    specPattern: "**/*.cy.ts",
+    specPattern: 'src/**/*.cy.{js,jsx,ts,tsx}',
   },
 });

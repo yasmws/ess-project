@@ -16,9 +16,10 @@
     "moduleResolution": "Node",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ES2022",
+    "module": "commonjs",
     "useDefineForClassFields": false,
-    "lib": ["ES2022", "dom"],
+    "skipLibCheck": true,
+    "lib": ["ES5", "dom"],
     "esModuleInterop": true,
     "typeRoots": ["node_modules/@types", "typings", "@types/babel__core"],
     "paths": {
@@ -27,7 +28,7 @@
       ]
     }
   },
-  "include": ["src",  "**/*.ts",  "../cypress.config.ts", "cypress.config.ts"],
+  "include": ["src", "cypress/**/*.ts", "**/*.ts",  "../cypress.config.ts", "cypress.config.ts"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

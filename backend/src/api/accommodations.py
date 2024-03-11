@@ -1,4 +1,5 @@
 import uuid
+import requests
 from fastapi import HTTPException
 from starlette import status
 import src.db.firebase_config as firebase_config
@@ -120,6 +121,17 @@ def get_accommodations(
 
         for accommodation in accommodations.each():
             accommodation_data = accommodation.val()
+            
+            # Check whether the image exists or not on the server
+            img_url = firebase_config.storage.child(f'accommodation/{accommodation_data["id"]}.jpg').get_url(None)
+            r = requests.head(img_url)
+            fileExists = (r.status_code == requests.codes.ok)
+            
+            if fileExists:
+                accommodation_data["image"] = img_url
+            else:
+                accommodation_data["image"] = firebase_config.storage.child("accommodation/house.jpg").get_url(None)
+            
             if location and location.lower() not in accommodation_data["location"].lower():
                 continue
             
@@ -135,7 +147,7 @@ def get_accommodations(
                     accommodations_list.append(accommodation_data)
             else:
                 accommodations_list.append(accommodation_data)
-        
+
         accommodations_list = [
             {
                 "name": accommodation["name"],
@@ -144,6 +156,7 @@ def get_accommodations(
                 "bedrooms": accommodation["bedrooms"],
                 "location": accommodation["location"],
                 "max_capacity": accommodation["max_capacity"],
+                "image": accommodation["image"]
             }
             for accommodation in accommodations_list
         ]

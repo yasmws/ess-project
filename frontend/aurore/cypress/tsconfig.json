@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
     "rootDir": "./",
     "sourceMap": false,
     "types": ["node", "cypress"]
