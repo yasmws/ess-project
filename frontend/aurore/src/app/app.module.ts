@@ -19,6 +19,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { RatingComponent } from './components/rating/rating.component';
 import { StarsComponent } from './components/stars/stars.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -28,7 +29,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     BookingMngtComponent,
     HistoricComponent,
     InputHistoricComponent,
-
+    HomeComponent
   ],
   imports: [
     StarsComponent,

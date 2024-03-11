@@ -15,6 +15,7 @@ from src.api.email_trigger import send_email
 from fastapi import FastAPI, HTTPException, Depends, Cookie
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import RedirectResponse
+from fastapi.middleware.cors import CORSMiddleware
 from src.db.firebase_config import auth
 import src.db.firebase_config as firebase_config
 from src.db.firebase_config import auth
@@ -23,8 +24,16 @@ from pydantic import SecretStr
 from typing import Optional
 
 
-
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 storage = firebase_config.firebase.storage()
 app.logged_user = ""
