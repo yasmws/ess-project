@@ -1,0 +1,37 @@
+<div>
+    <div class="container-mt-5">
+        <div class="card-header">
+            <a href="http://localhost:4200/"><img src="../../../assets/Aurore logo.png" class="logo"></a>
+        </div>
+        <div class="card-body">
+            <form (ngSubmit)="createUser()">
+                <div class="name-field">
+                    <label>Nome</label>
+                    <input type="text" [(ngModel)]="name" name="name" class="form-control-name">
+                </div>
+                <div class="username-field">
+                    <label>Username</label>
+                    <input type="text" [(ngModel)]="username" name="username" class="form-control-username">
+                </div>
+                <div class="email-field">
+                    <label>Email</label>
+                    <input type="text" [(ngModel)]="email" name="email" class="form-control-email">
+                </div>
+                <div class="cpf-field">
+                    <label>CPF</label>
+                    <input type="text" [(ngModel)]="cpf" name="cpf" class="form-control-cpf">
+                </div>
+                <div class="password-field">
+                    <label>Senha</label>
+                    <input type="text" [(ngModel)]="password" name="password" class="form-control-password">
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn-register">Cadastrar</button>
+                </div>
+                <a href="http://localhost:4200/users/login">
+                    <button type="button" class="btn-login">Já tem Login? Faça Login aqui</button>
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
