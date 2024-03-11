@@ -28,3 +28,7 @@ def not_exist_rating(reservation_id:str, accommodation_id:str):
             return False
     except Exception:
         raise HTTPException(status_code=500, detail="Failed get exitence information.")
+
+def get_rating(reservation_id:str, accommodation_id:str):
+    rating = firebase_config.db.child("rating").child(accommodation_id).order_by_child("reservation_id").equal_to(reservation_id).get()
+    return rating.val()

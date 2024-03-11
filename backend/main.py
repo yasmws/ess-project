@@ -130,7 +130,7 @@ def create_reservation(
         ):
         return reservations.create_reservation(client_id, accommodation_id, reservation_checkin, reservation_checkout)
 
-@app.post("/reservations/{reservation_id}/evaluate")
+@app.post("/reservations/evaluate/{reservation_id}")
 def rating_post(
         reservation_id:str,
         accommodation_id:str,
@@ -138,6 +138,14 @@ def rating_post(
         comment:str = ""
     ):
     return evaluate.add_rating(reservation_id, stars, comment, accommodation_id)
+
+@app.get("/reservations/{reservation_id}/rating")
+def rating_post(
+        reservation_id:str,
+        accommodation_id:str,
+    ):
+    return evaluate.get_rating(reservation_id, accommodation_id)
+
 
 @app.get("/accommodation/list")
 def get_accommodations(

@@ -15,7 +15,7 @@ __pycache__/
 
 
 # Node
-/node_modules
+frontend/aurore/node_modules
 npm-debug.log
 yarn-error.log
 
@@ -37,7 +37,7 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-/.angular/cache
+frontend/aurore/.angular/cache
 .sass-cache/
 /connect.lock
 /coverage

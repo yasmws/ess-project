@@ -1,0 +1,30 @@
+<div id="container">
+    <fa-icon
+      [class.rated]="stars >= 5"
+      [icon]="faStar"
+      (click)="setStarNumber(5)"
+    ></fa-icon>
+    <fa-icon
+      [class.rated]="stars >= 4"
+      [icon]="faStar"
+      (click)="setStarNumber(4)"
+    ></fa-icon>
+  
+    <fa-icon
+      [class.rated]="stars >= 3 "
+      [icon]="faStar"
+      (click)="setStarNumber(3)"
+    ></fa-icon>
+  
+    <fa-icon
+      [class.rated]="stars >= 2"
+      [icon]="faStar"
+      (click)="setStarNumber(2)"
+    ></fa-icon>
+  
+    <fa-icon
+      [class.rated]="stars >= 1"
+      [icon]="faStar"
+      (click)="setStarNumber(1)"
+    ></fa-icon>
+  </div>
