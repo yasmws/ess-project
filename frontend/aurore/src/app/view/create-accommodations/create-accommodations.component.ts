@@ -1,8 +1,10 @@
 // Import necessary modules and decorators
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ManegementService } from '../../services/management/management.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
@@ -15,12 +17,20 @@ class ImageSnippet {
 
 export class CreateAccommodationsComponent implements OnInit {
 
+  constructor(
+    private snackBar: MatSnackBar,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private service: ManegementService,
+    private http: HttpClient) { }
+
+
   // Modificar cor do botão
   buttonColor = "#8C271E";
   changeButtonColor(color: string): void {
   this.buttonColor = color;
   }
-
+  
   accommodationForm!: FormGroup;
   
   data: any;
@@ -33,19 +43,47 @@ export class CreateAccommodationsComponent implements OnInit {
   accommodation_id: string = '';
   user_id: string = 'pedro123';
 
-  constructor(private formBuilder: FormBuilder, private service: ManegementService, private http: HttpClient) { }
-
   ngOnInit(): void {
     this.accommodationForm = this.formBuilder.group({
-      accommodation_name: ['', Validators.required],
+      accommodation_name: ['', [Validators.required, this.validateNameLength.bind(this)]],
       accommodation_loc: ['', Validators.required],
-      accommodation_bedrooms: [0, [Validators.required, Validators.min(0)]],
-      accommodation_max_capacity: [0, [Validators.required, Validators.min(0)]],
-      accommodation_description: ['', Validators.required],
+      accommodation_bedrooms: [0, [Validators.required, Validators.min(1), this.validatePositiveInteger.bind(this)]],
+      accommodation_max_capacity: [0, [Validators.required, Validators.min(1), this.validatePositiveInteger.bind(this)]],
+      accommodation_description: ['', [Validators.required, this.validateDescriptionLength.bind(this)]],
       accommodation_price: [0, [Validators.required, Validators.min(0)]],
-      accommodation_img: [null]
     });
   }
+
+  hasError(controlName: string, errorType: string): boolean {
+    const control = this.accommodationForm.get(controlName);
+    return control?.hasError(errorType) || false;
+  }
+  
+  // Validação dos dados
+  validateNameLength(control: AbstractControl): { [key: string]: any } | null {
+    const name = control.value;
+    if (name && name.length > 20) {
+      return { 'nameLengthExceeded': true };
+    }
+    return null;
+  }
+
+  validatePositiveInteger(control: AbstractControl): { [key: string]: any } | null {
+    const value = control.value;
+    if (!Number.isInteger(value) || value <= 0) {
+      return { 'notPositiveInteger': true };
+    }
+    return null;
+  }
+
+  validateDescriptionLength(control: AbstractControl): { [key: string]: any } | null {
+    const description = control.value;
+    if (description && description.length > 400) {
+      return { 'descriptionLengthExceeded': true };
+    }
+    return null;
+  }
+
 
   createAcmdt(): void {
     console.log("resultado:",this.accommodationForm.valid)
@@ -65,6 +103,16 @@ export class CreateAccommodationsComponent implements OnInit {
     this.service.createAccommodation(this.data).subscribe((dados)=>{ //problema aqui
       this.accommodation_id = dados.detail;
       console.log("recebendo dados do back...");
+      
+      // Exibe o pop-up de sucesso
+      this.snackBar.open('Accommodation created successfully!', 'Close', {
+        duration: 10000, // Duração em milissegundos
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
+
+      // Navega para 'my-accommodations'
+      this.router.navigate(['/my-accommodations']);
     });
 
 
