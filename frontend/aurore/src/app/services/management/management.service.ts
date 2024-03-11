@@ -30,15 +30,30 @@ export class ManegementService {
     const url = 'http://localhost:8000/accommodation/create';
 
     const params = new HttpParams()
-      .set('nome', data.accommodation_name)
-      .set('loc', data.accommodation_loc)
-      .set('num_quartos', data.accommodation_bedrooms)
-      .set('max_capacidade', data.accommodation_max_capacity)
-      .set('descricao', data.accommodation_description)
-      .set('preco', data.accommodation_price)
+      .set('accommodation_name', data.accommodation_name)
+      .set('accommodation_loc', data.accommodation_loc)
+      .set('accommodation_bedrooms', data.accommodation_bedrooms)
+      .set('accommodation_max_capacity', data.accommodation_max_capacity)
+      .set('accommodation_description', data.accommodation_description)
+      .set('accommodation_price', data.accommodation_price)
       .set('user_id', data.user_id);
+    
+    console.log('parametros:', params)
 
     return this.http.post<any>(url, null, { params: params });
   }
-  
+
+  createAccommodationImg(
+    data:any
+  ): Observable<any>{
+    const url = 'http://localhost:8000/accommodation/create/upload_img'
+    
+    const params = new HttpParams()
+      .set('accommodation_id', data.accommodation_id)
+      .set('file', data.accommodation_img);
+
+    console.log('paramentros (img):', params)
+
+    return this.http.post<any>(url, null, { params: params});
+  }
 }

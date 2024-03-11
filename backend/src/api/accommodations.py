@@ -3,6 +3,7 @@ from fastapi import HTTPException
 from starlette import status
 import src.db.firebase_config as firebase_config
 from datetime import datetime, timedelta
+import requests
 
 def get_dates_range(start_date, end_date):
     dates = []
@@ -15,6 +16,8 @@ def get_dates_range(start_date, end_date):
 def is_valid_user(user_id):
     user = firebase_config.db.child("users").child(user_id).get()
     return user.val() is not None
+
+
 
 def create_accommodation(
         accommodation_name,
@@ -79,7 +82,8 @@ def create_accommodation(
             initial_daily_prices = {date: data_reservation for date in get_dates_range(today, end_date)}
             firebase_config.db.child("accommodation").child(data["id"]).child("reservations").set(initial_daily_prices)
             
-            return HTTPException(status_code=200, detail="Accommodation created successfully!")
+            #return {"accommodation_id": accommodation_id, "message": "Accommodation created successfully!"}
+            return HTTPException(status_code=200, detail=str(id))
     
         except ValueError as ve:
             raise HTTPException(status_code=400, detail=str(ve))
@@ -112,7 +116,16 @@ def update_reservation_info(accommodation_id, accommodation_price, disponibility
 def get_accommodation_by_id(accommodation_id):
     try:
         accommodation_data = firebase_config.db.child("accommodation").child(accommodation_id).get().val()
-
+        # Check whether the image exists or not on the server
+        img_url = firebase_config.storage.child(f'accommodation/{accommodation_data["id"]}.jpg').get_url(None)
+        r = requests.head(img_url)
+        fileExists = (r.status_code == requests.codes.ok)
+        if fileExists:
+            accommodation_data["image"] = img_url
+        else:
+            accommodation_data["image"] = firebase_config.storage.child("accommodation/house.jpg").get_url(None)
+        #
+        
         if not accommodation_data:
             raise HTTPException(status_code=status.HTTP_204_NO_CONTENT, detail="Accommodation not found")
         

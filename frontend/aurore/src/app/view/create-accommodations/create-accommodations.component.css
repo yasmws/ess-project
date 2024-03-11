@@ -48,3 +48,7 @@ button {
     border-radius: 40px;
     font-size: x-large;
 }
+
+.file-input {
+    display: none;
+}

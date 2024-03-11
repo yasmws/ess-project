@@ -1,28 +1,18 @@
 <div class="main">
     <div class="description">
         <h1>Descrição da Acomodação</h1>
-        <form id="descricaoForm">
-            
-            <div class="detalhes">
-                <label for="nome">Nome da Acomodação:</label>
-                <label for="localizacao">Localização:</label>
-                <label for="num_quartos">Número de Quartos:</label>
-            
-
-                <label for="max_capacidade">Número máximo de hóspedes:</label>
-            
-
-                <label for="descricao">Descrição:</label>
-            
-
-                <label for="preco">Preço por Noite:</label>
-            </div>
-
+            <div class="accommodationInfo">
+                <label><strong>Nome:</strong> {{ accommodationInfo.name }}</label>
+                <label><strong>Localização:</strong> {{ accommodationInfo.location }}</label>
+                <label><strong>Número de Quartos:</strong> {{ accommodationInfo.bedrooms }}</label>
+                <label><strong>Número máximo de hóspedes:</strong> {{ accommodationInfo.max_capacity }}</label>
+                <label><strong>Descrição:</strong> {{ accommodationInfo.description }}</label>
+                <label><strong>Preço por Noite:</strong> {{ accommodationInfo.price }}</label>
+                </div>
             <div class="cardImg">
-                <label for="img">Imagem da Acomodação</label>
+                <label for="img"><strong>Imagem da Acomodação:</strong></label>
+                <img src="{{accommodationInfo?.image}}" alt = "Imagem da Acomodação">
             </div>
-
-            <button type="submit" (click)="changeButtonColor()"  [style.background]="buttonColor">Reservar</button>
-        </form>
+            <button type="submit" class="form-control" [style.background]="buttonColor" (mouseover)="changeButtonColor('#38354E')"  (mouseout)="changeButtonColor('#8C271E')" >Reservar</button>
     </div>
 </div>
