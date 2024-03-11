@@ -6,6 +6,7 @@
   <div class="heading">
     <h2>Veja nossas acomodações disponíveis:</h2>
   </div>
+  <br>
   <div class="accommodation" *ngFor="let accommodation of accommodations">
     <img [src]="accommodation.image" (click)="navigateToAccommodationDetails(accommodation.id)">
     <h3>{{ accommodation.name }}</h3>
