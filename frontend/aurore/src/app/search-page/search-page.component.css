@@ -45,7 +45,7 @@ body {
     border-radius: 5px;
   }
   
-  .search-container button[type="submit"] {
+  .search-container button {
     width: 50%;
     padding: 10px;
     background-color: #8c271e;
@@ -59,7 +59,7 @@ body {
     transition: background-color 0.3s ease; /* Transição suave de cor de fundo */
   }
   
-  .search-container button[type="submit"]:hover {
+  .search-container button:hover {
     background-color: #ab543f; /* Cor de fundo do botão ao passar o mouse */
   }
   

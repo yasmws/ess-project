@@ -1,12 +1,44 @@
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  h1 {
-    color: #333;
-    font-size: 32px;
-  }
-  
+.top-bar {
+  background-color: #8c271e;
+  color: #d8ddde;
+  padding: 20px;
+  text-align: center;
+}
+
+.content {
+  padding: 20px;
+}
+
+.heading {
+  margin-bottom: 20px;
+}
+
+.accommodations-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.accommodation {
+  width: calc(30% - 20px);
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #d8ddde;
+  box-sizing: border-box;
+}
+
+.accommodation img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.accommodation h3 {
+  color: #38354e;
+  margin-top: 10px;
+}
+
+.accommodation p {
+  color: #38354e;
+  margin-bottom: 5px;
+}

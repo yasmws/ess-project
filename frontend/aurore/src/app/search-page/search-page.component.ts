@@ -13,14 +13,29 @@ export class SearchPageComponent {
   constructor(private http: HttpClient, private router: Router) { }
 
   searchAccommodations(): void {
-    const url = 'http://localhost:8000/accommodation/list';
+    const baseUrl = 'http://localhost:8000/accommodation/list';
+    const location = (document.getElementById('location') as HTMLInputElement).value;
+    const checkin = (document.getElementById('checkin') as HTMLInputElement).value;
+    const checkout = (document.getElementById('checkout') as HTMLInputElement).value;
+    const guests = (document.getElementById('guests') as HTMLInputElement).value;
+
+    let url = baseUrl + '?';
+    if (location) url += `location=${location}&`;
+    if (checkin) url += `checkin=${checkin}&`;
+    if (checkout) url += `checkout=${checkout}&`;
+    if (guests) url += `guests=${guests}&`;
+
     const headers = new HttpHeaders({
       'Accept': 'application/json'
     });
 
     this.http.get(url, { headers }).subscribe((data: any) => {
-      console.log(data); // Aqui você pode fazer algo com os dados da resposta, se necessário
+      console.log(data);
       this.router.navigate(['/home']);
     });
+  }
+
+  onSearchClick(): void {
+    this.searchAccommodations();
   }
 }
