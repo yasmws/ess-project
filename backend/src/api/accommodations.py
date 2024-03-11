@@ -116,15 +116,14 @@ def update_reservation_info(accommodation_id, accommodation_price, disponibility
 def get_accommodation_by_id(accommodation_id):
     try:
         accommodation_data = firebase_config.db.child("accommodation").child(accommodation_id).get().val()
-        # Check whether the image exists or not on the server
-        img_url = firebase_config.storage.child(f'accommodation/{accommodation_data["id"]}.jpg').get_url(None)
+        
+        img_url = firebase_config.storage.child(f'accommodation/{accommodation_data["id"]}').get_url(None)
         r = requests.head(img_url)
         fileExists = (r.status_code == requests.codes.ok)
         if fileExists:
             accommodation_data["image"] = img_url
         else:
             accommodation_data["image"] = firebase_config.storage.child("accommodation/house.jpg").get_url(None)
-        #
         
         if not accommodation_data:
             raise HTTPException(status_code=status.HTTP_204_NO_CONTENT, detail="Accommodation not found")
