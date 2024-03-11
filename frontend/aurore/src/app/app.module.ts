@@ -20,6 +20,8 @@ import { RatingComponent } from './components/rating/rating.component';
 import { StarsComponent } from './components/stars/stars.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { HomeComponent } from './home/home.component';
     BookingMngtComponent,
     HistoricComponent,
     InputHistoricComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     StarsComponent,

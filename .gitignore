@@ -15,7 +15,8 @@ __pycache__/
 
 
 # Node
-frontend/aurore/node_modules
+/frontend/aurore/node_modules
+/node_modules
 npm-debug.log
 yarn-error.log
 

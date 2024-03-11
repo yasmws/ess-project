@@ -27,5 +27,24 @@ export class ManegementService {
       .set('comment', data.comment);
     return this.http.post<any>(url, null, { params: params });
   }
+
+  createUserPost(data:any): Observable<any>{
+    const url = `http://localhost:8000/users/create`;
+    const params = new HttpParams()
+      .set('name', data.name)
+      .set('username',data.username)
+      .set('email', data.email)
+      .set('cpf', data.cpf)
+      .set('password', data.password);
+    return this.http.post<any>(url, null, { params: params });
+  }
+
+  loginUserPost(data:any): Observable<any>{
+    const url = `http://localhost:8000/users/login`;
+    const params = new HttpParams()
+      .set('emailOrUsername', data.emailOrUsername)
+      .set('password', data.password);
+    return this.http.post<any>(url, null, { params: params });
+  }
   
 }
