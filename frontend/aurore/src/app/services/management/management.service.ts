@@ -56,4 +56,19 @@ export class ManegementService {
 
     return this.http.post<any>(url, null, { params: params});
   }
+
+  createReservation(data: any): Observable<any> {
+    const url = 'http://localhost:8000/reservation/create';
+
+    const params = new HttpParams()
+      .set('reservation_checkin', data.reservation_checkin)
+      .set('reservation_checkout', data.reservation_checkout)
+      .set('accommodation_id', data.accommodation_id)
+      .set('client_id', data.client_id);
+
+    console.log('Parameters:', params);
+
+    return this.http.post<any>(url, null, { params });
+  }
+
 }
