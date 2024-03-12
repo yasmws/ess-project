@@ -1,3 +1,4 @@
+
 // Import necessary modules and decorators
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -5,7 +6,6 @@ import { ManegementService } from '../../services/management/management.service'
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
 }
@@ -100,7 +100,7 @@ export class CreateAccommodationsComponent implements OnInit {
     }
 
     console.log("dados:",this.data);
-    this.service.createAccommodation(this.data).subscribe((dados)=>{ //problema aqui
+    this.service.createAccommodation(this.data).subscribe((dados)=>{ 
       this.accommodation_id = dados.detail;
       console.log("recebendo dados do back...");
       

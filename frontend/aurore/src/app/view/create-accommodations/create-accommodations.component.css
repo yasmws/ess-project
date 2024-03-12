@@ -5,6 +5,14 @@
     justify-content: center;
 }
 
+.h1 {
+    color: #38354E;
+    font-size: xx-large;
+    font-family: "Inter", sans-serif;
+    margin-bottom: 20px;
+    font-weight: bold; /* Adicionado: torna o texto em negrito */
+}
+
 .formulario {
     width: 35%;
     height: 100%;
@@ -14,7 +22,7 @@
     text-align: center;
     color: #38354E;
     font-family: "Inter", sans-serif;
-    font-weight: 500;
+    font-weight: bold; /* Adicionado: torna o texto em negrito */
     font-size: x-large;
 }
 
@@ -33,15 +41,15 @@ input, textarea {
     padding: 8px;
     margin-bottom: 16px;
     box-sizing: border-box;
-    margin-top: 0.5%; /* Correção: remova a vírgula extra */
+    margin-top: 0.5%;
     font-size: x-large;
 }
 
-/* Estilo para mensagens de erro */
 .error-message {
-    color: #8C271E; /* Cor vermelha para mensagens de erro */
-    font-size: medium; /* Tamanho da fonte para mensagens de erro */
-    text-align: left; /* Alinhamento à esquerda para mensagens de erro */
+    color: #8C271E;
+    font-size: medium;
+    text-align: left;
+    font-weight: bold; /* Adicionado: torna o texto em negrito */
 }
 
 button {
@@ -53,8 +61,5 @@ button {
     cursor: pointer;
     border-radius: 40px;
     font-size: x-large;
-}
-
-.file-input {
-    display: none;
+    font-weight: bold; /* Adicionado: torna o texto em negrito */
 }
