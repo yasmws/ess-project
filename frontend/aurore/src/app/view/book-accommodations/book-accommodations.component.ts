@@ -39,7 +39,7 @@ export class BookAccommodationsComponent implements OnInit {
 
   // Rota do botão
   onButtonClick(): void {
-    const data = this.data // Substitua pelos dados reais que você deseja passar
+    const data = this.data 
     console.log('Enviando os seguintes dados para pagamento:', data)
     this.router.navigate(['/payment'], { state: { data } });
   }
