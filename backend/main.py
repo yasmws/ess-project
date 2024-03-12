@@ -38,6 +38,9 @@ app.add_middleware(
 storage = firebase_config.firebase.storage()
 app.logged_user = ""
 
+def get_logged_user():
+     return users.get_username_from_email(app.logged_user)
+
 @app.get("/")
 def read_root():
     return "Server running!!"

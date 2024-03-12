@@ -81,3 +81,15 @@ def get_email_from_username(username):
     if email is None:
         raise HTTPException(status_code=401, detail="Username inválido.")
     return email
+
+def get_username_from_email(email):
+    if email == "":
+        return ""
+    users = firebase_config.db.child("users").get().val()
+    #Percorre os dados para procurar o email
+    for _, info in users.items():
+        existing_username = info['username']
+        existing_email = info['email']
+
+        if existing_email == email:
+            return existing_username
