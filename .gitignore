@@ -37,6 +37,8 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
+frontend/aurore/.angular
+frontend/aurore/node_modules
 /.angular/cache
 .sass-cache/
 /connect.lock
