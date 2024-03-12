@@ -1,5 +1,5 @@
 from pytest_bdd import parsers, given, when, then, scenario
-from src.validation import Validation
+from src.service.validation import Validation
 
 @scenario(scenario_name = "Cadastro de usuário", feature_name = "../feature/register.feature")
 def test_user_register():
