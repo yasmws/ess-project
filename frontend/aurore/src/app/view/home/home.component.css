@@ -1,0 +1,37 @@
+body {
+    font-family: "Inter", sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+    h1 {
+        color: #38354E;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: x-large;
+    }
+    
+
+    button {
+        background-color: #8C271E;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        border-radius: 40px;
+        font-size: x-large;
+    }
+
+    button:hover {
+        background-color: #38354E;
+    }
