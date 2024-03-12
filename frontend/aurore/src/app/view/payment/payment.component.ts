@@ -32,6 +32,9 @@ export class PaymentComponent implements OnInit {
     }
   }
   
+  createRsvt(){
+    
+  }
  
 }
 
