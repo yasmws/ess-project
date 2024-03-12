@@ -1,0 +1,289 @@
+/* Background */
+.container-mt-5{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+
+    background: #ABA194;
+}
+
+
+/* Retângulo header */
+.card-header{
+    position: absolute;
+    width: 100vw;
+    height: 11.57vh;
+    left: 0px;
+    top: 0px;
+
+    background: rgba(0, 0, 0, 0.25);
+}
+
+/* Logo aurore */
+.logo{
+    height: 11.57vh;
+}
+
+
+/* Retângulo da aba de login */
+.card-body{
+    position: absolute;
+    width: 47.36vw;
+    height: 88.43vh;
+    left: 25vw;
+    top: 11.57vh;
+
+    background: #D9D9D9;
+    border-radius: 1.68vh;
+}
+
+
+/* Texto Nome */
+.name-field{
+    position: absolute;
+    width: 10vw;
+    height: 2.85vh;
+    left: 5vw;
+    top: 2vh;
+
+    font-family: 'Petrona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.5vh;
+    line-height: 2.85vh; 
+
+    color: rgba(56, 53, 78, 0.7); 
+}
+
+
+/* Retângulo Nome */
+.form-control-name{
+    position: absolute;
+    width: 38vw;
+    height: 6vh;
+    left: 0vw;
+    top: 4vh;
+
+    background: #CFCBCA;
+    border-radius: 2.5vh;  
+    border:none; 
+
+    font-family: 'Petrona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.5vh;
+    line-height: 2.85vh; 
+
+    color: rgba(56, 53, 78, 0.7); 
+}
+
+
+/* Texto Username */
+.username-field{
+    position: absolute;
+    width: 10vw;
+    height: 2.85vh;
+    left: 5vw;
+    top: 15vh;
+
+    font-family: 'Petrona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.5vh;
+    line-height: 2.85vh; 
+
+    color: rgba(56, 53, 78, 0.7); 
+}
+
+
+/* Retângulo Username */
+.form-control-username{
+    position: absolute;
+    width: 38vw;
+    height: 6vh;
+    left: 0vw;
+    top: 4vh;
+
+    background: #CFCBCA;
+    border-radius: 2.5vh;  
+    border:none; 
+
+    font-family: 'Petrona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.5vh;
+    line-height: 2.85vh; 
+
+    color: rgba(56, 53, 78, 0.7); 
+}
+
+
+/* Texto Email */
+.email-field{
+    position: absolute;
+    width: 10vw;
+    height: 2.85vh;
+    left: 5vw;
+    top: 28vh;
+
+    font-family: 'Petrona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.5vh;
+    line-height: 2.85vh; 
+
+    color: rgba(56, 53, 78, 0.7); 
+}
+
+
+/* Retângulo Email */
+.form-control-email{
+    position: absolute;
+    width: 38vw;
+    height: 6vh;
+    left: 0vw;
+    top: 4vh;
+
+    background: #CFCBCA;
+    border-radius: 2.5vh;  
+    border:none; 
+
+    font-family: 'Petrona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.5vh;
+    line-height: 2.85vh; 
+
+    color: rgba(56, 53, 78, 0.7); 
+}
+
+
+/* Texto CPF */
+.cpf-field{
+    position: absolute;
+    width: 10vw;
+    height: 2.85vh;
+    left: 5vw;
+    top: 41vh;
+
+    font-family: 'Petrona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.5vh;
+    line-height: 2.85vh; 
+
+    color: rgba(56, 53, 78, 0.7); 
+}
+
+
+/* Retângulo CPF */
+.form-control-cpf{
+    position: absolute;
+    width: 38vw;
+    height: 6vh;
+    left: 0vw;
+    top: 4vh;
+
+    background: #CFCBCA;
+    border-radius: 2.5vh;  
+    border:none; 
+
+    font-family: 'Petrona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.5vh;
+    line-height: 2.85vh; 
+
+    color: rgba(56, 53, 78, 0.7); 
+}
+
+
+/* Texto Senha */
+.password-field{
+    position: absolute;
+    width: 10vw;
+    height: 2.85vh;
+    left: 5vw;
+    top: 54vh;
+
+    font-family: 'Petrona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.5vh;
+    line-height: 2.85vh; 
+
+    color: rgba(56, 53, 78, 0.7);   
+}
+
+/* Retângulo Senha */
+.form-control-password{
+    position: absolute;
+    width: 38vw;
+    height: 6vh;
+    left: 0vw;
+    top: 4vh;
+
+    background: #CFCBCA;
+    border-radius: 2.5vh;  
+    border:none;  
+    
+    font-family: 'Petrona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.5vh;
+    line-height: 2.85vh; 
+
+    color: rgba(56, 53, 78, 0.7);
+}
+
+
+/* Botão Login */
+.btn-register{
+    position: absolute;
+    width: 24.5vw;
+    height: 5.87vh;
+    left: 12vw;
+    top: 70vh;
+
+    background: #8C271E;
+    border-radius: 2.5vh;
+    border:none;
+
+    text-align: center;
+    font-family: 'Petrona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.5vh;
+    line-height: 2.85vh;
+    color: #D8DDDE;
+}
+
+.btn-register:active{
+    background: #501611;
+}
+
+
+/* Botão Cadastre-se */
+.btn-login{
+    position: absolute;
+    width: 24.5vw;
+    height: 5.87vh;
+    left: 12vw;
+    top: 78vh;
+
+    background: #8C271E;
+    border-radius: 2.5vh;
+    border:none;
+
+    text-align: center;
+    font-family: 'Petrona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.5vh;
+    line-height: 2.85vh;
+    color: #D8DDDE;
+}
+
+.btn-login:active{
+    background: #501611;
+}

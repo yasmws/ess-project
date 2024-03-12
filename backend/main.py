@@ -15,27 +15,26 @@ from src.api.email_trigger import send_email
 from fastapi import FastAPI, HTTPException, Depends, Cookie
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import RedirectResponse
-from src.db import firebase_config
+from fastapi.middleware.cors import CORSMiddleware
 from src.db.firebase_config import auth
+from src.db import firebase_config
 from pydantic import SecretStr
 from typing import Optional
 
 
-
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 storage = firebase_config.firebase.storage()
 app.logged_user = ""
-
-# Custom dependency to check user authentication
-def get_current_user(token: str = Cookie(None)):
-    if token is None:
-        return RedirectResponse(url="/login")
-    try:
-        user = auth.get_account_info(token)
-        return user
-    except auth.AuthError:
-        return RedirectResponse(url="/login")
 
 @app.get("/")
 def read_root():
@@ -57,20 +56,20 @@ def create_user(
 @app.post("/users/login")
 def login_user(
         emailOrUsername: str,
-        password:SecretStr 
+        password:str
     ):
     if app.logged_user:
-        return "Usuário já está logado"
+        raise HTTPException(status_code=400, detail="Falha ao realizar login: Usuário já está logado")
     
     if users.is_email(emailOrUsername):
-        msg = users.login_user(emailOrUsername, password.get_secret_value())
+        msg = users.login_user(emailOrUsername, password)
         app.logged_user = emailOrUsername
         return msg
     
     #Se não for um email, é um username
     #Para logar o email é consultado a partir desse username
     email = users.get_email_from_username(emailOrUsername)
-    msg = users.login_user(email, password.get_secret_value())
+    msg = users.login_user(email, password)
     app.logged_user = email
     return msg
 
@@ -119,7 +118,7 @@ def create_reservation(
         ):
         return reservations.create_reservation(client_id, accommodation_id, reservation_checkin, reservation_checkout)
 
-@app.post("/reservations/{reservation_id}/evaluate")
+@app.post("/reservations/evaluate/{reservation_id}")
 def rating_post(
         reservation_id:str,
         accommodation_id:str,
@@ -127,6 +126,14 @@ def rating_post(
         comment:str = ""
     ):
     return evaluate.add_rating(reservation_id, stars, comment, accommodation_id)
+
+@app.get("/reservations/{reservation_id}/rating")
+def rating_post(
+        reservation_id:str,
+        accommodation_id:str,
+    ):
+    return evaluate.get_rating(reservation_id, accommodation_id)
+
 
 @app.get("/accommodation/list")
 def get_accommodations(

@@ -8,7 +8,7 @@ O banco de dados utilizado foi o [Google Firebase](https://firebase.google.com/)
 - Vá até a pasta **backend** e execute o comando `pip install -r requirements.txt` para instalar as dependências do projeto.
 
 #### Execução:
-- Dentro de /backend/src, utilize o comando `uvicorn main:app --reload` para executar o servidor.
+- Dentro de /backend, utilize o comando `uvicorn main:app --reload` para executar o servidor.
 
 #### Documentação:
 - Para entender mais sobre fastAPI, veja a documentação oficial: https://fastapi.tiangolo.com/
@@ -31,6 +31,11 @@ Este projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli
     ng version // conferir se foi corretamente instalado
 ```
 
+- Para rodar, antes, é preciso ir até o **aurore** para funcionar. Ou seja,
+
+``` javascript
+    cd frontend/aurore
+```
 
 - Em seu prompt de preferencia digite `npm start` ou `ng serve` para que o projeto seja compilado e esteja disponível para visualização
 
@@ -38,4 +43,22 @@ Este projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli
     npm start
 ```
 
+``` javascript
+    ng serve
+```
+
 - Em seu browser acesse `http://localhost:4200/`, para ver a aplicação rodando. A aplicação irá recarregar automaticamente caso haja alguma alteração no código fonte.
+
+- Você pode testar rodando 
+ 
+``` javascript
+    npx cypress open
+```
+- Caso tenha problemas com o cypress, rode a aplicação e, com ela ainda em execução, em um outro terminal, rode o cypress. Isso deve resolver.
+
+No meu caso, tive problemas com o comando de npm install também e, para tanto, passei a utilizar o yarn. O comando é similar:
+
+``` javascript
+    yarn install
+```
+

@@ -1,8 +1,7 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -14,20 +13,29 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ES2022",
+    "module": "commonjs",
     "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+    "skipLibCheck": true,
+    "lib": ["ES5", "dom"],
+    "esModuleInterop": true,
+    "typeRoots": ["node_modules/@types", "typings", "@types/babel__core"],
+    "paths": {
+      "@badeball/cypress-cucumber-preprocessor/*": [
+        "./node_modules/@badeball/cypress-cucumber-preprocessor/dist/subpath-entrypoints/*"
+      ]
+    }
   },
+  "include": ["src", "cypress/**/*.ts", "**/*.ts",  "../cypress.config.ts", "cypress.config.ts"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "exclude": [],
+  "files": ["cypress.config.ts"]
+
 }
