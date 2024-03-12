@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <!-- Add your CSS styles here -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f8f8;
+        }
+
+        .payment-container {
+            width: 35%;
+            background-color: #ccc;
+            margin: 10px;
+            border-radius: 40px;
+            padding: 20px;
+            text-align: center;
+            color: #38354E;
+            font-family: "Inter", sans-serif;
+            font-weight: 500;
+            font-size: x-large;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            font-size: x-large;
+        }
+
+        button {
+            background-color: #8C271E;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: x-large;
+        }
+
+        .file-input-label {
+            background-color: #8C271E;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: x-large;
+            display: inline-block;
+        }
+
+        .file-input {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="payment-container">
+        <h1>Payment</h1>
+
+        <label for="paymentMethod">Select Payment Method:</label>
+        <select id="paymentMethod" name="paymentMethod">
+            <option value="creditCard">Credit Card</option>
+            <option value="debitCard">Debit Card</option>
+            <option value="paypal">PayPal</option>
+            <!-- Add other payment methods as needed -->
+        </select>
+
+        <button (click)="createRsvt()">Create Reservation</button>
+    </div>
+
+    <script>
+        function createReservation() {
+            alert('Reservation created successfully!');
+        }
+    </script>
+
+</body>
+</html>
