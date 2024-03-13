@@ -116,6 +116,22 @@
     color: rgba(56, 53, 78, 0.7);
 }
 
+/* Texto de erro */
+.text-danger{
+    position: absolute;
+    width: 24.5vw;
+    height: 5.87vh;
+    left: 12vw;
+    top: 38.5vh;
+
+    text-align: center;
+    font-family: 'Petrona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.5vh;
+    line-height: 2.85vh;
+    color: #ec240a;
+}
 
 /* Botão Login */
 .btn-login{
@@ -165,5 +181,59 @@
 }
 
 .btn-register:active{
+    background: #501611;
+}
+
+/* Tela de sucesso */
+.success-screen{
+    position: absolute;
+    width: 27.36vw;
+    height: 50vh;
+    left: 10.5vw;
+    top: 6vh;
+    display: none;
+
+    background: #ABA194;
+    border-radius: 1.68vh;
+}
+
+/* Texto de sucesso */
+.success-text{
+    position: absolute;
+    width: 27.36vw;
+    height: 50vh;
+    top: 15vh;
+
+    text-align: center;
+    font-family: 'Petrona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 5vh;
+    line-height: 2.85vh;
+    color: #D8DDDE;
+}
+
+/* Botão de sucesso */
+.btn-success{
+    position: absolute;
+    width: 18vw;
+    height: 7vh;
+    left: 5vw;
+    top: 25vh;
+
+    background: #8C271E;
+    border-radius: 2.5vh;
+    border:none;
+
+    text-align: center;
+    font-family: 'Petrona';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3vh;
+    line-height: 2.85vh;
+    color: #D8DDDE;
+}
+
+.btn-success:active{
     background: #501611;
 }
