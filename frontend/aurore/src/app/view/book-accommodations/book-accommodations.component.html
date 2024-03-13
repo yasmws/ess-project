@@ -1,3 +1,6 @@
+<div class="card-header">
+    <a href="http://localhost:4200/"><img src="../../../assets/Aurore logo.png" class="logo"></a>
+</div>
 <div class="main">
     <div class="description">
         <h1>Descrição da Acomodação</h1>
@@ -7,7 +10,7 @@
                 <label><strong>Número de Quartos:</strong> {{ accommodationInfo?.bedrooms }}</label>
                 <label><strong>Número máximo de hóspedes:</strong> {{ accommodationInfo?.max_capacity }}</label>
                 <label><strong>Descrição:</strong> {{ accommodationInfo?.description }}</label>
-                <label><strong>Preço por Noite:</strong> {{ accommodationInfo?.price }}</label>
+                <label><strong>Preço por Noite:</strong> {{ accommodationInfo?.price || 100 }}</label>
             </div>
             <div class="cardImg">
                 <label for="img"><strong>Imagem da Acomodação:</strong></label>
