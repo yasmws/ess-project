@@ -1,9 +1,7 @@
-
-// Import necessary modules and decorators
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ManegementService } from '../../services/management/management.service';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -13,7 +11,7 @@ class ImageSnippet {
 @Component({
   selector: 'app-create-accommodations',
   templateUrl: './create-accommodations.component.html',
-  styleUrls: ['./create-accommodations.component.css']
+  styleUrl: './create-accommodations.component.css'
 })
 
 export class CreateAccommodationsComponent implements OnInit {
@@ -138,4 +136,3 @@ export class CreateAccommodationsComponent implements OnInit {
     
   }
 }
-
