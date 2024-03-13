@@ -19,19 +19,23 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { RatingComponent } from './components/rating/rating.component';
 import { StarsComponent } from './components/stars/stars.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-// import { EditBookingComponent } from './view/edit-booking/edit-booking.component';
+import { EditBookingComponent } from './view/edit-booking/edit-booking.component';
 import { ListReservationComponent } from './view/list-reservation/list-reservation.component';
-// import { ListAccomodationComponent } from './view/list-accommodation/list-accommodation.component';
-// import { EditAccomodationComponent } from './view/edit-accommodation/edit-accommodation.component';
+import { ListAccomodationComponent } from './view/list-accommodation/list-accommodation.component';
+import { EditAccommodationComponent  } from './view/edit-accommodation/edit-accommodation.component';
 import { HistoricMainComponent } from './view/historic-main/historic-main.component';
 import { BotaoComponent } from './components/assets/botao-comum/botao-component';
 import { CardComponent } from './components/card/card.component';
 import { HeaderComumComponent } from './components/headers/header-comum/header-comum.component';
 import { ListCardComponent } from './components/list_card/list-card.component';
+import { CreateAccommodationsComponent } from './view/create-accommodations/create-accommodations.component';
+import { BookAccommodationsComponent } from './view/book-accommodations/book-accommodations.component';
+
+import {HeaderHomeComponent } from './components/headers/header-home/header-home.component'
 
 
 @NgModule({
@@ -42,17 +46,20 @@ import { ListCardComponent } from './components/list_card/list-card.component';
     HistoricComponent,
     InputHistoricComponent,
     BotaoComponent,
-    // EditBookingComponent,
+    EditBookingComponent,
     HeaderComumComponent,
     ListReservationComponent,
-    // ListAccomodationComponent,
+    ListAccomodationComponent,
     CardComponent,
     ListCardComponent,
     HistoricMainComponent,
-    // EditAccomodationComponent,
+    EditAccommodationComponent ,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HeaderHomeComponent,
+    CreateAccommodationsComponent,
+    BookAccommodationsComponent,
   ],
   imports: [
     StarsComponent,
@@ -65,9 +72,9 @@ import { ListCardComponent } from './components/list_card/list-card.component';
     MatInputModule,
     MatFormFieldModule,
     MatToolbarModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

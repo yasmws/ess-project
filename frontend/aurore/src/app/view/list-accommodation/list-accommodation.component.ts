@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-list-accomodation',
-    templateUrl: './list-accomodation.component.html',
-    styleUrl: './list-accomodation.component.css'
+    templateUrl: './list-accommodation.component.html',
+    styleUrl: './list-accommodation.component.css'
 })
 export class ListAccomodationComponent implements OnInit{
     name: any;

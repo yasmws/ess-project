@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, EventEmitter, Output} from '@angular/core';
 import {ActivatedRoute} from '@angular/router'
+import { ManegementService } from 'src/app/services/management/management.service';
 @Component({
   selector: 'app-header-comum',
   templateUrl: './header-comum.component.html',
@@ -7,10 +8,8 @@ import {ActivatedRoute} from '@angular/router'
 })
 export class HeaderComumComponent implements OnInit{
 
-  constructor(private route: ActivatedRoute){
-    this.route.params.subscribe(params => {
-      console.log("RESELTADO DOS PARAMETROS",params);
-    });
+  constructor(private route: ActivatedRoute, private service: ManegementService){
+
   }
 
   @ViewChild('menu') menuPop!: ElementRef;
@@ -25,11 +24,23 @@ export class HeaderComumComponent implements OnInit{
   visible: any = false;
   clicked: boolean = false;
 
+  name: any = true;
+  valid: boolean = false;
+
   @Input() userName : any;
   @Output() parametroEnviado = new EventEmitter<string>();
   @Input() loc: any;
 
   ngOnInit(): void {
+
+    this.service.getLoggedUser().subscribe((result)=>{
+      if(result){
+        console.log("nome aqui", result)
+        this.name = false;
+        this.userName = result
+        this.valid = true;
+      }
+    })
 
   }
 
@@ -45,6 +56,12 @@ export class HeaderComumComponent implements OnInit{
     popUpElement.style.visibility = 'hidden';
    }
 
+  }
+
+  logOut(){
+    console.log("AQUII")
+    this.service.logoutUser();
+    window.location.reload();
   }
 
   changeClick(){

@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ManegementService } from 'src/app/services/management/management.service';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
+import {Location} from '@angular/common';
+
 @Component({
   selector: 'app-rating',
   templateUrl: './rating.component.html',
@@ -8,14 +10,20 @@ import { ActivatedRoute} from '@angular/router';
 })
 
 export class RatingComponent {
-
-  constructor(private serviceMngt: ManegementService, private route: ActivatedRoute){}
-
+  
+  name:any = "error";
+  loc:string = "menu";
   @Input() reservation_id!:string;
   @Input() accommodation_id!: string;
-  stars!:number ;
+  stars!:number;
   comment!:string;
 
+  constructor(private serviceMngt: ManegementService, private route: ActivatedRoute, private rt: Router, private location: Location){
+      const navigation = this.rt.getCurrentNavigation();
+      this.accommodation_id= navigation!.extras.state!['accommodation'];
+      this.reservation_id = navigation!!.extras.state!['reservation'];
+  }
+ 
   onChangeStars($event:number){
     this.stars = $event;
   }
@@ -28,14 +36,19 @@ export class RatingComponent {
       stars: this.stars,
       comment: this.comment,
     }
-    
-    this.serviceMngt.sendRating(data).subscribe({
-      next: (res:any)=>{
-        console.log(res,'response')},
-      error: (err:any)=>{
-        console.log(err, 'error')
-      }
-    });
-    
+
+    if(this.stars > 0){
+      this.serviceMngt.sendRating(data).subscribe({
+        next: (res:any)=>{
+          console.log(res,'response')},
+        error: (err:any)=>{
+          console.log(err, 'error')
+        }
+      });
+      
+      this.location.back();
+    }
+
   }
+
 }

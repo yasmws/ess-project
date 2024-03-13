@@ -37,8 +37,8 @@ export class HistoricComponent implements OnInit {
 
   routerTest(dado:any){
 
-    const url = `/listRs/${this.user}/historic/${dado.reservation_id}`
-    this.rt.navigate([url], { state: { accommodation: `${dado.accommodation_id}`} });
+  const url = `/listRs/${this.user}/rating`
+    this.rt.navigate([url], { state: { accommodation: `${dado.accommodation_id}`, reservation: `${dado.reservation_id}`} });
   }
 
 }

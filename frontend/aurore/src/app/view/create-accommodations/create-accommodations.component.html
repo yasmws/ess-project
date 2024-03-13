@@ -1,0 +1,78 @@
+<div class="main">
+  <div class="formulario">
+    <h1>Criar Acomodação</h1>
+    <form [formGroup]="accommodationForm" enctype="multipart/form-data">
+      <!-- Nome da Acomodação -->
+      <div class="form-group">
+        <label for="nome">Nome da Acomodação:</label>
+        <input type="text" class="form-control" id="nome" formControlName="accommodation_name" required>
+        <div *ngIf="hasError('accommodation_name', 'required')" class="error-message">
+          Nome da Acomodação é obrigatório.
+        </div>
+        <div *ngIf="hasError('accommodation_name', 'nameLengthExceeded')" class="error-message">
+          Nome da Acomodação deve ter no máximo 20 caracteres.
+        </div>
+      </div>
+
+      <!-- Localização -->
+      <div class="form-group">
+        <label for="localizacao">Localização:</label>
+        <input type="text" class="form-control" id="localizacao" formControlName="accommodation_loc" required>
+        <div *ngIf="hasError('accommodation_loc', 'required')" class="error-message">
+          Localização é obrigatória.
+        </div>
+      </div>
+
+      <!-- Número de Quartos -->
+      <div class="form-group">
+        <label for="num_quartos">Número de Quartos:</label>
+        <input type="number" class="form-control" id="num_quartos" formControlName="accommodation_bedrooms" min="1" required>
+        <div *ngIf="hasError('accommodation_bedrooms', 'required')" class="error-message">
+          Número de Quartos é obrigatório.
+        </div>
+        <div *ngIf="hasError('accommodation_bedrooms', 'notPositiveInteger')" class="error-message">
+          Número de Quartos deve ser um valor inteiro positivo.
+        </div>
+      </div>
+
+      <!-- Número máximo de hóspedes -->
+      <div class="form-group">
+        <label for="max_capacidade">Número máximo de hóspedes:</label>
+        <input type="number" class="form-control" id="max_capacidade" formControlName="accommodation_max_capacity" min="1" required>
+        <div *ngIf="hasError('accommodation_max_capacity', 'required')" class="error-message">
+          Número máximo de hóspedes é obrigatório.
+        </div>
+        <div *ngIf="hasError('accommodation_max_capacity', 'notPositiveInteger')" class="error-message">
+          Número máximo de hóspedes deve ser um valor inteiro positivo.
+        </div>
+      </div>
+
+      <!-- Descrição -->
+      <div class="form-group">
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" class="form-control" formControlName="accommodation_description" rows="4" required></textarea>
+        <div *ngIf="hasError('accommodation_description', 'required')" class="error-message">
+          A descrição é obrigatória.
+        </div>
+        <div *ngIf="hasError('accommodation_description', 'descriptionLengthExceeded')" class="error-message">
+          A descrição deve ter no máximo 400 caracteres.
+        </div>
+      </div>
+
+      <!-- Preço por Noite -->
+      <div class="form-group">
+        <label for="preco">Preço por Noite:</label>
+        <input type="number" class="form-control" id="preco" formControlName="accommodation_price" min="0" required>
+        <div *ngIf="hasError('accommodation_price', 'required')" class="error-message">
+          O preço é obrigatório.
+        </div>
+      </div>
+
+      <!-- Botão de Envio -->
+      <button type="submit" (click)="createAcmdt()" [disabled]="accommodationForm.invalid" class="form-control"
+        [style.background]="buttonColor" (mouseover)="changeButtonColor('#38354E')" (mouseout)="changeButtonColor('#8C271E')">
+        Criar Acomodação
+      </button>
+    </form>
+  </div>
+</div>
