@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ManegementService } from 'src/app/services/management/management.service';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute,Router} from '@angular/router';
 @Component({
   selector: 'app-rating',
   templateUrl: './rating.component.html',
@@ -9,7 +9,17 @@ import { ActivatedRoute} from '@angular/router';
 
 export class RatingComponent {
 
-  constructor(private serviceMngt: ManegementService, private route: ActivatedRoute){}
+  accommodation: any;
+  reservation:any;
+
+  constructor(private serviceMngt: ManegementService, private route: ActivatedRoute, private rt: Router){
+
+     const navigation = this.rt.getCurrentNavigation();
+     this.accommodation= navigation!.extras.state!['accommodation'];
+     this.reservation = navigation!!.extras.state!['reservation']
+
+  }
+
 
   @Input() reservation_id!:string;
   @Input() accommodation_id!: string;
@@ -28,7 +38,7 @@ export class RatingComponent {
       stars: this.stars,
       comment: this.comment,
     }
-    
+
     this.serviceMngt.sendRating(data).subscribe({
       next: (res:any)=>{
         console.log(res,'response')},
@@ -36,6 +46,6 @@ export class RatingComponent {
         console.log(err, 'error')
       }
     });
-    
+
   }
 }

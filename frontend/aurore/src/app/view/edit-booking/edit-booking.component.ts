@@ -129,7 +129,7 @@ submitEdit(){
     const popUpElement = this.popUp.nativeElement as HTMLElement;
     this.title = "Um momento"
     this.alert = "Carregando informações"
-    this.link = "../../../assets/img/carregando.png"
+    this.link = "../../../assets/carregando.png"
     popUpElement.style.visibility = 'visible';
 
     console.log("ACOMODATION_ID", this.accommodation)
