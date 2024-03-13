@@ -22,6 +22,7 @@ export class ListReservationComponent {
 
         this.route.params.subscribe(params => {
             this.name = params['user'];
+            console.log("AQUI, TESTANDO", this.name);
             this.historic = `/listRs/${this.name}/historic`
         });
 

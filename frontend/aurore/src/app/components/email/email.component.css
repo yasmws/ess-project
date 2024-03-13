@@ -1,0 +1,14 @@
+.email-main{
+  height: 87vh;
+  width: 100vw;
+  padding-top: 13vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment{
+  min-height: 40%;
+  width: 40%;
+  background-color: white;
+}

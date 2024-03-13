@@ -1,10 +1,9 @@
 /* Background */
 .container-mt-5{
-    position: relative;
-    width: 100vw;
+    width: 87vw;
     height: 100vh;
 
-    background: #ABA194;
+    background: #ccc;
 }
 
 

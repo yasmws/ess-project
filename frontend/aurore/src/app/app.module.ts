@@ -36,6 +36,7 @@ import { CreateAccommodationsComponent } from './view/create-accommodations/crea
 import { BookAccommodationsComponent } from './view/book-accommodations/book-accommodations.component';
 
 import {HeaderHomeComponent } from './components/headers/header-home/header-home.component'
+import { EmailComponent} from './components/email/email.component'
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import {HeaderHomeComponent } from './components/headers/header-home/header-home
     HeaderHomeComponent,
     CreateAccommodationsComponent,
     BookAccommodationsComponent,
+    EmailComponent
   ],
   imports: [
     StarsComponent,

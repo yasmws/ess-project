@@ -60,8 +60,8 @@ hr{
 }
 
 .img-list img{
-    height: 50%;
-    width: 50%;
+    height: 70%;
+    width: 70%;
 }
 
 .description-list{
@@ -97,4 +97,26 @@ hr{
 .avaliar:hover{
     transform: scale(1.1);
     box-shadow: 1px solid black;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-5px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.bouncing {
+  animation: bounce 0.5s ease-in-out infinite;
 }
