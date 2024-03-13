@@ -89,3 +89,23 @@
   margin-right: 3%;
   font-size: 13px;
 }
+
+button{
+  background-color: #ABA194;
+  border: 0;
+  color: white;
+}
+
+.button-login{
+    border: 0.1px;
+    border-color: #ccc;
+    border-radius: 10px;
+    color: black;
+    padding: 20px;
+    width: 15%;
+    cursor: pointer;
+    text-align: center;
+    height: 20%;
+    background-color: none;
+ }
+

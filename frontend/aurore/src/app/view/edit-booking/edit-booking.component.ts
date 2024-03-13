@@ -10,7 +10,7 @@ import { ActivatedRoute , Router} from '@angular/router';
 })
 export class EditBookingComponent implements OnInit{
     registerForm: any = FormGroup;
-    name: any; 
+    name: any;
     alert: any;
     title: any;
     link: any ;
@@ -125,15 +125,15 @@ showPop(status: any){
 submitEdit(){
     let checkin = this.registerForm.get('checkin').value;
     let checkout = this.registerForm.get('checkout').value;
-  
+
     const popUpElement = this.popUp.nativeElement as HTMLElement;
     this.title = "Um momento"
     this.alert = "Carregando informações"
     this.link = "../../../assets/img/carregando.png"
     popUpElement.style.visibility = 'visible';
-      
+
     console.log("ACOMODATION_ID", this.accommodation)
-    
+
     this.service.editReservation({
         id: this.id,
         checkin: checkin ,
