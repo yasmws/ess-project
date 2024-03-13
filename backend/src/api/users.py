@@ -48,6 +48,9 @@ def check_existing_fields(username, email, cpf):
         
 
 def check_register_fields(name, username, email, cpf, password):
+    if name == "" or username == "" or email == "" or cpf == "" or password == "" or name == "undefined" or username == "undefined" or email == "undefined" or cpf == "undefined" or password == "undefined":
+        raise HTTPException(status_code=400, detail="Todos os campos devem ser preenchidos.")
+    
     #Checar se nome só possui letras e acentos
     name_regex = r"[^\W\d_]+"
     if not re.fullmatch(name_regex, name.replace(" ", "")):
