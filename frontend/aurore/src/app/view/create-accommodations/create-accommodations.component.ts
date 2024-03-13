@@ -29,9 +29,9 @@ export class CreateAccommodationsComponent implements OnInit {
   changeButtonColor(color: string): void {
   this.buttonColor = color;
   }
-  
+
   accommodationForm!: FormGroup;
-  
+
   data: any;
   accommodation_name: string = '';
   accommodation_loc: string = '';
@@ -40,16 +40,18 @@ export class CreateAccommodationsComponent implements OnInit {
   accommodation_description: string = '';
   //accommodation_price: number = 0;
   accommodation_id: string = '';
-  user_id: string = ''; //Lembrar de pegar o id do usuario
+  user_id: any ;
 
   ngOnInit(): void {
+    this.user_id = this.service.getLoggedUser();
+
     this.accommodationForm = this.formBuilder.group({
       accommodation_name: ['', [Validators.required, this.validateNameLength.bind(this)]],
       accommodation_loc: ['', Validators.required],
       accommodation_bedrooms: [0, [Validators.required, Validators.min(1), this.validatePositiveInteger.bind(this)]],
       accommodation_max_capacity: [0, [Validators.required, Validators.min(1), this.validatePositiveInteger.bind(this)]],
       accommodation_description: ['', [Validators.required, this.validateDescriptionLength.bind(this)]],
-      //accommodation_price: [0, [Validators.required, Validators.min(0)]],
+      // accommodation_price: [0, [Validators.required, Validators.min(0)]],
     });
   }
 
@@ -57,7 +59,7 @@ export class CreateAccommodationsComponent implements OnInit {
     const control = this.accommodationForm.get(controlName);
     return control?.hasError(errorType) || false;
   }
-  
+
   // Validação dos dados
   validateNameLength(control: AbstractControl): { [key: string]: any } | null {
     const name = control.value;
@@ -94,16 +96,16 @@ export class CreateAccommodationsComponent implements OnInit {
         accommodation_bedrooms: this.accommodationForm.value.accommodation_bedrooms,
         accommodation_max_capacity: this.accommodationForm.value.accommodation_max_capacity,
         accommodation_description: this.accommodationForm.value.accommodation_description,
-        //accommodation_price: this.accommodationForm.value.accommodation_price,
-        user_id: 'pedro123'
+        // accommodation_price: this.accommodationForm.value.accommodation_price,
+        user_id: this.user_id
       };
     }
 
     console.log("dados:",this.data);
-    this.service.createAccommodation(this.data).subscribe((dados)=>{ 
+    this.service.createAccommodation(this.data).subscribe((dados)=>{
       this.accommodation_id = dados.detail;
       console.log("recebendo dados do back...");
-      
+
       // Exibe o pop-up de sucesso
       this.snackBar.open('Accommodation created successfully!', 'Close', {
         duration: 10000, // Duração em milissegundos
@@ -111,9 +113,9 @@ export class CreateAccommodationsComponent implements OnInit {
         verticalPosition: 'top',
       });
 
-      // Navega para as minhas acomodações
+      // Navega para 'my-accommodations'
       this.router.navigate(['/listAc']);
     });
-    
+
   }
 }

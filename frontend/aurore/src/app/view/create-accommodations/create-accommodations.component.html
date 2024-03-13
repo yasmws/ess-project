@@ -1,7 +1,5 @@
-<div class="card-header">
-  <a href="http://localhost:4200/"><img src="../../../assets/Aurore logo.png" class="logo"></a>
-</div>
-<div class="main">
+<app-header-comum></app-header-comum>
+<div class="main" >
   <div class="formulario">
     <h1>Criar Acomodação</h1>
     <form [formGroup]="accommodationForm" enctype="multipart/form-data">
@@ -74,7 +72,7 @@
       <!-- Botão de Envio -->
       <button type="submit" (click)="createAcmdt()" [disabled]="accommodationForm.invalid" class="form-control"
         [style.background]="buttonColor" (mouseover)="changeButtonColor('#38354E')" (mouseout)="changeButtonColor('#8C271E')">
-        Criar Acomodação
+        Salvar
       </button>
     </form>
   </div>
