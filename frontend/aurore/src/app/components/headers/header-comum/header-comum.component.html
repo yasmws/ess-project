@@ -4,7 +4,7 @@
     <div class="infoHead">
        <a class="options" [routerLink]="rotaA" (click)="accodation()" #accomod [ngClass]="{'background': loc == 'accomd'}"><p>Acomodacões</p></a>
        <a class="options"  [routerLink]="rotaB" (click)="reservation()" #reserv [ngClass]="{'background': loc == 'reserv'}"><p>Reservas</p></a>
-       <a class="options"><p>Anuncie seu espaço aqui</p></a>
+       <a class="options"  [routerLink]="rotaC" (click)="createAcmdt()" #create [ngClass]="{'background': loc == 'create'}"><p>Anuncie seu espaço aqui</p></a>
       
         <div class="apresentar">
           <button mat-button (click)="changeClick()">
