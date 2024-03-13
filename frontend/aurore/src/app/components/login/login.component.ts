@@ -13,6 +13,12 @@ export class LoginComponent {
   emailOrUsername!: string
   password!: string
 
+  erro: string = ""
+
+  openSuccessLogin(){
+    document.getElementById("success-login")!.style.display = "block";
+  }
+
   loginUser(){
     var inputData = {
       emailOrUsername: this.emailOrUsername,
@@ -21,10 +27,13 @@ export class LoginComponent {
 
     this.serviceMngt.loginUserPost(inputData).subscribe({
       next: (res:any)=>{
-        console.log(res,'response')},
+        this.openSuccessLogin();
+        console.log(res)},
       error: (err:any)=>{
-        console.log(err, 'error')
+        this.erro = err.error.detail
+        console.log(this.erro)
       }
     });
   }
+
 }

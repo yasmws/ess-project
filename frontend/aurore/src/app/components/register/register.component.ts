@@ -16,6 +16,12 @@ export class RegisterComponent {
   cpf!: string
   password!: string
 
+  erro: string = ""
+
+  openSuccessRegister(){
+    document.getElementById("success-register")!.style.display = "block";
+  }
+
   createUser(){
     var inputData = {
       name: this.name,
@@ -27,9 +33,11 @@ export class RegisterComponent {
 
     this.serviceMngt.createUserPost(inputData).subscribe({
       next: (res:any)=>{
-        console.log(res,'response')},
+        this.openSuccessRegister()
+        console.log(res)},
       error: (err:any)=>{
-        console.log(err, 'error')
+        this.erro = err.error.detail
+        console.log(this.erro)
       }
     });
   }
