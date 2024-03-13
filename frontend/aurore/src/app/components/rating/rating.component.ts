@@ -23,7 +23,7 @@ export class RatingComponent {
 
   @Input() reservation_id!:string;
   @Input() accommodation_id!: string;
-  stars!:number ;
+  stars!:number;
   comment!:string;
 
   onChangeStars($event:number){
@@ -48,4 +48,5 @@ export class RatingComponent {
     });
 
   }
+
 }
