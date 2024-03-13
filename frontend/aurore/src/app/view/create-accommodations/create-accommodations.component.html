@@ -1,3 +1,6 @@
+<div class="card-header">
+  <a href="http://localhost:4200/"><img src="../../../assets/Aurore logo.png" class="logo"></a>
+</div>
 <div class="main">
   <div class="formulario">
     <h1>Criar Acomodação</h1>
@@ -60,13 +63,13 @@
       </div>
 
       <!-- Preço por Noite -->
-      <div class="form-group">
+      <!--<div class="form-group">
         <label for="preco">Preço por Noite:</label>
         <input type="number" class="form-control" id="preco" formControlName="accommodation_price" min="0" required>
         <div *ngIf="hasError('accommodation_price', 'required')" class="error-message">
           O preço é obrigatório.
         </div>
-      </div>
+      </div>-->
 
       <!-- Botão de Envio -->
       <button type="submit" (click)="createAcmdt()" [disabled]="accommodationForm.invalid" class="form-control"

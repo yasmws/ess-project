@@ -212,3 +212,11 @@ def delete_payment_method(
 @app.post("/email_trigger")
 def send_email():
     return send_email
+
+@app.get("/accommodation/{accommodation_id}")
+def get_accommodation_by_id(
+    accommodation_id: str
+    ): 
+    return accommodations.get_accommodation_by_id(
+        accommodation_id
+    )

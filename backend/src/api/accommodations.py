@@ -166,3 +166,22 @@ def get_accommodations(
         return accommodations_list
     except Exception:
         raise HTTPException(status_code=400, detail="Failed looking for accommodations.")
+    
+def get_accommodation_by_id(accommodation_id):
+    try:
+        accommodation_data = firebase_config.db.child("accommodation").child(accommodation_id).get().val()
+        
+        img_url = firebase_config.storage.child(f'accommodation/{accommodation_data["id"]}').get_url(None)
+        r = requests.head(img_url)
+        fileExists = (r.status_code == requests.codes.ok)
+        if fileExists:
+            accommodation_data["image"] = img_url
+        else:
+            accommodation_data["image"] = firebase_config.storage.child("accommodation/house.jpg").get_url(None)
+        
+        if not accommodation_data:
+            raise HTTPException(status_code=status.HTTP_204_NO_CONTENT, detail="Accommodation not found")
+        
+        return accommodation_data
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Failed looking for accommodations. {str(e)}")

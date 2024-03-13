@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 interface Accommodation {
@@ -20,7 +20,7 @@ interface Accommodation {
 export class HomeComponent implements OnInit {
   accommodations: Accommodation[] = [];
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.fetchAccommodations();
@@ -30,10 +30,14 @@ export class HomeComponent implements OnInit {
     const url = 'http://localhost:8000/accommodation/list';
     this.http.get<Accommodation[]>(url).subscribe(data => {
       this.accommodations = data;
+      console.log('Home:',this.accommodations)
     });
   }
 
-  navigateToAccommodationDetails(id: string): void {
-    this.router.navigate(['/accommodation', id]);
+  navigateToAccommodationDetails(accommodation_id: string): void {
+    const currentParams = this.route.snapshot.queryParams;
+    const queryParams = { ...currentParams, accommodation_id };
+    console.log('QueryParams to book-acmdt', queryParams);
+    this.router.navigate(['/book-acmdt'], {queryParams});
   }
 }
