@@ -15,11 +15,13 @@ export class HeaderComumComponent implements OnInit{
   @ViewChild('menu') menuPop!: ElementRef;
   @ViewChild('accomod') accomod!: ElementRef;
   @ViewChild('reserv') reserv!: ElementRef;
+  @ViewChild('create') create!: ElementRef;
 
   @Output()
 
   rotaA: any;
   rotaB: any;
+  rotaC: any;
   menu: boolean = true;
   visible: any = false;
   clicked: boolean = false;
@@ -75,5 +77,9 @@ export class HeaderComumComponent implements OnInit{
 
   reservation(){
     this.rotaB = `/listRs/${this.userName}`
+  }
+
+  createAcmdt(){
+    this.rotaC = '/createAcmdt'
   }
 }

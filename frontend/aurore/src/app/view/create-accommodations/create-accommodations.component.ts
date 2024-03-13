@@ -38,9 +38,9 @@ export class CreateAccommodationsComponent implements OnInit {
   accommodation_bedrooms: number = 0;
   accommodation_max_capacity: number = 0;
   accommodation_description: string = '';
-  accommodation_price: number = 0;
+  //accommodation_price: number = 0;
   accommodation_id: string = '';
-  user_id: string = 'pedro123';
+  user_id: string = ''; //Lembrar de pegar o id do usuario
 
   ngOnInit(): void {
     this.accommodationForm = this.formBuilder.group({
@@ -49,7 +49,7 @@ export class CreateAccommodationsComponent implements OnInit {
       accommodation_bedrooms: [0, [Validators.required, Validators.min(1), this.validatePositiveInteger.bind(this)]],
       accommodation_max_capacity: [0, [Validators.required, Validators.min(1), this.validatePositiveInteger.bind(this)]],
       accommodation_description: ['', [Validators.required, this.validateDescriptionLength.bind(this)]],
-      accommodation_price: [0, [Validators.required, Validators.min(0)]],
+      //accommodation_price: [0, [Validators.required, Validators.min(0)]],
     });
   }
 
@@ -83,9 +83,10 @@ export class CreateAccommodationsComponent implements OnInit {
     return null;
   }
 
-
   createAcmdt(): void {
     console.log("resultado:",this.accommodationForm.valid)
+    //console.log(this.service.getLoggedUser())
+    const loggedUser = this.service.getLoggedUser();
     if (this.accommodationForm.valid) {
       this.data = {
         accommodation_name: this.accommodationForm.value.accommodation_name,
@@ -93,8 +94,8 @@ export class CreateAccommodationsComponent implements OnInit {
         accommodation_bedrooms: this.accommodationForm.value.accommodation_bedrooms,
         accommodation_max_capacity: this.accommodationForm.value.accommodation_max_capacity,
         accommodation_description: this.accommodationForm.value.accommodation_description,
-        accommodation_price: this.accommodationForm.value.accommodation_price,
-        user_id: this.user_id
+        //accommodation_price: this.accommodationForm.value.accommodation_price,
+        user_id: 'pedro123'
       };
     }
 
@@ -110,29 +111,9 @@ export class CreateAccommodationsComponent implements OnInit {
         verticalPosition: 'top',
       });
 
-      // Navega para 'my-accommodations'
-      this.router.navigate(['/my-accommodations']);
+      // Navega para as minhas acomodações
+      this.router.navigate(['/listAc']);
     });
-
-
-    //Img
-    /*
-    handleFileInput(event: any): void {
-      const file = event.target.files[0];
-  
-      if (file) {
-        const reader = new FileReader();
-    
-
-    if (this.accommodationForm.value.accommodation_img) {
-      const formData = new FormData();
-      formData.append('accommodation_img', this.accommodationForm.value.accommodation_img);
-      formData.append('accommodation_id', this.accommodation_id);
-  
-      this.service.createAccommodationImg(formData).subscribe((dados) => {
-        console.log("recebendo dados do back...", dados);
-      });
-    }*/
     
   }
 }
