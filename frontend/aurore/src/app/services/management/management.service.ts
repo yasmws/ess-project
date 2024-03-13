@@ -19,6 +19,35 @@ export class ManegementService {
     return this.http.get<any>(`http://localhost:8000/accommodation/${id}/image`, { params: { id: id} });
   }
 
+  sendRating(data:any): Observable<any>{
+    const url = `http://localhost:8000/reservations/evaluate/${data.reservation_id}`;
+    const params = new HttpParams()
+      .set('reservation_id', data.reservation_id)
+      .set('accommodation_id',data.accommodation_id)
+      .set('stars', data.stars)
+      .set('comment', data.comment);
+    return this.http.post<any>(url, null, { params: params });
+  }
+
+  createUserPost(data:any): Observable<any>{
+    const url = `http://localhost:8000/users/create`;
+    const params = new HttpParams()
+      .set('name', data.name)
+      .set('username',data.username)
+      .set('email', data.email)
+      .set('cpf', data.cpf)
+      .set('password', data.password);
+    return this.http.post<any>(url, null, { params: params });
+  }
+
+  loginUserPost(data:any): Observable<any>{
+    const url = `http://localhost:8000/users/login`;
+    const params = new HttpParams()
+      .set('emailOrUsername', data.emailOrUsername)
+      .set('password', data.password);
+    return this.http.post<any>(url, null, { params: params });
+  }
+
   getAccommodationList(id:string): Observable<any>{
     return this.http.get<any>(`http://localhost:8000/accommodations/${id}/list`, { params: { id: id}});
   }
@@ -39,7 +68,6 @@ export class ManegementService {
   }
 
   editAccommodation(data: any): Observable<any> {
-
     const url = `http://localhost:8000/accommodation/${data.id}/edit`;
     const params = new HttpParams()
       .set('name', data.name  )
