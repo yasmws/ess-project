@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ManegementService } from 'src/app/services/management/management.service';
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { ManegementService } from 'src/app/services/management/management.servic
 })
 export class LoginComponent {
 
-  constructor(private serviceMngt: ManegementService){}
+  constructor(private serviceMngt: ManegementService, private route: Router){}
 
   emailOrUsername!: string
   password!: string
@@ -28,6 +29,7 @@ export class LoginComponent {
     this.serviceMngt.loginUserPost(inputData).subscribe({
       next: (res:any)=>{
         this.openSuccessLogin();
+        //this.route.navigateByUrl('/home')
         console.log(res)},
       error: (err:any)=>{
         this.erro = err.error.detail

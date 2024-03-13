@@ -48,6 +48,16 @@ export class ManegementService {
     return this.http.post<any>(url, null, { params: params });
   }
 
+  logoutUser(): Observable<any>{
+    const url = `http://localhost:8000/users/logout`;
+    return this.http.post<any>(url, null);
+  }
+
+  getLoggedUser(): Observable<any>{
+    const url = `http://localhost:8000/users/logged`;
+    return this.http.get<any>(url);
+  }
+
   getAccommodationList(id:string): Observable<any>{
     return this.http.get<any>(`http://localhost:8000/accommodations/${id}/list`, { params: { id: id}});
   }

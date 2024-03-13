@@ -1,5 +1,12 @@
 html {
-    background-color:#ABA194 ;
+    background-color:#ccc ;
     font-family: "Inter", sans-serif;
     font-weight: 400;
   }
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+}

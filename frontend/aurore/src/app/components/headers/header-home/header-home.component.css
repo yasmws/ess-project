@@ -1,0 +1,32 @@
+.toolbar{
+
+  height: 13vh;
+  width: 100vw;
+  background-color: #ABA194;
+  border-bottom: 2px solid white;
+  justify-content: space-between;
+  overflow: hidden;
+  position: fixed;
+  padding: 0;
+  color: white;
+}
+
+.infoHead{
+height: 90%;
+width: 70%;
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+}
+button{
+  border: 0.1px;
+  border-color: #ccc;
+  border-radius: 10px;
+  color: black;
+  padding: 20px;
+  width: 15%;
+  cursor: pointer;
+  text-align: center;
+  height: 20%;
+  background-color: none;
+}
