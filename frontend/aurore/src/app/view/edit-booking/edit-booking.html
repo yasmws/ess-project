@@ -1,0 +1,40 @@
+<app-header-comum [userName]="name" [loc]="loc"></app-header-comum>
+<div class="main-edit">
+    <div class="cadastro mat-elevation-z4">
+      <p class="edit-reserv">Editar Reserva</p>
+        <form [formGroup]="registerForm">
+
+            <label for="checkin">Check-in</label>
+            <input id="checkin" type="date" min="2021-01-01" max="2027-04-30"
+            name="checkin" placeholder="yyyy-mm-dd" formControlName="checkin" required>
+
+            <div *ngIf="registerForm.get('checkin').invalid && registerForm.get('checkin').touched" class="error-message">
+                <div *ngIf="registerForm.get('checkin').hasError('required')">Campo é obrigatório!</div>
+                <div *ngIf="registerForm.get('checkin').hasError('invalidDate')">Data inválida!</div>
+                <div *ngIf="registerForm.get('checkin').hasError('biggerCheckin')">Check-in deve ser menor que check-out!</div>
+            </div>
+
+            <label for="checkout">Check-out</label>
+            <input id="checkout" name="checkout" placeholder="aaaa-mm-dd" type="date" min="2024-01-01"
+             max="2027-04-30" formControlName="checkout" required>
+
+            <div *ngIf="registerForm.get('checkout').invalid && registerForm.get('checkout').touched">
+                <div *ngIf="registerForm.get('checkout').hasError('required')">Campo obrigatório!</div>
+                <div *ngIf="registerForm.get('checkout').hasError('invalidDate')">Data inválida</div>
+                <div *ngIf="registerForm.get('checkout').hasError('biggerCheckout')">Check-out deve ser maior que check-in!</div>
+            </div>
+
+           <div  *ngIf="registerForm.get('checkout').hasError('valid') && registerForm.get('checkin').hasError('valid')" >
+            <app-botao [title]="'Salvar'" (botaoClicado)="submitEdit()"></app-botao>
+           </div>
+        </form>
+
+    </div>
+    <div class="pop-up" #popUp>
+      <div class="box">
+        <img src= {{link}}>
+        <h2>{{title}}</h2>
+        <p>{{alert}}</p>
+      </div>
+    </div>
+</div>

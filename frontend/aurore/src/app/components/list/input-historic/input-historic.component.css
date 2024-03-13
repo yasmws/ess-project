@@ -1,68 +1,73 @@
 .form-list{
-    display: flex;
-    flex-direction: row;
-    width: 80%;
-    height: 60%;
-    align-items: center;
-    margin-top: 5%;
-    background-color:#ABA194; 
-    justify-content:center
-
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  height: 40%;
+  margin-top: 13vh;
+  align-items: center;
+  margin-top: 5%;
+  background-color:#ABA194;
+  justify-content:center;
+  border-radius: 10px;
+  border-top: 2px solid white;
+  box-shadow: 2px 2px 5px  rgb(135, 120, 120);;
 }
 
 .example-container{
-    width: 70%;
-    justify-content:space-around;
-    display: flex; 
-    flex-direction: row;
+  width: 70%;
+  justify-content:space-around;
+  display: flex;
+  flex-direction: row;
 }
 
- button{
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 0;
-    background-color: #8C271E;
- }
+button{
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 0;
+}
 
- button:hover{
-    transform: scale(1.1);
- }
+.mat-icon:hover{
+  transform: scale(1.1);
 
- .mat-icon{
-    padding: 2px;
- }
+}
 
-  .custom-label {
-    font-size: 14px; 
-    padding-top: 14%;
-    display: inline-flex;
-    height: 100%;
+.mat-icon{
+  padding: 2px;
+}
+
+
+.custom-input {
+  font-size: 0.8rem;
+  width: 70%;
+  padding: 0;
+  margin: 0;
+}
+
+.custom-form-field {
+  margin: 0;
+  padding: 0;
+  float: end;
+}
+
+.custom-error {
+  font-size: 13px;
+  color: #8B0000;
+}
+
+.error{
+    font-size: 0.7rem;
+    color:#8B0000;
     width: 100%;
-  }
-  
-  .custom-input {
-    font-size: 16px;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-  }
-  .custom-label {
-    font-size: 14px;
-    white-space: nowrap;
-    overflow: hidden; 
-    text-overflow: ellipsis;
-  }
-  
-  .custom-form-field {
-    margin: 0;
-    padding: 0;
-    float: end;
-  }
-  
-  .custom-error {
-    font-size: 13px;
-    color: #8B0000;
-  }
-  
+    background-color: #ABA194;
+}
+
+.mat-label{
+  display: flex;
+  flex-direction: row;
+  height: 50%;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+}

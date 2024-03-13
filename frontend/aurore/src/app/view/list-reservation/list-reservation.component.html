@@ -1,0 +1,9 @@
+<div class="list-container">
+    <app-header-comum [userName]="name" [loc]="loc"></app-header-comum>
+  
+    <div class="list">
+        <a class="historic" [routerLink]="historic">Histórico de Reserva</a>
+        <hr/>
+        <app-list-card [reservas]="listReservation" [showList]="showList" [rota]="rota" [rotaDel]="rotaDel"></app-list-card>
+    </div>
+</div>

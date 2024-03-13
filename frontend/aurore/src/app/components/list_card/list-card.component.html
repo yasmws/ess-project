@@ -1,0 +1,9 @@
+<div class="background-canva">
+    <div class="reserva-list">
+      <ul>
+        <li *ngFor="let reserva of reservas">
+        <app-card [reserva]="reserva" [rota]="rota"  [rotaDel]="rotaDel" class="card"></app-card>
+        </li>
+      </ul>
+    </div>
+</div>

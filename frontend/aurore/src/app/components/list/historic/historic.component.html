@@ -1,25 +1,36 @@
 <div class="main-historic">
 
     <div class="title-list">
-        <h1>Viagens</h1>
+        <h2 style="font-family: Petrona;">Reservas realizadas</h2>
     </div>
 
     <hr/>
-    <!--so pode habilitar o display se existir informações-->
     <ul class="list">
         <li class="component-list" *ngFor="let list of dadosList" >
             <div class="component-list-historic">
                <div class="img-list">
-                    <img src={{list.imageUrl}} alt="list.jpeg" width="50%" height="50%">
-                    <div class="description-listn">
-                        <!--consultar a partir do accommodation id a descrição do-->
-                    </div>
+                    <img src={{list.imageUrl}} alt="list.jpeg">
                </div>
                <div class="info-list">
-                    <p>Data Checkin : {{list.checkin_date}}</p>
-                    <p>Data Checkout : {{list.checkout_date}}</p>
-                    <p>Price: {{list.total_price}}</p>
+                    <p><b>Data Checkin:</b>{{list.checkin_date}}</p>
+                    <p><b>Data Checkout:</b>{{list.checkout_date}}</p>
+                    <p><b>Price:</b>{{list.total_price}}</p>
+                    <hr/>
+                    <div class="description-list">
+                        <p>{{list.description}}</p>
+                    </div>
                </div>
+               <div class="rating-box">
+                    <div class="stars">
+                        <mat-icon>star_border</mat-icon>
+                        <mat-icon>star_border</mat-icon>
+                        <mat-icon>star_border</mat-icon>
+                        <mat-icon>star_border</mat-icon>
+                        <mat-icon>star_border</mat-icon>
+                    </div>
+                    <a class="avaliar" (click)="routerTest(list)"><span>Faça sua Avaliação</span></a>
+               </div>
+
             </div>
         </li>
     </ul>

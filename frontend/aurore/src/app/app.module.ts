@@ -22,6 +22,15 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { EditBookingComponent } from './view/edit-booking/edit-booking.component';
+import { ListReservationComponent } from './view/list-reservation/list-reservation.component';
+import { ListAccomodationComponent } from './view/list-accommodation/list-accommodation.component';
+// import { EditAccomodationComponent } from './view/edit-accommodation/edit-accommodation.component';
+import { HistoricMainComponent } from './view/historic-main/historic-main.component';
+import { BotaoComponent } from './components/assets/botao-comum/botao-component';
+import { CardComponent } from './components/card/card.component';
+import { HeaderComumComponent } from './components/headers/header-comum/header-comum.component';
+import { ListCardComponent } from './components/list_card/list-card.component';
 
 
 @NgModule({
@@ -31,6 +40,15 @@ import { RegisterComponent } from './components/register/register.component';
     BookingMngtComponent,
     HistoricComponent,
     InputHistoricComponent,
+    BotaoComponent,
+    EditBookingComponent,
+    HeaderComumComponent,
+    ListReservationComponent,
+    ListAccomodationComponent,
+    CardComponent,
+    ListCardComponent,
+    HistoricMainComponent,
+    // EditAccomodationComponent,
     HomeComponent,
     LoginComponent,
     RegisterComponent
