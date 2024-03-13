@@ -1,0 +1,18 @@
+<div class="main">
+    <div class="description">
+        <h1>Descrição da Acomodação</h1>
+            <div class="accommodationInfo">
+                <label><strong>Nome:</strong> {{ accommodationInfo?.name }}</label>
+                <label><strong>Localização:</strong> {{ accommodationInfo?.location }}</label>
+                <label><strong>Número de Quartos:</strong> {{ accommodationInfo?.bedrooms }}</label>
+                <label><strong>Número máximo de hóspedes:</strong> {{ accommodationInfo?.max_capacity }}</label>
+                <label><strong>Descrição:</strong> {{ accommodationInfo?.description }}</label>
+                <label><strong>Preço por Noite:</strong> {{ accommodationInfo?.price }}</label>
+            </div>
+            <div class="cardImg">
+                <label for="img"><strong>Imagem da Acomodação:</strong></label>
+                <img src="{{accommodationInfo?.image}}" alt = "Imagem da Acomodação">
+            </div>
+    </div>
+    <button type="submit" class="form-control" [style.background]="buttonColor" (click)="onButtonClick()"  (mouseover)="changeButtonColor('#38354E')"  (mouseout)="changeButtonColor('#8C271E')" >Reservar</button>
+</div>
