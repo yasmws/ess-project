@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'listRs/:user/historic', component: HistoricMainComponent},
   { path: 'listRs/:user/editRs/:id', component: EditBookingComponent },
   { path: 'listAc/:user/editAc/:id', component: EditAccommodationComponent},
-  { path: 'listRs/:user/historic/:id', component: RatingComponent},
+  { path: 'listRs/:user/rating', component: RatingComponent},
   { path: 'create-acmdt', component: CreateAccommodationsComponent},
   { path: 'book-acmdt', component: BookAccommodationsComponent}
   // { path: 'listAc/:user', component:ListAccomodationComponent},

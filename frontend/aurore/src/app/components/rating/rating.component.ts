@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ManegementService } from 'src/app/services/management/management.service';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
 
 @Component({
@@ -18,14 +18,10 @@ export class RatingComponent {
   stars!:number;
   comment!:string;
 
-  constructor(private serviceMngt: ManegementService, private route: ActivatedRoute, private location: Location){
-    this.route.params.subscribe(params => {
-      this.reservation_id = params['reserva'];
-      this.accommodation_id = params['accomodation'];
-      this.name = params['user'];
-      console.log(this.reservation_id)
-      });
-
+  constructor(private serviceMngt: ManegementService, private route: ActivatedRoute, private rt: Router, private location: Location){
+      const navigation = this.rt.getCurrentNavigation();
+      this.accommodation_id= navigation!.extras.state!['accommodation'];
+      this.reservation_id = navigation!!.extras.state!['reservation'];
   }
  
   onChangeStars($event:number){
