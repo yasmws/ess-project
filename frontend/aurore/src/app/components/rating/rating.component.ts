@@ -24,14 +24,10 @@ export class RatingComponent {
       this.accommodation_id = params['accomodation'];
       this.name = params['user'];
       console.log(this.reservation_id)
-      this.route.params.subscribe(params => {
-        });
       });
 
-    
   }
  
-
   onChangeStars($event:number){
     this.stars = $event;
   }
