@@ -3,7 +3,7 @@
     height: 100%;
     overflow-x: hidden;
     background-color: #ccc;
-  
+
 }
 
 .historic{
@@ -29,5 +29,5 @@ h3{
 
 hr{
     font-size: 2px;
-    margin: 2%;
+    margin-top: 2%;
 }
