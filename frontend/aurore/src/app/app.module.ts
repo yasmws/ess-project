@@ -38,6 +38,7 @@ import { BookAccommodationsComponent } from './view/book-accommodations/book-acc
 import {HeaderHomeComponent } from './components/headers/header-home/header-home.component'
 import { EmailComponent} from './components/email/email.component'
 
+
 @NgModule({
   declarations: [
     AppComponent,

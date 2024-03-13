@@ -9,12 +9,12 @@
         <li class="component-list" *ngFor="let list of dadosList" >
             <div class="component-list-historic">
                <div class="img-list">
-                    <img src={{list.imageUrl}} alt="list.jpeg">
+                    <img src='https://firebasestorage.googleapis.com/v0/b/aurore-35e60.appspot.com/o/accommodation%2Fhouse.jpg?alt=media&token=bb4cdf92-05ad-45f4-9a9e-5e9342a97107' alt="list.jpeg">
                </div>
                <div class="info-list">
-                    <p><b>Data Checkin:</b>{{list.checkin_date}}</p>
-                    <p><b>Data Checkout:</b>{{list.checkout_date}}</p>
-                    <p><b>Price:</b>{{list.total_price}}</p>
+                    <p><b>Checkin:</b>{{list.checkin_date}}</p>
+                    <p><b>Checkout:</b>{{list.checkout_date}}</p>
+                    <p><b>Total pago:</b> R$ {{list.total_price}}</p>
                     <hr/>
                     <div class="description-list">
                         <p>{{list.description}}</p>
@@ -22,11 +22,11 @@
                </div>
                <div class="rating-box">
                     <div class="stars">
-                        <mat-icon>star_border</mat-icon>
-                        <mat-icon>star_border</mat-icon>
-                        <mat-icon>star_border</mat-icon>
-                        <mat-icon>star_border</mat-icon>
-                        <mat-icon>star_border</mat-icon>
+                        <mat-icon class="bouncing">star_border</mat-icon>
+                        <mat-icon class="bouncing">star_border</mat-icon>
+                        <mat-icon class="bouncing">star_border</mat-icon>
+                        <mat-icon class="bouncing">star_border</mat-icon>
+                        <mat-icon class="bouncing">star_border</mat-icon>
                     </div>
                     <a class="avaliar" (click)="routerTest(list)"><span>Faça sua Avaliação</span></a>
                </div>

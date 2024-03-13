@@ -3,6 +3,7 @@
     width: 100vw;
     background-color: #ccc;
     padding-top: 13vh;
+    overflow-x: hidden;
 }
 
 h3{
