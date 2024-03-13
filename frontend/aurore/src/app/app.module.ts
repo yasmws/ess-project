@@ -57,7 +57,7 @@ import {HeaderHomeComponent } from './components/headers/header-home/header-home
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    HeaderHomeComponent
+    HeaderHomeComponent,
     CreateAccommodationsComponent,
     BookAccommodationsComponent,
   ],

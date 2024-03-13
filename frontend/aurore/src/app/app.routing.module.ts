@@ -13,7 +13,6 @@ import { EditBookingComponent } from './view/edit-booking/edit-booking.component
 import { EditAccommodationComponent } from './view/edit-accommodation/edit-accommodation.component';
 import { CreateAccommodationsComponent } from './view/create-accommodations/create-accommodations.component';
 import { BookAccommodationsComponent } from './view/book-accommodations/book-accommodations.component';
-// import { ListAccomodationComponent } from './view/list-accommodation/list-accommodation.component';
 // import { ListReservationComponent } from './view/list-reservation/list-reservation.component';
 // import { HistoricMainComponent } from './view/historic-main/historic-main.component';
 // import { EditBookingComponent } from './view/edit-booking/edit-booking.component';
@@ -32,7 +31,7 @@ const routes: Routes = [
   { path: 'listRs/:user/historic', component: HistoricMainComponent},
   { path: 'listRs/:user/editRs/:id', component: EditBookingComponent },
   { path: 'listAc/:user/editAc/:id', component: EditAccommodationComponent},
-  { path: 'listRs/:user/historic/:id', component: RatingComponent}
+  { path: 'listRs/:user/historic/:id', component: RatingComponent},
   { path: 'create-acmdt', component: CreateAccommodationsComponent},
   { path: 'book-acmdt', component: BookAccommodationsComponent}
   // { path: 'listAc/:user', component:ListAccomodationComponent},
