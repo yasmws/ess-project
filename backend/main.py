@@ -21,6 +21,8 @@ from src.db import firebase_config
 from pydantic import SecretStr
 from typing import Optional
 
+import src.api.get_accommodation as get_accommodation
+import src.api.get_reservations as get_reservations
 
 app = FastAPI()
 
@@ -212,3 +214,14 @@ def delete_payment_method(
 @app.post("/email_trigger")
 def send_email():
     return send_email
+
+    
+@app.get("/accommodations/{id}/list")
+def get_accommodations_id(id:str):
+    return get_accommodation.get_accommodations(id)
+
+@app.get("/reservations/{id}/list")
+def get_reservations_id(id:str):
+    return get_reservations.get_reservations(id)
+
+

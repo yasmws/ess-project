@@ -24,7 +24,7 @@ export class HeaderComumComponent implements OnInit{
   visible: any = false;
   clicked: boolean = false;
 
-  name: any = true;
+  name: any = false;
   valid: boolean = false;
 
   @Input() userName : any;
@@ -40,6 +40,7 @@ export class HeaderComumComponent implements OnInit{
         this.userName = result
         this.valid = true;
       }
+      else this.name = true;
     })
 
   }
