@@ -3,6 +3,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { any } from 'cypress/types/bluebird';
 
 @Component({
   selector: 'app-search-page',
@@ -31,7 +32,12 @@ export class SearchPageComponent {
 
     this.http.get(url, { headers }).subscribe((data: any) => {
       console.log(data);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home'], {
+        queryParams: {
+          checkin,
+          checkout
+        }
+      });
     });
   }
 
