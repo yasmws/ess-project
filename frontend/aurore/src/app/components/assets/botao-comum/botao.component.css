@@ -1,0 +1,20 @@
+.bnt{
+    width: 90%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #8C271E;
+    text-align: center;
+}
+
+.bnt:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.router-bnt{
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    height: 100%;
+    width: 100%;
+    display: flex;
+}

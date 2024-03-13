@@ -1,15 +1,15 @@
 from datetime import date
-import src.api.reservations as reservations
-import src.api.users as users
-import src.api.accommodations as accommodations
+from src.api import reservations
+from src.api import users
+from src.api import accommodations
 
-import src.api.delete_accommodations as delete_accommodations
-import src.api.delete_reservation as delete_reservation
-import src.api.edit_accommodations as edit_accommodations
-import src.api.edite_reservation as edite_reservation
-import src.api.historyc as historyc
-import src.api.evaluate as evaluate
-import src.api.payment_method as payment
+from src.api import delete_accommodations
+from src.api import delete_reservation
+from src.api import edit_accommodations
+from src.api import edite_reservation
+from src.api import historyc
+from src.api import evaluate
+from src.api import payment_method as payment
 from src.api.email_trigger import send_email
 
 from fastapi import FastAPI, HTTPException, Depends, Cookie
@@ -17,9 +17,7 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from src.db.firebase_config import auth
-import src.db.firebase_config as firebase_config
-from src.db.firebase_config import auth
-import src.db.firebase_config as firebase_config
+from src.db import firebase_config
 from pydantic import SecretStr
 from typing import Optional
 
@@ -37,6 +35,9 @@ app.add_middleware(
 
 storage = firebase_config.firebase.storage()
 app.logged_user = ""
+
+def get_logged_user():
+     return users.get_username_from_email(app.logged_user)
 
 @app.get("/")
 def read_root():
@@ -182,29 +183,29 @@ def del_reservation(id: str):
 def get_historic(id:str, checkin: str, checkout:str):
      return historyc.historyc(id, checkin, checkout)
 
-@app.post("/payment/add")
+@app.post("/payment/{id}/add")
 def add_payment_method(
-    username: str, 
+    id: str, 
     type: str, 
-    id: str = None
+    method_id: str = None
     ):
-    return payment.add_payment_method(username, type, id)
+    return payment.add_payment_method(id, type, method_id)
 
-@app.put("/payment/update")
+@app.put("/payment/{id}/update")
 def update_payment_method(
-    username: str,
+    id: str,
     method: str,
-    type: str = "foo",
-    id: str = "foo"
+    type: str,
+    method_id: str = None
     ):
-    return payment.update_payment_method(username, method, type, id)
+    return payment.update_payment_method(id, method, type, method_id)
 
-@app.delete("/payment/delete")
+@app.delete("/payment/{id}/delete")
 def delete_payment_method(
-    username: str,
+    id: str,
     method: str
     ):
-    return payment.delete_payment_method(username, method)
+    return payment.delete_payment_method(id, method)
 
 @app.post("/email_trigger")
 def send_email():

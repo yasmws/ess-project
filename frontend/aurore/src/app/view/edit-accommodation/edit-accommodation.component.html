@@ -1,0 +1,31 @@
+<app-header-comum [userName]="name" [loc]="loc"></app-header-comum>
+<div class="main-form">
+  <form [formGroup]="editForm ">
+    <h3 style="padding: 1%;">Editar Cadastro</h3>
+
+      <div class="form">
+
+        <label for="name">Nome</label>
+        <input type="text" id="name" formControlName="name">
+
+
+        <label for="location">Localização</label>
+        <input type="text" id="location" formControlName="location">
+
+
+        <label for="bedrooms">Quartos</label>
+        <input type="number" id="bedrooms" formControlName="bedrooms">
+
+
+        <label for="maxCapacity">Capacidade Máxima</label>
+        <input type="number" id="maxCapacity" formControlName="maxCapacity">
+
+
+        <label for="description">Descrição</label>
+        <textarea id="description" formControlName="description"></textarea>
+
+
+        <button type="submit" class="bnt-pop" (click)="editaAcmd()">Salvar</button>
+      </div>
+  </form>
+</div>
