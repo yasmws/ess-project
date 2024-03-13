@@ -36,8 +36,6 @@ app.add_middleware(
 storage = firebase_config.firebase.storage()
 app.logged_user = ""
 
-def get_logged_user():
-     return users.get_username_from_email(app.logged_user)
 
 @app.get("/")
 def read_root():
@@ -82,6 +80,10 @@ def logout_user():
         app.logged_user = ""
         return "Usuário deslogado com sucesso!"
     raise HTTPException(status_code=400, detail="Falha ao realizar logout: Usuário não estava logado.")
+
+@app.get("/users/logged")
+def logged():
+     return users.get_username_from_email(app.logged_user)
 
 @app.post("/accommodation/create")
 def create_accommodation(
