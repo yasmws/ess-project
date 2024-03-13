@@ -80,3 +80,40 @@ class Validation:
                  firebase_config.db.child("reservation").child(index).remove()
         
         return True
+    
+    @staticmethod
+    def validate_user_payment_register(username):
+        users = firebase_config.db.child("payment").get().val()
+
+        for user in users:
+            if username == user:
+                return True
+            
+        return False
+    
+    @staticmethod
+    def get_methods_amount(username):
+        cnt = firebase_config.db.child("payment").child(username).child("cnt").get().val()
+        return cnt
+    
+    @staticmethod
+    def validate_method_refer(username, method_refer):
+        methods = firebase_config.db.child("payment").child(username).get().val()
+
+        for method in methods:
+            if method == method_refer:
+                return True
+            
+        return False
+    
+    @staticmethod
+    def validate_method_register(username, method_type, method_id):
+        cnt = firebase_config.db.child("payment").child(username).child("cnt").get().val()
+
+        for i in range(cnt):
+            method = firebase_config.db.child("payment").child(username).child("method"+str(i+1))
+            if method_type == method.child("type").get().val() and method_id == method.child("id").get().val():
+                return True
+        
+        return False
+    

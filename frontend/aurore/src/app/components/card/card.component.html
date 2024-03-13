@@ -1,0 +1,16 @@
+<div class="card mat-elevation-z4">
+
+    <img src={{reserva.img_url}} width="130px" height="130px">
+  
+    <div class="description-tag">
+      <div class="info">
+         <h4 style="padding-left: 2%;">{{reserva.name}}, {{reserva.location}}</h4>
+         <p style="margin-top: 5%;" *ngIf="reserva.description">Descrição: {{reserva.description}}</p>
+         <p style="margin-top: 5%;" *ngIf="reserva.checkin">Estadia: {{reserva.checkin}} à  {{reserva.checkout}}</p>
+         <p style="margin-top: 5%;" *ngIf="reserva.price">Preço: R$ {{reserva.price}} </p>
+      </div>
+  
+     <button (click)="rotaChange()">Editar</button>
+     <button (click)="deleteCard()" style=" margin-bottom: 2%;">Deletar</button>
+    </div>
+  </div>
