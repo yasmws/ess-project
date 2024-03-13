@@ -1,19 +1,20 @@
 <mat-toolbar class="toolbar mat-elevation-v4">
-    <a routerLink="/"><img src="./../../../../assets/img/logo.png" alt="logo.png" height="70px"></a>
+    <a routerLink="/search"><img src="./../../../../assets/Aurore logo.png" alt="logo.png" height="70px"></a>
 
-    <div class="infoHead">
+    <div class="infoHead" *ngIf="valid">
        <a class="options" [routerLink]="rotaA" (click)="accodation()" #accomod [ngClass]="{'background': loc == 'accomd'}"><p>Acomodacões</p></a>
        <a class="options"  [routerLink]="rotaB" (click)="reservation()" #reserv [ngClass]="{'background': loc == 'reserv'}"><p>Reservas</p></a>
        <a class="options"><p>Anuncie seu espaço aqui</p></a>
-      
+
         <div class="apresentar">
           <button mat-button (click)="changeClick()">
             Olá, {{userName}}
             <mat-icon>{{clicked? 'keyboard_arrow_up':'keyboard_arrow_down'}}</mat-icon>
           </button>
         </div>
-        <div class="apresentar"*ngIf="clicked" style="background-color: #ccc;">
-        <button style="background-color: #ccc; color: black; padding: 5px; border:0; margin-right: 3%;">Deslogar</button>
+        <div class="apresentar" *ngIf="clicked" style="background-color: #ccc;">
+        <button style="background-color: #ccc; color: black; padding: 5px; border:0; margin-right: 3%;" (click)="logOut()">Logout</button>
         </div>
     </div>
+    <button routerLink="/users/login"class="button-login"  *ngIf="name">Login</button>
 </mat-toolbar>
