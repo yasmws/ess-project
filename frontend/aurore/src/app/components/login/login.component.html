@@ -14,11 +14,18 @@
                     <input type="text" [(ngModel)]="password" name="password" class="form-control-password">
                 </div>
                 <div class="mb-3">
+                    <span *ngIf="erro" class="text-danger">{{erro}}</span>
                     <button type="submit" class="btn-login">Logar</button>
                 </div>
                 <a href="http://localhost:4200/users/create">
                     <button type="button" class="btn-register">Não tem Login? Cadastre-se aqui</button>
                 </a>
+                <div class="success-screen" id="success-login" onclick="openSuccessLogin()">
+                    <span class="success-text">Usuário logado com sucesso!</span>
+                    <a href="http://localhost:4200/">
+                        <button type="button" class="btn-success">Voltar para a página inicial</button>
+                    </a>
+                </div>
             </form>
         </div>
     </div>
