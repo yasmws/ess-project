@@ -83,6 +83,10 @@ def logout_user():
         return "Usuário deslogado com sucesso!"
     raise HTTPException(status_code=400, detail="Falha ao realizar logout: Usuário não estava logado.")
 
+@app.get("/users/logged")
+def logged():
+     return users.get_username_from_email(app.logged_user)
+
 @app.post("/accommodation/create")
 def create_accommodation(
         accommodation_name: str,
