@@ -1,14 +1,17 @@
-
-<form (ngSubmit)="sendRating()">
-    <div class="ratingBox">
-        <div class="container">
-            <div class="form-group" id="stars">
-                <app-stars (changeStars) = "onChangeStars($event)" ></app-stars>
+<div class="containerating">
+    <app-header-comum [userName]="name"[loc]="loc"></app-header-comum>
+    <form (ngSubmit)="sendRating()">
+        <div class="ratingBox">
+            <div class="container">
+                <div class="form-group" id="stars">
+                    <app-stars (changeStars) = "onChangeStars($event)" ></app-stars>
+                </div>
+                <div class="form-group">
+                    <textarea cols="60" rows="20" type="text" class="form-control" [(ngModel)]="comment" name="comment" placeholder="comente"> </textarea>
+                </div>
             </div>
-            <div class="form-group">
-                <textarea cols="60" rows="20" type="text" class="form-control" [(ngModel)]="comment" name="comment" placeholder="comente"> </textarea>
-            </div>
+                <div class="form-group"><button type="submit">enviar</button></div>
         </div>
-            <div class="form-group"><button type="submit">enviar</button></div>
-    </div>
-</form>
+    </form>
+</div>
+
