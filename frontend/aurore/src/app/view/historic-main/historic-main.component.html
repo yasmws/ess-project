@@ -1,0 +1,5 @@
+<app-header-comum [userName]="name"[loc]="loc"></app-header-comum>
+<div class="info" style="height: 87vh; padding-top: 13vh">
+    <app-input-historic style="position: absolute; top: 0; left: 60%; transform: translateX(-50%); height: 30%; width: 80%; margin-top: 5%;" (formSubmitted)="onFormSubmitted($event)"></app-input-historic>
+    <app-historic style="height: 60%; width: 100%; padding:0% 20% 0% 15%; margin-top: 12%;" *ngIf="historicData" [historicData]="historicData" ></app-historic>
+</div>
