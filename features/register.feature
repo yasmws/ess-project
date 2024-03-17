@@ -10,36 +10,31 @@ Then Continuo na tela de "Cadastro de usuário"
 And Vejo uma mensagem de "Usuário criado!"
 
 Scenario: Usuário tentou cadastrar um nome com números
-Given O banco de dados do sistema não tem cadastrado um usuário com Username "plop", Email "plop@cin.ufpe.br" e CPF "12345678905"
-And Estou na tela de "Cadastro de usuário"
+Given Estou na tela de "Cadastro de usuário"
 When Eu tento cadastrar um usuário com Nome "Paulo12", Username "plop", Email "plop@cin.ufpe.br" , CPF "12345678905" e senha "12345678"
 Then Continuo na tela de "Cadastro de usuário"
 And Vejo uma mensagem de erro: "Nome só deve conter letras."
 
 Scenario: Usuário tentou cadastrar um username com dígitos especiais
-Given O banco de dados do sistema não tem cadastrado um usuário com Username "plop", Email "plop@cin.ufpe.br" e CPF "12345678905"
-And Estou na tela de "Cadastro de usuário"
+Given Estou na tela de "Cadastro de usuário"
 When Eu tento cadastrar um usuário com Nome "Paulo", Username "plop@", Email "plop@cin.ufpe.br" , CPF "12345678905" e senha "12345678"
 Then Continuo na tela de "Cadastro de usuário"
 And Vejo uma mensagem de erro: "Username só deve conter caracteres alfanuméricos."
 
 Scenario: Usuário tentou cadastrar um email em formato inválido
-Given O banco de dados do sistema não tem cadastrado um usuário com Username "plop", Email "plop@cin.ufpe.br" e CPF "12345678905"
-And Estou na tela de "Cadastro de usuário"
+Given Estou na tela de "Cadastro de usuário"
 When Eu tento cadastrar um usuário com Nome "Paulo", Username "plop", Email "plopcin.ufpe.br" , CPF "12345678905" e senha "12345678"
 Then Continuo na tela de "Cadastro de usuário"
 And Vejo uma mensagem de erro: "Esse email é inválido."
 
 Scenario: Usuário tentou cadastrar um CPF em formato inválido
-Given O banco de dados do sistema não tem cadastrado um usuário com Username "plop", Email "plop@cin.ufpe.br" e CPF "12345678905"
-And Estou na tela de "Cadastro de usuário"
+Given Estou na tela de "Cadastro de usuário"
 When Eu tento cadastrar um usuário com Nome "Paulo", Username "plop", Email "plop@cin.ufpe.br" , CPF "012345678905" e senha "12345678"
 Then Continuo na tela de "Cadastro de usuário"
 And Vejo uma mensagem de erro: "CPF está no formato inválido."
 
 Scenario: Usuário tentou cadastrar uma senha com menos de 8 caracteres
-Given O banco de dados do sistema não tem cadastrado um usuário com Username "plop", Email "plop@cin.ufpe.br" e CPF "12345678905"
-And Estou na tela de "Cadastro de usuário"
+Given Estou na tela de "Cadastro de usuário"
 When Eu tento cadastrar um usuário com Nome "Paulo", Username "plop", Email "plop@cin.ufpe.br" , CPF "12345678905" e senha "1234567"
 Then Continuo na tela de "Cadastro de usuário"
 And Vejo uma mensagem de erro: "Senha deve conter pelo menos 8 caracteres."

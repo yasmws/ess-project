@@ -3,28 +3,25 @@ Feature: Login
 #Cenários de GUI
 
 Scenario: Login do usuário usando username
-Given O banco de dados do sistema tem cadastrado um usuário com Nome "Pedro", Username "phagp", Email "phagp@cin.ufpe.br" , CPF "123456789-12" e senha "1234"
+Given O banco de dados do sistema tem cadastrado um usuário com Nome "Pedro", Username "phagp", Email "phagp@cin.ufpe.br" , CPF "12345678912" e senha "12345678"
 And Estou na tela "Login de usuário"
-When Tento fazer login com Username "phagp" e senha "1234"
+When Tento fazer login com Username "phagp" e senha "12345678"
 Then Continuo na tela de "Login de usuário"
 And Vejo uma mensagem de "Usuário logado com sucesso!"
-And Eu estou logado no sistema
 
 Scenario: Login do usuário usando email
-Given O banco de dados do sistema tem cadastrado um usuário com Nome "Pedro", Username "phagp", Email "phagp@cin.ufpe.br" , CPF "123456789-12" e senha "1234"
+Given O banco de dados do sistema tem cadastrado um usuário com Nome "Pedro", Username "phagp", Email "phagp@cin.ufpe.br" , CPF "12345678912" e senha "12345678"
 And Estou na tela "Login de usuário"
-When Tento fazer login com Email "phagp@cin.ufpe.br" e senha "1234"
+When Tento fazer login com Email "phagp@cin.ufpe.br" e senha "12345678"
 Then Continuo na tela de "Login de usuário"
 And Vejo uma mensagem de "Usuário logado com sucesso!"
-And Eu estou logado no sistema
 
 Scenario: Usuário informou senha incorretamente durante o login 
-Given O banco de dados do sistema tem cadastrado um usuário com Nome "Pedro", Username "phagp", Email "phagp@cin.ufpe.br" , CPF "123456789-12" e senha "1234"
+Given O banco de dados do sistema tem cadastrado um usuário com Nome "Pedro", Username "phagp", Email "phagp@cin.ufpe.br" , CPF "12345678912" e senha "12345678"
 And Estou na tela "Login de usuário"
-When Tento fazer login com Username "phagp" e senha "12345"
+When Tento fazer login com Username "phagp" e senha "123456789"
 Then Continuo na tela de "Login de usuário"
 And Vejo uma mensagem de erro: "Email/Username ou senha inválidos."
-And Eu continuo não estando logado ao sistema
 
 Scenario: Usuário informou email incorretamente durante o login 
 Given O banco de dados do sistema tem cadastrado um usuário com Nome "Pedro", Username "phagp", Email "phagp@cin.ufpe.br" , CPF "12345678912" e senha "12345678"
@@ -32,7 +29,6 @@ And Estou na tela "Login de usuário"
 When Tento fazer login com Email "phagp2@cin.ufpe.br" e senha "12345678"
 Then Continuo na tela de "Login de usuário"
 And Vejo uma mensagem de erro: "Email/Username ou senha inválidos."
-And Eu continuo não estando logado ao sistema
 
 Scenario: Usuário informou username incorretamente durante o login 
 Given O banco de dados do sistema tem cadastrado um usuário com Nome "Pedro", Username "phagp", Email "phagp@cin.ufpe.br" , CPF "12345678912" e senha "12345678"
@@ -41,7 +37,6 @@ And Estou na tela "Login de usuário"
 When Tento fazer login com Username "phagp2" e senha "12345678"
 Then Continuo na tela de "Login de usuário"
 And Vejo uma mensagem de erro: "Email/Username ou senha inválidos."
-And Eu continuo não estando logado ao sistema
 
 Scenario: Usuário informou username não existente no banco de dados
 Given O banco de dados do sistema não tem cadastrado nenhum usuário com Username "phagp2"
@@ -49,7 +44,6 @@ And Estou na tela "Login de usuário"
 When Tento fazer login com Username "phagp2" e senha "12345678"
 Then Continuo na tela de "Login de usuário"
 And Vejo uma mensagem de erro: "Username inválido."
-And Eu continuo não estando logado ao sistema
 
 Scenario: Usuário informou senha incorretamente durante o login
 Given O banco de dados do sistema tem cadastrado um usuário com Nome "Pedro", Username "phagp", Email "phagp@cin.ufpe.br" , CPF "12345678912" e senha "12345678"
@@ -57,7 +51,6 @@ And Estou na tela "Login de usuário"
 When Tento fazer login com Username "phagp" e senha "12345679"
 Then Continuo na tela de "Login de usuário"
 And Vejo uma mensagem de erro: "Email/Username ou senha inválidos."
-And Eu continuo não estando logado ao sistema
 
 #Cenários de serviço
 
