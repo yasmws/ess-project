@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "./dist/out-tsc",
+    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
@@ -14,8 +15,9 @@
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "Node",
+    "resolveJsonModule": true,
     "importHelpers": true,
-    "target": "ES2022",
+    "target": "ESNext",
     "module": "commonjs",
     "useDefineForClassFields": false,
     "skipLibCheck": true,

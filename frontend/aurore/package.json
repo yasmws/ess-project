@@ -22,6 +22,7 @@
     "@fortawesome/angular-fontawesome": "^0.14.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "lower-case": "^3.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.4"
@@ -32,6 +33,7 @@
     "@angular/compiler-cli": "^17.2.4",
     "@badeball/cypress-cucumber-preprocessor": "^20.0.2",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
+    "@cucumber/cucumber": "^10.3.1",
     "@cypress/code-coverage": "^3.12.28",
     "@playwright/test": "^1.42.1",
     "@types/jasmine": "~4.3.0",
