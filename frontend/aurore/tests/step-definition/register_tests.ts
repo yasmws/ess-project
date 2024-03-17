@@ -19,6 +19,9 @@ Then('Continuo na tela de "Cadastro de usuário"', async function (this: ICustom
     await expect(this.page!).toHaveURL('http://localhost:4200/users/create');
 });  
 Then('Vejo uma mensagem de erro: {string}', async function (this: ICustomWorld, message) {
+    const locator = this.page!.locator('.text-danger');
+    await expect(locator).toBeVisible();
+
     const text = await this.page!.innerText('.text-danger');
     expect(text).toBe(message);
 });

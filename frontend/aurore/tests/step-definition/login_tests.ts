@@ -17,6 +17,9 @@ Then('Continuo na tela de "Login de usuário"', async function (this: ICustomWor
     await expect(this.page!).toHaveURL('http://localhost:4200/users/login');
 });  
 Then('Vejo uma mensagem de {string}', async function (this: ICustomWorld, message) {
+    const locator = this.page!.locator('.success-text');
+    await expect(locator).toBeVisible();
+    
     const text = await this.page!.innerText('.success-text');
     expect(text).toBe(message);
 });
