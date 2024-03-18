@@ -1757,6 +1757,21 @@
   dependencies:
     browser-process-hrtime "^1.0.0"
 
+"@esbuild/linux-x64@0.18.20":
+  version "0.18.20"
+  resolved "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.18.20.tgz"
+  integrity sha512-UYqiqemphJcNsFEskc73jQ7B9jgwjWrSayxawS6UVFZGWrAAtkzjxSqnoclCXxWtfwLdzU+vTpcNYhpn43uP1w==
+
+"@esbuild/linux-x64@0.19.12":
+  version "0.19.12"
+  resolved "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.19.12.tgz"
+  integrity sha512-B71g1QpxfwBvNrfyJdVDexenDIt1CiDN1TIXLbhOw0KhJzE78KIFGX6OJ9MrtC0oOqMWf+0xop4qEU8JrJTwCg==
+
+"@esbuild/linux-x64@0.20.0":
+  version "0.20.0"
+  resolved "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.20.0.tgz"
+  integrity sha512-H9Eu6MGse++204XZcYsse1yFHmRXEWgadk2N58O/xd50P9EvFMLJTQLg+lB4E1cF2xhLZU5luSWtGTb0l9UeSg==
+
 "@esbuild/netbsd-x64@0.19.12":
   version "0.19.12"
   resolved "https://registry.npmjs.org/@esbuild/netbsd-x64/-/netbsd-x64-0.19.12.tgz"
@@ -1785,21 +1800,6 @@
   dependencies:
     base64-js "^1.0.2"
     ieee754 "^1.1.4"
-
-"@esbuild/win32-x64@0.18.20":
-  version "0.18.20"
-  resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.18.20.tgz"
-  integrity sha512-kTdfRcSiDfQca/y9QIkng02avJ+NCaQvrMejlsB3RRv5sE9rRoeBPISaZpKxHELzRxZyLvNts1P27W3wV+8geQ==
-
-"@esbuild/win32-x64@0.19.12":
-  version "0.19.12"
-  resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.19.12.tgz"
-  integrity sha512-T1QyPSDCyMXaO3pzBkF96E8xMkiRYbUEZADd29SyPGabqxMViNoii+NcK7eWJAEoU6RZyEm5lVSIjTmcdoB9HA==
-
-"@esbuild/win32-x64@0.20.0":
-  version "0.20.0"
-  resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.20.0.tgz"
-  integrity sha512-NgJnesu1RtWihtTtXGFMU5YSE6JyyHPMxCwBZK7a6/8d31GuSo9l0Ss7w1Jw5QnKUawG6UEehs883kcXf5fYwg==
 
 "@fastify/busboy@^2.0.0":
   version "2.1.1"
