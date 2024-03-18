@@ -6,8 +6,8 @@
     <h2>Veja nossas acomodações disponíveis:</h2>
   </div>
   <br>
-  <div class="accommodation" *ngFor="let accommodation of accommodations">
-    <img [src]="accommodation.image" (click)="navigateToAccommodationDetails(accommodation.id)">
+  <div class="accommodation" *ngFor="let accommodation of accommodations" (click)="navigateToAccommodationDetails(accommodation.id)">
+    <img [src]="accommodation.image">
     <h3>{{ accommodation.name }}</h3>
     <p>{{ accommodation.description }}</p>
     <p><strong>Localização:</strong> {{ accommodation.location }}</p>
