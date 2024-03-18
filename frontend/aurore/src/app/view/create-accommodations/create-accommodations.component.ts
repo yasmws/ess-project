@@ -38,21 +38,22 @@ export class CreateAccommodationsComponent implements OnInit {
   accommodation_bedrooms: number = 0;
   accommodation_max_capacity: number = 0;
   accommodation_description: string = '';
-  //accommodation_price: number = 0;
+  accommodation_price: number = 0;
   accommodation_id: string = '';
-  user_id: any ;
+  user_id: any;
 
   ngOnInit(): void {
-    this.user_id = this.service.getLoggedUser();
-
+    //this.user_id = this.service.getLoggedUser();
+    this.user_id = "pedro123";
     this.accommodationForm = this.formBuilder.group({
       accommodation_name: ['', [Validators.required, this.validateNameLength.bind(this)]],
       accommodation_loc: ['', Validators.required],
       accommodation_bedrooms: [0, [Validators.required, Validators.min(1), this.validatePositiveInteger.bind(this)]],
       accommodation_max_capacity: [0, [Validators.required, Validators.min(1), this.validatePositiveInteger.bind(this)]],
       accommodation_description: ['', [Validators.required, this.validateDescriptionLength.bind(this)]],
-      // accommodation_price: [0, [Validators.required, Validators.min(0)]],
+      accommodation_price: [0, [Validators.required, Validators.min(0), this.validatePositiveInteger.bind(this)]],
     });
+
   }
 
   hasError(controlName: string, errorType: string): boolean {
@@ -86,6 +87,7 @@ export class CreateAccommodationsComponent implements OnInit {
   }
 
   createAcmdt(): void {
+
     console.log("resultado:",this.accommodationForm.valid)
     //console.log(this.service.getLoggedUser())
     const loggedUser = this.service.getLoggedUser();
@@ -96,7 +98,7 @@ export class CreateAccommodationsComponent implements OnInit {
         accommodation_bedrooms: this.accommodationForm.value.accommodation_bedrooms,
         accommodation_max_capacity: this.accommodationForm.value.accommodation_max_capacity,
         accommodation_description: this.accommodationForm.value.accommodation_description,
-        // accommodation_price: this.accommodationForm.value.accommodation_price,
+        accommodation_price: this.accommodationForm.value.accommodation_price,
         user_id: this.user_id
       };
     }
@@ -113,8 +115,8 @@ export class CreateAccommodationsComponent implements OnInit {
         verticalPosition: 'top',
       });
 
-      // Navega para 'my-accommodations'
-      this.router.navigate(['/listAc']);
+      // Navega para home
+      this.router.navigate(['/home']);
     });
 
   }

@@ -23,6 +23,7 @@ def create_accommodation(
         accommodation_bedrooms,
         accommodation_max_capacity,
         accommodation_description,
+        accommodation_price,
         user_id
     ):
         try: 
@@ -35,6 +36,7 @@ def create_accommodation(
                 "bedrooms": accommodation_bedrooms,
                 "max_capacity": accommodation_max_capacity,
                 "description": accommodation_description,
+                "price":accommodation_price,
                 "user_id": user_id 
             }
             

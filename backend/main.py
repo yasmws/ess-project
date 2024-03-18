@@ -94,12 +94,13 @@ def create_accommodation(
         accommodation_bedrooms: int,
         accommodation_max_capacity: int, 
         accommodation_description: str,
+        accommodation_price: int,
         user_id: str
         ):
         
         return accommodations.create_accommodation(accommodation_name, accommodation_loc, 
                          accommodation_bedrooms, accommodation_max_capacity, 
-                         accommodation_description, user_id)
+                         accommodation_description, accommodation_price, user_id)
 
 @app.post("/accommodation/create/upload_img")
 async def upload(accommodation_id: str, file: UploadFile = File(...)):

@@ -44,6 +44,6 @@ export class BookAccommodationsComponent implements OnInit {
     const data = this.data
     data['client_id'] = this.service.getLoggedUser()
     console.log('Enviando os seguintes dados para pagamento:', data)
-    this.router.navigate(['/payment'], { state: { data } });
+    this.router.navigate(['/home']);
   }
 }
