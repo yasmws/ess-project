@@ -37,6 +37,7 @@ import { BookAccommodationsComponent } from './view/book-accommodations/book-acc
 
 import {HeaderHomeComponent } from './components/headers/header-home/header-home.component'
 import { EmailComponent} from './components/email/email.component'
+import { SearchPageComponent } from './search-page/search-page.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { EmailComponent} from './components/email/email.component'
     HeaderHomeComponent,
     CreateAccommodationsComponent,
     BookAccommodationsComponent,
-    EmailComponent
+    EmailComponent,
+    SearchPageComponent
   ],
   imports: [
     StarsComponent,

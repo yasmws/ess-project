@@ -1,5 +1,3 @@
-// search-page.component.ts
-
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -11,6 +9,7 @@ import { any } from 'cypress/types/bluebird';
   styleUrls: ['./search-page.component.css']
 })
 export class SearchPageComponent {
+  errorMessage: any;
   constructor(private http: HttpClient, private router: Router) { }
 
   searchAccommodations(): void {
@@ -32,12 +31,17 @@ export class SearchPageComponent {
 
     this.http.get(url, { headers }).subscribe((data: any) => {
       console.log(data);
-      this.router.navigate(['/home'], {
-        queryParams: {
-          checkin,
-          checkout
-        }
-      });
+      if (Array.isArray(data)) {
+        this.router.navigate(['/home'], {
+          queryParams: {
+            checkin,
+            checkout
+          }
+        });
+      }
+      else {
+        this.errorMessage = (data as any).message;
+      }
     });
   }
 
