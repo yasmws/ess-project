@@ -61,13 +61,13 @@
       </div>
 
       <!-- Preço por Noite -->
-      <!--<div class="form-group">
+      <div class="form-group">
         <label for="preco">Preço por Noite:</label>
         <input type="number" class="form-control" id="preco" formControlName="accommodation_price" min="0" required>
         <div *ngIf="hasError('accommodation_price', 'required')" class="error-message">
           O preço é obrigatório.
         </div>
-      </div>-->
+      </div>
 
       <!-- Botão de Envio -->
       <button type="submit" (click)="createAcmdt()" [disabled]="accommodationForm.invalid" class="form-control"
