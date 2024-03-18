@@ -82,3 +82,39 @@ body {
     }
   }
   
+/* Estilos para a mensagem de erro */
+.error-message {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #ffebeb;
+  color: #ff0000;
+  border: 1px solid #ffcccc;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Estilos para ocultar a mensagem de erro inicialmente */
+.error-message.hidden {
+  display: none;
+}
+
+/* Media queries para responsividade (não alterei os estilos existentes) */
+@media screen and (min-width: 768px) {
+  .search-container {
+      max-width: 800px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .search-container {
+      max-width: 1000px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .search-container {
+      max-width: 1200px;
+  }
+}

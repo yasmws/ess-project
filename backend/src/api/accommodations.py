@@ -114,6 +114,9 @@ def get_accommodations(
         guests: int = None
     ):
     try:
+        if checkin and checkout and checkin > checkout:
+            return {"message": "A data de check-in não pode ser maior que a data de check-out."}
+        
         accommodations = firebase_config.db.child("accommodation").order_by_child("location")        
         accommodations = accommodations.limit_to_first(10).get()  # Adjust the limit as needed
         
@@ -162,10 +165,10 @@ def get_accommodations(
         ]
 
         if not accommodations_list:
-            return status.HTTP_204_NO_CONTENT
+            return {"message": "Nenhuma acomodação encontrada com os parâmetros especificados."}
         return accommodations_list
     except Exception:
-        raise HTTPException(status_code=400, detail="Failed looking for accommodations.")
+        raise HTTPException(status_code=400, detail="Falha ao procurar acomodações.")
     
 def get_accommodation_by_id(accommodation_id):
     try:
